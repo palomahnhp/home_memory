@@ -1,0 +1,95 @@
+// Fonts
+//
+// 01. Source Sans Pro (https://www.google.com/fonts/specimen/Source+Sans+Pro)
+// 02. Lato (https://www.google.com/fonts/specimen/Lato)
+//
+
+// 01. Source Sans Pro
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 300;
+  src: font-path('sourcesanspro-light-webfont.eot');
+  src: font-path('sourcesanspro-light-webfont.eot?#iefix') format('embedded-opentype'),
+       font-path('sourcesanspro-light-webfont.woff2') format('woff2'),
+       font-path('sourcesanspro-light-webfont.woff') format('woff'),
+       font-path('sourcesanspro-light-webfont.ttf') format('truetype'),
+       font-path('sourcesanspro-light-webfont.svg#source_sans_prolight') format('svg');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: font-path('sourcesanspro-regular-webfont.eot');
+  src: font-path('sourcesanspro-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       font-path('sourcesanspro-regular-webfont.woff2') format('woff2'),
+       font-path('sourcesanspro-regular-webfont.woff') format('woff'),
+       font-path('sourcesanspro-regular-webfont.ttf') format('truetype'),
+       font-path('sourcesanspro-regular-webfont.svg#source_sans_proregular') format('svg');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  font-weight: 400;
+  src: font-path('sourcesanspro-italic-webfont.eot');
+  src: font-path('sourcesanspro-italic-webfont.eot?#iefix') format('embedded-opentype'),
+       font-path('sourcesanspro-italic-webfont.woff2') format('woff2'),
+       font-path('sourcesanspro-italic-webfont.woff') format('woff'),
+       font-path('sourcesanspro-italic-webfont.ttf') format('truetype'),
+       font-path('sourcesanspro-italic-webfont.svg#source_sans_proitalic') format('svg');
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 700;
+  src: font-path('sourcesanspro-bold-webfont.eot');
+  src: font-path('sourcesanspro-bold-webfont.eot?#iefix') format('embedded-opentype'),
+       font-path('sourcesanspro-bold-webfont.woff2') format('woff2'),
+       font-path('sourcesanspro-bold-webfont.woff') format('woff'),
+       font-path('sourcesanspro-bold-webfont.ttf') format('truetype'),
+       font-path('sourcesanspro-bold-webfont.svg#source_sans_probold') format('svg');
+}
+
+// 02. Lato
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+@font-face {
+  font-family: 'Lato';
+  src: font-path('lato-light.eot');
+  src: font-path('lato-light.eot?#iefix') format('embedded-opentype'),
+       font-path('lato-light.woff2') format('woff2'),
+       font-path('lato-light.woff') format('woff'),
+       font-path('lato-light.ttf') format('truetype'),
+       font-path('lato-light.svg#latolight') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: font-path('lato-regular.eot');
+  src: font-path('lato-regular.eot?#iefix') format('embedded-opentype'),
+       font-path('lato-regular.woff2') format('woff2'),
+       font-path('lato-regular.woff') format('woff'),
+       font-path('lato-regular.ttf') format('truetype'),
+       font-path('lato-regular.svg#latoregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: font-path('lato-bold.eot');
+  src: font-path('lato-bold.eot?#iefix') format('embedded-opentype'),
+       font-path('lato-bold.woff2') format('woff2'),
+       font-path('lato-bold.woff') format('woff'),
+       font-path('lato-bold.ttf') format('truetype'),
+       font-path('lato-bold.svg#latobold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}

@@ -1,0 +1,12 @@
+<section class="top-links hide-for-small-only hide-for-print">
+  <div class="row">
+    <div  class="small-12 columns">
+        <div class="external-links small-2 columns end">
+          <%= link_to 'Ayre', Setting['ayre_url'], class: ('selected'), target: '_blank' %>
+        </div>
+      <div class="external-links small-10 columns end text-left">
+        <%= if current_user then current_user.full_name_ayre else t('shared.top_links.no_user') end %>
+      </div>
+    </div>
+  </div>
+</section>

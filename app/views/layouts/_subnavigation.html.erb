@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="medium-10 medium-offset-2 column">
+    <ul>
+      <% if current_user %>
+          <li>
+            <%= current_user %>
+            <%= link_to t("layouts.subnavigation_menu.patients"), patients_path, class: ("active" if controller_name == "patients") , accesskey: "e" %>
+          </li>
+          <li>
+            <%= link_to t("layouts.subnavigation_menu.professionals"), professionals_path, class: ("active" if controller_name == "professionals"), accesskey: "d" %>
+          </li>
+          <li>
+            <%= link_to t("layouts.subnavigation_menu.medications"), medications_path, class: ("active" if controller_name == "ptofessionals"), accesskey: "d" %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
