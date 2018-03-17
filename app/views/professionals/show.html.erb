@@ -1,0 +1,29 @@
+<div class="row" >
+<div class="small-12 columns" >
+  <div class="small-6 medium-1 columns" >
+  </div>
+  <div class="small-6 medium-11 columns" >
+    <h1><%= t('patients.show.title') %> </h1>
+    <table>
+      <tr>
+        <th> <%= t('activerecord.attributes.patient.nickname') %> </th>
+        <td> <%= @professional.nickname %> </td>
+      </tr>
+      <tr>
+        <th> <%= t('activerecord.attributes.patient.firstname') %> </th>
+        <td> <%= @professional.firstname %> </td>
+      </tr>
+      <tr>
+        <th> <%= t('activerecord.attributes.patient.surname') %> </th>
+        <td> <%= @professional.surname %> </td>
+      </tr>
+      <tr>
+        <th> <%= t('activerecord.attributes.patient.born_date') %> </th>
+        <td> <%= @professional.born_date %> </td>
+      </tr>
+    </table>
+
+  <%= link_to 'Edit', edit_professional_path(@professional) %> |
+  <%= link_to 'Back', professionals_path %>
+  </div>
+</div>

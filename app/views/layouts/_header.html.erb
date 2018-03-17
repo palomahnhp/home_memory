@@ -5,34 +5,44 @@
     </div>
     <div class="small-11 columns">
       <nav class="top-bar" data-topbar role="navigation">
-          <ul class="title-area">
-            <li class="name">
-              <h1><a href="#"><%= t('app.name') %></a></h1>
-            </li>
-            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-          </ul>
+        <ul class="title-area">
+          <li class="name">
+            <h1> <%= link_to t('app.name'), root_path %> </h1>
+          </li>
+        </ul>
 
         <section class="top-bar-section">
-            <!-- Right Nav Section -->
-            <ul class="right">
-              <li class="has-dropdown">
-                <a href="#">Tablas maestras</a>
-                <ul class="dropdown">
-                  <li><a href="#">Profesionales</a></li>
-                  <li><a href="#">Centros medicos</a></li>
-                  <li class="active"><a href="#">Medicamentos</a></li>
-                </ul>
-              </li>
-              <%= render "devise/menu/login_items" %>
-            </ul>
+          <ul class="left">
+            <li <%= "class=active" if controller_name == "patients" %> >
+              <%= link_to t('activerecord.models.patient', count: 2), patients_path %>
+            </li>
+            <li <%= "class=active" if controller_name == "professionals" %>>
+              <%= link_to t('activerecord.models.profesional', count: 2), professionals_path %>
+            </li>
+            <li <%= "class=active" if controller_name == "medical_centers" %> >
+              <%= link_to t('activerecord.models.medical_center', count: 2), medical_centers_path %>
+            </li>
+            <li <%= "class=active" if controller_name == "medications" %>>
+              <%= link_to t('activerecord.models.medication', count: 2), medications_path %>
+            </li>
+            <li <%= "class=active" if controller_name == "specialities" %>>
+              <%= link_to t('activerecord.models.speciality', count: 2), specialities_path %>
+            </li>
 
-            <!-- Left Nav Section -->
-            <ul class="left">
-              <li><a href="#">Pacientes</a></li>
-              <li class="active"><a href="#">Informes</a></li>
-            </ul>
-          </section>
+            <li class="has-dropdown" >
+              <a href="#">Informes</a>
+              <ul class="dropdown">
+                <li><a href="#">Informe 1</a></li>
+                <li class="active"><a href="#">Informe 2</a></li>
+              </ul>
+            </li>
+
+          </ul>
+
+          <ul class="right">
+            <%= render "devise/menu/login_items" %>
+          </ul>
+        </section>
       </nav>
     </div>
 

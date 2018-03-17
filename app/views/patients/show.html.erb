@@ -1,27 +1,17 @@
-<% if patient.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
-
-    <ul>
-      <% patient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+<div class="row" >
+<div class="small-12 columns" >
+  <div class="small-6 medium-1 columns" >
   </div>
-<% end %>
+  <div class="small-6 medium-11 columns" >
+    <h1><%= @patient.full_name %> </h1>
+    <table>
+      <tr>
+        <th> <%= t('activerecord.attributes.patient.born_date') %> </th>
+        <td> <%= @patient.born_date %> </td>
+      </tr>
+    </table>
 
-<%= f.label :nickname %>
-<%= f.text_field :nickname %>
-<%= f.label :firstname %>
-<%= f.text_field :firstname %>
-<%= f.label :surname %>
-<%= f.text_field :surname %>
-<%= f.label :born_date %>
-<%= f.date_field :born_date %>
-
-<div class="actions">
-  <%= f.submit t('actions.new') %>
+  <%= link_to 'Edit', edit_patient_path(@patient) %> |
+  <%= link_to 'Back', patients_path %>
+  </div>
 </div>
-
-<%= link_to 'Edit', edit_patient_path(@patient) %> |
-<%= link_to 'Back', patients_path %>

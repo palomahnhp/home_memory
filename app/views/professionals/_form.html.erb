@@ -1,0 +1,27 @@
+<%= form_with(model: professional, local: true) do |f| %>
+  <% if professional.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(professional.errors.count, "error") %> prohibited this professional from being saved:</h2>
+
+      <ul>
+      <% professional.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :firstname %>
+  <%= f.text_field :firstname %>
+  <%= f.label :surname %>
+  <%= f.text_field :surname %>
+
+  <%= f.label :speciality %>
+  <%= f.select :speciality, options_from_collection_for_select(Speciality.all, 'id', 'denomination', ' ') %>
+  <%= f.label :medical_center %>
+  <%= f.select :medical_center, options_from_collection_for_select(MedicalCenter.all, 'id', 'name', ' ') %>
+
+  <div class="actions">
+    <%= f.submit t("actions.#{action_name}") %>
+  </div>
+<% end %>

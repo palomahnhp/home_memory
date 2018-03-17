@@ -7,7 +7,29 @@ en:
         firstname: Nombre
         surname: Apellidos
         born_date: Fecha de nacimiento
+      speciality:
+        denomination: Denominación
+      professional:
+        firstname: Nombre
+        surname: Apellidos
+        medical_center: Centro médico
+        speciality: Especialidad
     models:
       patient:
         one: Paciente
         other: Pacientes
+      profesional:
+        one: Profesional
+        other: Profesionales
+      speciality:
+        one: Especialidades
+        other: Especialidades
+      medication:
+        one: Medicamento
+        other: Medicamentos
+      prescription:
+        one: Prescipción
+        other: Precripciones
+      medical_center:
+        one: Centro médico
+        other: Centros médicos

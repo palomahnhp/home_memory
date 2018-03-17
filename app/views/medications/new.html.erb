@@ -1,0 +1,9 @@
+<%= link_to t('actions.back'), medications_path %>
+
+<div class="row" %>
+  <div class="small-12 columns">
+    <h1><% t('medications.new.title')%> </h1>
+    <%= render 'form', medication: @medication %>
+
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="row" >
+  <div class="small-12 columns" >
+    <div class="small-6 medium-1 columns" >
+    </div>
+    <div class="small-6 medium-11 columns" >
+      <h1><%= t('medications.index.title') %> </h1>
+
+      <table>
+        <thead>
+          <tr>
+            <th> <%= sort_link @search, :name %></th>
+            <th> <%= sort_link @search, :active_ingredient %></th>
+            <th> <%= sort_link @search, :prospect %></th>
+            <th colspan="3"><%= t('actions.column') %></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @medications.each do |medication| %>
+            <tr>
+              <td> <%= medication.name %> </td>
+              <td> <%= medication.active_ingredient %> </td>
+              <td> <%= link_to ' ', medication.prospect.url(:original, false), class: "icon-file-pdf-o", target: "_blank" %> </td>
+              <td> <%= link_to ' ', medication, class: "icon-search" %></td>
+              <td> <%= link_to ' ', edit_medication_path(medication), class: "icon-pencil" %></td>
+              <td class="text-center"> <%= link_to ' ', medication, method: :delete, data: { confirm: t('actions.destroy.confirmation') },  class: "icon-trash" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+      <%= link_to t("actions.create", resource: 'Medicamento'), new_medication_path %>
+    </div>
+  </div>
+</div>

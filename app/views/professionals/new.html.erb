@@ -1,0 +1,9 @@
+<%= link_to t('actions.back'), professionals_path %>
+
+<div class="row" %>
+  <div class="small-12 columns">
+    <h1><% t('patients.new.title')%> </h1>
+    <%= render 'form', professional: @professional %>
+
+  </div>
+</div>
