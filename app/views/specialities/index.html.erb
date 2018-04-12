@@ -1,0 +1,32 @@
+<div class="row" >
+  <div class="small-12 columns" >
+    <div class="small-6 medium-1 columns" >
+    </div>
+    <div class="small-6 medium-11 columns" >
+      <h1><%= t('specialities.index.title') %> </h1>
+
+      <table>
+        <thead>
+        <tr>
+          <th> <%= sort_link @search, :denomination %></th>
+          <th colspan="3"><%= t('actions.column') %></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @specialities.each do |speciality| %>
+          <tr>
+            <td> <%= speciality.denomination %> </td>
+            <td><%= link_to '  ', speciality, class: "icon-search" %></td>
+            <td><%= link_to '  ', edit_speciality_path(speciality), class: "icon-pencil" %></td>
+            <td><%= link_to '  ', speciality, method: :delete, data: { confirm: t('actions.destroy.confirmation') },  class: "icon-trash" %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+      <br>
+      <%= link_to t("actions.create", resource: 'Especialidad'), new_speciality_path %>
+    </div>
+  </div>
+</div>

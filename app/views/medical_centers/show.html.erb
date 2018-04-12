@@ -1,0 +1,38 @@
+<div class="row" >
+  <div class="small-12 columns" >
+    <div class="small-6 medium-1 columns" >
+    </div>
+    <div class="small-6 medium-11 columns" >
+      <h1><%= @medical_center.name %></h1>
+      <table>
+        <tr>
+          <th> <%= t('activerecord.attributes.medical_center.name') %> </th>
+          <td> <%= @medical_center.name %> </td>
+        </tr>
+        <tr>
+          <th> <%= t('activerecord.attributes.medical_center.address') %> </th>
+          <td> <%= @medical_center.address %> </td>
+        </tr>
+        <tr>
+          <th> <%= t('activerecord.attributes.medical_center.web') %> </th>
+          <td> <%= link_to 'Web Hospital del Sureste', @medical_center.web, target: "_blank" %> </td>
+        </tr>
+        <tr>
+          <th> <%= t('activerecord.attributes.medical_center.email') %> </th>
+          <td> <%= mail_to @medical_center.email %> </td>
+        </tr>
+        <tr>
+          <th> <%= t('activerecord.attributes.medical_center.main_phone') %> </th>
+          <td> <%= @medical_center.main_phone %> </td>
+        </tr>
+        <tr>
+          <th> <%= t('activerecord.attributes.medical_center.appointment_phone') %> </th>
+          <td> <%= @medical_center.appointment_phone %> </td>
+        </tr>
+      </table>
+
+      <%= link_to t('actions.edit'), edit_medical_center_path(@medical_center) %> |
+      <%= link_to t('actions.back'), medical_centers_path %>
+    </div>
+  </div>
+</div>

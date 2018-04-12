@@ -1,0 +1,43 @@
+<%= form_with(model: patient, local: true) do |f| %>
+  <% if patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+      <% patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="small-12 columns">
+      <%= f.label :nickname %>
+      <%= f.text_field :nickname %>
+      <%= f.label :firstname %>
+      <%= f.text_field :firstname %>
+      <%= f.label :surname %>
+      <%= f.text_field :surname %>
+      <%= f.label :born_date %>
+      <%= f.date_field :born_date %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns">
+      <h3> Citas </h3>
+    </div>
+    <div class="small-12 columns">
+      <%= f.fields_for :appointments do |appointment| %>
+
+        <%= render 'appointment_fields', f: appointment %>
+      <% end %>
+
+      <%= link_to_add_association 'add task', f, :appointments %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit t('actions.new') %>
+  </div>
+<% end %>

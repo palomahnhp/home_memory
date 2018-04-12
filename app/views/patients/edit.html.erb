@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="row">
+    <h1><%= t('patients.edit.title')  %></h1>
+
+  <%= render 'form', patient: @patient %>
+
+  <%= link_to 'Show', @patient %> |
+  <%= link_to 'Back', patients_path %>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<h1><%= t('analyses.index.title')%></h1>
+<div class="row" >
+  <p class="note">
+  <div class="small-12 columns">
+    <strong> <%= t('analyses.index.import.title') %> </strong>
+    <%= form_tag import_analyses_path, multipart: true do %>
+      <div class="medium-4 columns">
+          <%= file_field_tag :file %>
+      </div>
+      <div class="medium-2 columns end">
+        <%= submit_tag t('analyses.index.import.button'), class: "hollow button" %>
+      </div>
+    <% end %>
+  </div>
+  </p>
+</div>
+
+<div class="row" >
+  <div class="small-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th> Extracción </th>
+          <th> Paciente</th>
+          <th> Médico </th>
+          <th> Prescripción </th>
+          <th> Centro </th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @analyses.each do |analysis| %>
+          <tr>
+
+            <td><%= l analysis.extracted_at %></td>
+            <td><%= analysis.patient.nickname %></td>
+            <td><%= analysis.professional.firstname %></td>
+            <td><%= analysis.appointment&.time %></td>
+            <td><%= analysis.medical_center.name %></td>
+
+            <td><%= link_to '', analysis, class: "icon-search" %></td>
+            <td><%= link_to '', edit_analysis_path(analysis), class: "icon-pencil" %></td>
+            <td><%= link_to '', analysis, method: :delete, data: { confirm: 'Are you sure?' }, class: "icon-trash" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Analysis', new_analysis_path %>

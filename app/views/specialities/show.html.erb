@@ -1,0 +1,18 @@
+<div class="row" >
+  <div class="small-12 columns" >
+    <h1><%= t('specialities.show.title') %> </h1>
+  </div>
+  <div class="small-12 columns" >
+    <div class="small-6 medium-11 columns" >
+      <table>
+        <tr>
+          <th> <%= t('activerecord.attributes.speciality.denomination') %> </th>
+          <td> <%= @speciality.denomination %> </td>
+        </tr>
+      </table>
+
+      <%= link_to 'Edit', edit_speciality_path(@speciality) %> |
+      <%= link_to 'Back', specialities_path %>
+    </div>
+  </div>
+</div>
