@@ -8,4 +8,8 @@ module ApplicationHelper
     @result[:grade] = result.grade
     @result
   end
+
+  def items_by_group(analysis, group)
+    @items_by_group = analysis.analytical_items.by_group(group)
+  end
 end
