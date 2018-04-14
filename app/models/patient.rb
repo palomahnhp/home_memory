@@ -9,6 +9,7 @@ class Patient < ApplicationRecord
   accepts_nested_attributes_for :appointments, reject_if: :all_blank, allow_destroy: true
 
   def full_name
-    nickname + " - " + firstname + " " + surname
+    firstname + " " + surname
   end
+
 end

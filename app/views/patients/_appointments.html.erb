@@ -1,0 +1,24 @@
+<captionn><h4>Próximas citas</h4></captionn>
+
+<% @patient.appointments.each do |appointment| %>
+  <div class="panel">
+    <p>
+      <strong><%= appointment.professional.speciality.denomination %> - Dr/a <%= appointment.professional.full_name %></strong>
+      <strong> <%= l appointment.appointment_time.to_time %> </strong>
+      <br>
+      <%= appointment.professional.medical_center.name %> ,
+      <%= appointment.location %>
+    </p>
+    <p>
+      <strong>Motivo</strong>
+      <<%= appointment.reason %>
+    </p>
+  </div>
+<% end %>
+
+<% if @patient.appointments.empty? %>
+   <div class="panel" >
+     No hay citas pendientes
+    </div>
+
+<% end %>

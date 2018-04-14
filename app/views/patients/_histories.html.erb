@@ -1,0 +1,43 @@
+<captionn><h4>HISTORIA</h4></captionn>
+
+<% @patient.histories.each do |history| %>
+  <div class="panel">
+    <p>
+      <strong>Consulta: </strong><%= history&.appointment.appointment_time.to_s%>
+      <%= history&.appointment.professional.full_name %>   <td> <%= history&.appointment.professional.speciality.denomination %>
+    <%= history&.appointment.professional.medical_center.name %>
+    </p>
+    <p>
+      <strong>Motivo: </strong> <br>
+      <%= history&.appointment.reason %>
+    </p>
+    <p>
+      <strong> Notas: </strong> <br>
+      <%= simple_format(history.note) %>
+    </p>
+    <% unless history.appointment.analyses.empty? %>
+      <p>
+        <strong> Analìticas:</strong>
+        <ul>
+          <li>
+            <%= history.appointment.analysis.extracted_at %> - <%= history.appointment.analysis.type  %>
+          </li>
+        </ul>
+      </p>
+    <% end %>
+    <p>
+      <strong> Pruebas:</strong>
+      <ul>
+      <% history.appointment.medical_tests.each do |test| %>
+        <li>
+          <%= test.name %> - <%= l test.date %>
+        </li>
+      <% end %>
+
+      </ul>
+    </p>
+    <p>
+      <strong> Tratamiento:s</strong>
+    </p>
+  </div>
+<% end %>
