@@ -1,9 +1,7 @@
 <h3> Anaĺitica de <%= @analysis.patient.full_name %> </h3>
 
-<p> Fecha de extraccion: <%= l @analysis.extracted_at %> Fecha de prescripcion: <%= %> </p>
-<p> Profesional: <%= @analysis.professional.full_name %>
-  Especialidad: <%= @analysis.professional.speciality.denomination %></p>
-<p> Centro médico: <%= @analysis.medical_center.name %> </p>
+<p> <strong> Dr/a <%= @analysis.professional.full_name %> </strong> - <%= @analysis.professional.speciality.denomination %>  - <%= @analysis.medical_center.name %> </p>
+<p> <strong>Fecha de extraccion: </strong><%= l @analysis.extracted_at %>  </p>
 
 <div class="row" >
   <div class="small-12 columns">
