@@ -1,4 +1,46 @@
-<p id="notice"><%= notice %></p>
+<h3> Anaĺitica de <%= @analysis.patient.full_name %> </h3>
 
-<%= link_to 'Edit', edit_analisy_path(@analisy) %> |
-<%= link_to 'Back', analisies_path %>
+<p> Fecha de extraccion: <%= l @analysis.extracted_at %> Fecha de prescripcion: <%= %> </p>
+<p> Profesional: <%= @analysis.professional.full_name %>
+  Especialidad: <%= @analysis.professional.speciality.denomination %></p>
+<p> Centro médico: <%= @analysis.medical_center.name %> </p>
+
+<div class="row" >
+  <div class="small-12 columns">
+    <table>
+      <thead>
+      <tr>
+        <th>  </th>
+        <th> Determinación </th>
+        <th> Rango </th>
+        <th> Cantidad </th>
+        <th> Detalles </th>
+        <th colspan="4"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% AnalyticalGroup.all.each do |group| %>
+        <tr>
+          <td colspan="6"> <h3> <%= group.name %> </h3></td>
+        </tr>
+        <% @analysis.analytical_items.by_group(group).each do |item| %>
+          <tr>
+            <td><%= result(@analysis, item)[:level] %> <%= @result[:grade] %></td>
+            <td><%= item.name %></td>
+            <td><%= item.min_range %>-<%= item.max_range %> </td>
+            <td><%= @result[:amount] %>  <%= @result[:unit] %></td>
+
+            <td><%= link_to '', @analysis, class: "icon-search" %></td>
+            <td><%= link_to '', edit_analysis_path(@analysis), class: "icon-pencil" %></td>
+            <td><%= link_to '', @analysis, method: :delete, data: { confirm: 'Are you sure?' }, class: "icon-trash" %></td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_analysis_path(@analysis) %> |
+<%= link_to 'Back', analyses_path %>

@@ -1,17 +1,64 @@
 <div class="row" >
-<div class="small-12 columns" >
-  <div class="small-6 medium-1 columns" >
-  </div>
-  <div class="small-6 medium-11 columns" >
-    <h1><%= @patient.full_name %> </h1>
-    <table>
-      <tr>
-        <th> <%= t('activerecord.attributes.patient.born_date') %> </th>
-        <td> <%= @patient.born_date %> </td>
-      </tr>
-    </table>
+  <div class="small-12 columns" >
+    <div class="small-6 medium-1 columns" >
+    </div>
+    <div class="small-6 medium-11 columns" >
+      <h1><%= @patient.full_name %> </h1>
+      <table>
+        <tr>
+          <th> <%= t('activerecord.attributes.patient.born_date') %> </th>
+          <td> <%= @patient.born_date %> </td>
+        </tr>
+      </table>
+      <table>
+        <captionn><h4>CITAS</h4></captionn>
+        <tr>
+          <th> <%= t('activerecord.attributes.appointment.professional') %> </th>
+          <th> <%= t('activerecord.attributes.appointment.speciality') %> </th>
+          <th> <%= t('activerecord.attributes.appointment.appointment_date') %> </th>
+          <th> <%= t('activerecord.attributes.medical_center.name') %> </th>
+          <th> <%= t('activerecord.attributes.appointment.location') %> </th>
+        </tr>
+        <% @patient.appointments.each do |appointment| %>
+          <tr>
+            <td class="medium-col"> <%= appointment.professional.full_name %> </td>
+            <td class="short-col"> <%= appointment.professional.speciality.denomination %> </td>
+            <td> <%= l appointment.appointment_time, format: :day_week  %> </td>
+            <td> <%= appointment.professional.medical_center.name %> </td>
+            <td  class="short-col"> <%= appointment.location %> </td>
+          </tr>
+          <tr>
+            <td colspan="5"> <%= appointment.reason %> <hr></td>
+          </tr>
 
-  <%= link_to 'Edit', edit_patient_path(@patient) %> |
-  <%= link_to 'Back', patients_path %>
+      <% end %>
+      </table>
+
+      <table>
+        <captionn><h4>HISTORIA</h4></captionn>
+        <tr>
+          <th> <%= t('activerecord.attributes.appointment.appointment_date') %> </th>
+          <th> <%= t('activerecord.attributes.appointment.speciality') %> </th>
+          <th> <%= t('activerecord.attributes.appointment.professional') %> </th>
+          <th> <%= t('activerecord.attributes.appointment.reason') %> </th>
+          <th> <%= t('activerecord.attributes.appointment.medical_center.name') %> </th>
+        </tr>
+        <% @patient.histories.each do |history| %>
+          <tr>
+            <td> <%= history&.appointment.appointment_time.to_s %> </td>
+            <td> <%= history&.appointment.professional.full_name %> </td>
+            <td> <%= history&.appointment.professional.speciality.denomination %> </td>
+            <td> <%= history&.appointment.reason %> </td>
+            <td> <%= history&.appointment.professional.medical_center.name %> </td>
+          </tr>
+          <tr>
+            <td colspan="5"> <%= simple_format(history.note) %> <hr></td>
+          </tr>
+        <% end %>
+      </table>
+
+      <%= link_to 'Edit', edit_patient_path(@patient) %> |
+      <%= link_to 'Back', patients_path %>
+    </div>
   </div>
 </div>

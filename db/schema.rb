@@ -80,13 +80,12 @@ ActiveRecord::Schema.define(version: 20180409172107) do
   create_table "histories", force: :cascade do |t|
     t.bigint "patient_id"
     t.bigint "appointment_id"
-    t.bigint "history_id"
     t.text "note"
+    t.integer "order"
     t.string "update_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["appointment_id"], name: "index_histories_on_appointment_id"
-    t.index ["history_id"], name: "index_histories_on_history_id"
     t.index ["patient_id"], name: "index_histories_on_patient_id"
   end
 
@@ -123,14 +122,16 @@ ActiveRecord::Schema.define(version: 20180409172107) do
   end
 
   create_table "prescriptions", force: :cascade do |t|
-    t.bigint "appointmemt_id"
+    t.bigint "appointments_id"
     t.bigint "medication_id"
-    t.bigint "posology_id"
+    t.string "posology"
+    t.date "init_at"
+    t.date "end_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["appointmemt_id"], name: "index_prescriptions_on_appointmemt_id"
+    t.index ["appointments_id"], name: "index_prescriptions_on_appointments_id"
     t.index ["medication_id"], name: "index_prescriptions_on_medication_id"
-    t.index ["posology_id"], name: "index_prescriptions_on_posology_id"
+    t.index ["posology"], name: "index_prescriptions_on_posology"
   end
 
   create_table "professionals", force: :cascade do |t|
@@ -173,4 +174,18 @@ ActiveRecord::Schema.define(version: 20180409172107) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "analyses", "appointments"
+  add_foreign_key "analyses", "medical_centers"
+  add_foreign_key "analyses", "patients"
+  add_foreign_key "analyses", "professionals"
+  add_foreign_key "analysis_results", "analyses"
+  add_foreign_key "analysis_results", "analytical_items"
+  add_foreign_key "analytical_items", "analytical_groups"
+  add_foreign_key "appointments", "medical_centers"
+  add_foreign_key "appointments", "patients"
+  add_foreign_key "appointments", "professionals"
+  add_foreign_key "histories", "appointments"
+  add_foreign_key "histories", "patients"
+  add_foreign_key "prescriptions", "appointments", column: "appointments_id"
+  add_foreign_key "prescriptions", "medications"
 end

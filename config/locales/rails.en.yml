@@ -193,6 +193,7 @@ en:
   time:
     am: am
     formats:
+      day_week: "%A %d/%m/%Y %H:%M"
       datetime: "%d/%m/%Y %H:%M:%S"
       default: "%A, %d de %B de %Y %H:%M:%S %z"
       long: "%d de %B de %Y %H:%M"
