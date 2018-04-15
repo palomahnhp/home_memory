@@ -1,10 +1,6 @@
+<h1><%= t('patients.index.title') %> </h1>
 <div class="row" >
   <div class="small-12 columns" >
-    <div class="small-6 medium-1 columns" >
-    </div>
-    <div class="small-6 medium-11 columns" >
-    <h1><%= t('patients.index.title') %> </h1>
-
     <table>
       <thead>
         <tr>
@@ -24,7 +20,7 @@
             <td> <%= patient.surname %> </td>
             <td> <%= l patient.born_date %> </td>
             <td><%= link_to '  ', patient, class: "icon-search", title: 'Detalle' %></td>
-            <td><%= link_to '  ', analyses_path(patient), class: "icon-calendar", title: "Análisis" %></td>
+            <td><%= link_to '  ', medical_tests_path(id: patient), class: "icon-calendar", title: "Pruebas" %></td>
             <td><%= link_to '  ', edit_patient_path(patient), class: "icon-pencil", title: 'Editar'  %></td>
             <td><%= link_to '  ', patient, method: :delete, title: 'Borrar', data: { confirm: t('actions.destroy.confirmation') },  class: "icon-trash" %></td>
           </tr>

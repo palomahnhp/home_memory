@@ -16,7 +16,6 @@ p  'Creating Pacients ...'
  ['Jb',    'Justo',  'Beltrán Vicente', '1964/06/22']
 ].each do |reg|
   patient =  Patient.create(nickname: reg[0], firstname: reg[1], surname: reg[2], born_date: reg[3])
-  p patient.nickname + ' ' + patient.firstname + ' ' + patient.surname + ' ' + patient.born_date.to_s
 end
 
 p  'Creating Centers ...'
@@ -30,7 +29,7 @@ p  'Creating Centers ...'
   'http://lagosderivas.com', ''],
 ].each do |reg|
   centro =  MedicalCenter.create(name: reg[0], address: reg[1], kind: reg[2], web: reg[3], email: reg[4])
-  p centro.name
+
 end
 
 p  'Creating Specialities ...'
@@ -39,7 +38,7 @@ p  'Creating Specialities ...'
    Oncología Pediatría Psiquiatría Rehabilitación Reumatología Toxicología Enfermería
    Urología).each do |reg|
    specialiy = Speciality.create(denomination: reg)
-   p specialiy.denomination
+
 end
 p  'Creating Profesionals ...'
  [
@@ -50,7 +49,7 @@ p  'Creating Profesionals ...'
    professional =  Professional.create(firstname: reg[0], surname: reg[1],
                                        speciality: Speciality.find_by(denomination: reg[2]),
                                        medical_center: MedicalCenter.find_by(name: reg[3]))
-   p professional.firstname
+
  end
 
 p 'Creating appointments ... '
@@ -103,19 +102,22 @@ p 'Analytical items'
     AnalyticalItem.create()
   end
 
-p 'Analisys'
-   analisis = Analysis.create(
-               patient: Patient.first,
-               appointment: Appointment.first,
-               medical_center: MedicalCenter.first,
-               extracted_at: Date.today - 2.months
-   )
+p 'Medical Tests'
+   tests = [{'RX': 'de torax'}, {'Colonoscopia': ''}, {'RM': 'de abdomen'}]
+   (1..5).each do
+     type = tests.shuffle.first
+     appointment = Appointment.all.shuffle.first
+     medical_Center = MedicalCenter.all.shuffle.first
 
-AnalyticalItem.all.each do |item|
- AnalysisResult.create(
-   analysis: Analysis.first,
-   analytical_item: item,
-   amount: 13.25,
-   magnitude: ['*', 'A', ' '].shuffle.first
- )
-end
+     test = MedicalTest.create(name: type.keys.first.to_s,
+                               kind: type[type.keys.first],
+                               patient: appointment.patient,
+                               professional: appointment.professional,
+                               appointment: appointment,
+                               medical_center: MedicalCenter.first,
+                               performed_at: Date.today - rand(40..233).days,
+                               performed_in: 'planta 0, sala 4',
+       )
+   end
+
+

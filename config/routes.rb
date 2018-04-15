@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   root to: "patients#index"
 
   resources :medical_centers
-  resources :analyses do
+  resources :medical_tests do
     collection { post :import }
   end
+
   resources :prescriptions
   resources :appointments
   resources :medications

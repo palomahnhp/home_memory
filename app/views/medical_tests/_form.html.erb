@@ -1,0 +1,17 @@
+<%= form_with(model: analisys, local: true) do |form| %>
+  <% if analisys.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(analisys.errors.count, "error") %> prohibited this analisys from being saved:</h2>
+
+      <ul>
+      <% analisys.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

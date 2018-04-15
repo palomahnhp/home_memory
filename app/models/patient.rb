@@ -1,7 +1,8 @@
 class Patient < ApplicationRecord
   has_many :appointments,   inverse_of: :patient
   has_many :professionals,  through: :appointments
-  has_many :analisys,       through: :appointments
+  has_many :medical_tests
+  has_many :medical_tests,  through: :appointments
   has_many :precriptions,   through: :appointments
   has_many :medications,    through: :precriptions
   has_many :histories

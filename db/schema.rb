@@ -10,29 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180414155637) do
+ActiveRecord::Schema.define(version: 20180414152707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "analyses", force: :cascade do |t|
-    t.date "extracted_at"
-    t.bigint "patient_id"
-    t.bigint "professional_id"
-    t.bigint "appointment_id"
-    t.bigint "medical_center_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "type"
-    t.index ["appointment_id"], name: "index_analyses_on_appointment_id"
-    t.index ["medical_center_id"], name: "index_analyses_on_medical_center_id"
-    t.index ["patient_id"], name: "index_analyses_on_patient_id"
-    t.index ["professional_id"], name: "index_analyses_on_professional_id"
-  end
-
   create_table "analysis_results", force: :cascade do |t|
     t.bigint "analytical_item_id"
-    t.bigint "analysis_id"
+    t.bigint "medical_test_id"
     t.float "amount"
     t.string "unit"
     t.string "level"
@@ -40,8 +25,8 @@ ActiveRecord::Schema.define(version: 20180414155637) do
     t.text "interpretation"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["analysis_id"], name: "index_analysis_results_on_analysis_id"
     t.index ["analytical_item_id"], name: "index_analysis_results_on_analytical_item_id"
+    t.index ["medical_test_id"], name: "index_analysis_results_on_medical_test_id"
   end
 
   create_table "analytical_groups", force: :cascade do |t|
@@ -104,11 +89,19 @@ ActiveRecord::Schema.define(version: 20180414155637) do
 
   create_table "medical_tests", force: :cascade do |t|
     t.bigint "appointment_id"
+    t.bigint "patient_id"
+    t.bigint "professional_id"
     t.string "name"
-    t.time "date"
+    t.string "kind"
+    t.datetime "performed_at"
+    t.string "performed_in"
+    t.bigint "medical_center_id"
     t.text "instructions"
-    t.text "results"
+    t.text "report"
     t.index ["appointment_id"], name: "index_medical_tests_on_appointment_id"
+    t.index ["medical_center_id"], name: "index_medical_tests_on_medical_center_id"
+    t.index ["patient_id"], name: "index_medical_tests_on_patient_id"
+    t.index ["professional_id"], name: "index_medical_tests_on_professional_id"
   end
 
   create_table "medications", force: :cascade do |t|
@@ -184,12 +177,8 @@ ActiveRecord::Schema.define(version: 20180414155637) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "analyses", "appointments"
-  add_foreign_key "analyses", "medical_centers"
-  add_foreign_key "analyses", "patients"
-  add_foreign_key "analyses", "professionals"
-  add_foreign_key "analysis_results", "analyses"
   add_foreign_key "analysis_results", "analytical_items"
+  add_foreign_key "analysis_results", "medical_tests"
   add_foreign_key "analytical_items", "analytical_groups"
   add_foreign_key "appointments", "medical_centers"
   add_foreign_key "appointments", "patients"

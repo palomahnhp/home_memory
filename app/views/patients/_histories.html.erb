@@ -1,4 +1,4 @@
-<captionn><h4>HISTORIA</h4></captionn>
+<h4>HISTORIA</h4>
 
 <% @patient.histories.each do |history| %>
   <div class="panel">
@@ -15,29 +15,18 @@
       <strong> Notas: </strong> <br>
       <%= simple_format(history.note) %>
     </p>
-    <% unless history.appointment.analyses.empty? %>
-      <p>
-        <strong> Analìticas:</strong>
-        <ul>
-          <li>
-            <%= history.appointment.analysis.extracted_at %> - <%= history.appointment.analysis.type  %>
-          </li>
-        </ul>
-      </p>
-    <% end %>
     <p>
       <strong> Pruebas:</strong>
       <ul>
       <% history.appointment.medical_tests.each do |test| %>
         <li>
-          <%= test.name %> - <%= l test.date %>
+          <%= test.name %> - <%= l test.performed_at %>
         </li>
       <% end %>
-
       </ul>
     </p>
     <p>
-      <strong> Tratamiento:s</strong>
+      <strong> Tratamientos:</strong>
     </p>
   </div>
 <% end %>

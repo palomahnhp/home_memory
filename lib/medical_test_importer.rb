@@ -1,4 +1,4 @@
-class AnalysisImporter < BaseImporter
+class MedicalTestImporter < BaseImporter
   attr_reader :filepath
 
   def parse
@@ -6,8 +6,8 @@ class AnalysisImporter < BaseImporter
     spreadsheet = open_spreadsheet
     Rails.logger.info (self.class.to_s + ' - '  + Time.zone.now.to_s + " - fichero leido: #{@filepath} " + spreadsheet.last_row.to_s + ' filas' )
     header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).each do |i|
 
+    (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       parse_columns(row)
       if i == 2
@@ -25,33 +25,25 @@ class AnalysisImporter < BaseImporter
       )
 
       @result_data.each do |data|
-        analysis = Analysis.find_or_create_by( extracted_at: data[0].to_date,
-                                               patient: @patient,
-                                               medical_center: @center,
-                                               professional: @professional
-                                               )
+        extraction = data[0].to_datetime
+        analysis = MedicalTest.find_or_create_by( performed_at: extraction,
+                                                  performed_in: 'sala xx',
+                                                  name: 'Análisis',
+                                                  kind: 'de sangre',
+                                                  instructions: 'Acudir en ayunas',
+                                                  patient: @patient,
+                                                  professional: @professional,
+                                                  medical_center: @center
+                                                 )
+        level = 'A' if data[1].to_f  > item.max_range.to_f
+        level = 'B' if data[1].to_f  < item.min_range.to_f
 
         AnalysisResult.find_or_create_by( analytical_item: item,
-                                          analysis: analysis,
-                                          amount:   data[1]
+                                          medical_test: analysis,
+                                          amount:   data[1],
+                                          level: level
                                           )
       end
-=begin
-      rpt = Rpt.find_or_create_by(year: row["year"], sapid_area: row["sapid_area"],
-                                  sapid_unidad: row["sapid_unidad"], id_puesto: row["id_puesto"])
-      rpt.attributes   = row.to_hash
-      rpt.organization = FirstLevegroup_datlUnit.find_by(sapid_unit: row["sapid_area"]).organization
-      rpt.unit         = Unit.find_by(sap_id: row["sapid_unidad"]).presence
-      Rails.logger.info (self.class.to_s + ' - '  + Time.zone.now.to_s + " - procesado registro: " + i.to_s)
-      begin
-        rpt.save!
-      rescue
-        Rails.logger.info (self.class.to_s + ' - '  +  Time.zone.now.to_s + " - Error actualizando RPT: #{@filepath}" +
-            rpt.errors.to_s)
-      end
-    end
-=end
-#      delete_file
     end
   end
 

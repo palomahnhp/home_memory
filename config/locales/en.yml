@@ -116,7 +116,7 @@ en:
   appointments:
     edit:
       title: "Modificar Cita"
-  analyses:
+  medical_tests:
     index:
       import:
         title: "Importar"

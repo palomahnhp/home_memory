@@ -1,0 +1,56 @@
+<h1><%= t('medical_tests.index.title')%></h1>
+<div class="row" >
+  <p class="note">
+  <div class="small-12 columns">
+    <strong> <%= t('medical_tests.index.import.title') %> </strong>
+    <%= form_tag import_medical_tests_path, multipart: true do %>
+      <div class="medium-4 columns">
+          <%= file_field_tag :file %>
+      </div>
+      <div class="medium-2 columns end">
+        <%= submit_tag t('medical_tests.index.import.button'), class: "hollow button" %>
+      </div>
+    <% end %>
+  </div>
+  </p>
+</div>
+
+<div class="row" >
+  <div class="small-12 columns">
+    <table>
+      <thead>
+        <tr>
+          <th> Prueba </th>
+          <th> Fecha de realización </th>
+          <th> Paciente</th>
+          <th> Médico </th>
+          <th> Prescripción </th>
+          <th> Centro </th>
+          <th colspan="4"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @medical_tests.each do |medical_test| %>
+          <tr>
+
+            <td><%= medical_test.id %> <%= medical_test.name %></td>
+            <td><%= l medical_test.performed_at %></td>
+            <td><%= medical_test.patient.nickname %></td>
+            <td><%= medical_test.professional.firstname %></td>
+            <td><%= medical_test.appointment&.appointment_time %></td>
+            <td><%= medical_test.medical_center.name %></td>
+
+            <td><%= link_to '', medical_test, class: "icon-search" %></td>
+            <td><%= link_to '', edit_medical_test_path(medical_test), class: "icon-pencil" %></td>
+            <td><%= link_to '', medical_test, method: :delete, data: { confirm: 'Are you sure?' }, class: "icon-trash" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br>
+
+<%= link_to 'New Test', new_medical_test_path %>
