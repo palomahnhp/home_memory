@@ -1,4 +1,6 @@
 class MedicalTest < ApplicationRecord
+  paginates_per 10
+
   belongs_to :appointment, optional: true
   belongs_to :patient
   belongs_to :professional

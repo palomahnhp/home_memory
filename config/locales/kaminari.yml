@@ -1,0 +1,21 @@
+en:
+  views:
+    pagination:
+      first: "&laquo; Primera"
+      last: "Última &raquo;"
+      previous: "&lsaquo; Ant"
+      next: "Sig &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      entry:
+        zero: "registros"
+        one: "registro"
+        other: "registros"
+      one_page:
+        display_entries:
+          zero: "Ninguna %{entry_name} encontradas"
+          one: "Mostrandp <b>1</b> %{entry_name}"
+          other: "Mostrando <b>todas %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Mostrando %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> de <b>%{total}</b> en total"
