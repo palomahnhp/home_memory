@@ -14,6 +14,11 @@ en:
         surname: Apellidos
         medical_center: Centro médico
         speciality: Especialidad
+      medical_test:
+        name: Prueba
+        performed_at: Fecha de realización
+        patient: Paciente
+        professional: Médico
     models:
       patient:
         one: Paciente
@@ -30,6 +35,9 @@ en:
       prescription:
         one: Prescipción
         other: Precripciones
+      medical_test:
+        one: Prueba médica
+        other: Pruebas médicas
       medical_center:
         one: Centro médico
         other: Centros médicos

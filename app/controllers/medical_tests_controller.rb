@@ -7,10 +7,14 @@ class MedicalTestsController < ApplicationController
   # GET /analisies.json
   def index
     if params[:id]
-      @medical_tests = MedicalTest.by_patient(params[:id])
+      @search = MedicalTest.by_patient(params[:id]).search(params[:q])
     else
-      @medical_tests = MedicalTest.all
+      @search  = MedicalTest.search(params[:q])
     end
+
+    @search.sorts = 'performed_at desc' if @search.sorts.empty?
+    @medical_tests = @search.result.page(params[:page])
+    @search.build_condition
   end
 
   # GET /analisies/1

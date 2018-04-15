@@ -20,11 +20,11 @@
     <table>
       <thead>
         <tr>
-          <th> Prueba </th>
-          <th> Fecha de realización </th>
-          <th> Paciente</th>
-          <th> Médico </th>
-          <th> Prescripción </th>
+          <th> <%= sort_link @search, :name %></th>
+          <th> <%= sort_link @search, :performed_at %></th>
+          <th> <%= sort_link @search, :patient %></th>
+          <th> <%= sort_link @search, :professional %></th>
+          <th> Fecha de prescripción</th>
           <th> Centro </th>
           <th colspan="4"></th>
         </tr>
@@ -33,7 +33,6 @@
       <tbody>
         <% @medical_tests.each do |medical_test| %>
           <tr>
-
             <td><%= medical_test.id %> <%= medical_test.name %></td>
             <td><%= l medical_test.performed_at %></td>
             <td><%= medical_test.patient.nickname %></td>

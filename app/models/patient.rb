@@ -3,7 +3,7 @@ class Patient < ApplicationRecord
   has_many :professionals,  through: :appointments
   has_many :medical_tests
   has_many :medical_tests,  through: :appointments
-  has_many :precriptions,   through: :appointments
+  has_many :prescriptions,   through: :appointments
   has_many :medications,    through: :precriptions
   has_many :histories
 
