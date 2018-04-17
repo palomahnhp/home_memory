@@ -6,8 +6,9 @@ class MedicalTestsController < ApplicationController
   # GET /analisies
   # GET /analisies.json
   def index
-    if params[:id]
-      @search = MedicalTest.by_patient(params[:id]).search(params[:q])
+    @patient = Patient.find(params[:patient_id])
+    if @patient
+      @search = MedicalTest.by_patient(@patient).search(params[:q])
     else
       @search  = MedicalTest.search(params[:q])
     end
@@ -20,26 +21,29 @@ class MedicalTestsController < ApplicationController
   # GET /analisies/1
   # GET /analisies/1.json
   def show
+
   end
 
   # GET /analisies/new
   def new
     @medical_test = MedicalTest.new
+    @patient = Patient.find(params[:patient_id])
   end
 
   # GET /analisies/1/edit
   def edit
+    @patient = @medical_test.patient
   end
 
   # POST /analisies
   # POST /analisies.json
   def create
-    @medical_test = MedicalTest.new(analisy_params)
+    @medical_test = MedicalTest.new(medical_test_params)
 
     respond_to do |format|
       if @medical_test.save
-        format.html { redirect_to @medical_test, notice: 'MedicalTest was successfully created.' }
-        format.json { render :show, status: :created, location: @analisy }
+        format.html { redirect_to medical_test_path(@medical_test), notice: 'MedicalTest was successfully created.' }
+        format.json { render :show, status: :created, location: @medical_test }
       else
         format.html { render :new }
         format.json { render json: @medical_test.errors, status: :unprocessable_entity }
@@ -51,8 +55,8 @@ class MedicalTestsController < ApplicationController
   # PATCH/PUT /analisies/1.json
   def update
     respond_to do |format|
-      if @medical_test.update(analisy_params)
-        format.html { redirect_to @medical_test, notice: 'Analisy was successfully updated.' }
+      if @medical_test.update(medical_test_params)
+        format.html { redirect_to @medical_test, notice: 'Test was successfully updated.' }
         format.json { render :show, status: :ok, location: @medical_test }
       else
         format.html { render :edit }
@@ -66,7 +70,7 @@ class MedicalTestsController < ApplicationController
   def destroy
     @medical_test.destroy
     respond_to do |format|
-      format.html { redirect_to medical_tests_url, notice: 'Analisy was successfully destroyed.' }
+      format.html { redirect_to medical_tests_path(patient_id: params[:patient_id]), notice: 'Prueba eliminada.' }
       format.json { head :no_content }
     end
   end
@@ -79,18 +83,22 @@ class MedicalTestsController < ApplicationController
     else
       message =  'Error al obtener el fichero de importación. No se ha iniciado el proceso: ' + filepath
     end
-    redirect_to medical_tests_path, notice: message
+    redirect_to medical_tests_path(), notice: message
 
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_medical_test
       @medical_test = MedicalTest.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def medical_test_params
-      params.fetch(:medical_test, {})
+      params.require(:medical_test).permit(:patient_id,
+                                           :professional_id,
+                                           :name,
+                                           :performed_at,
+                                           :instructions,
+                                           :report,
+                                           :medical_center_id)
     end
 end

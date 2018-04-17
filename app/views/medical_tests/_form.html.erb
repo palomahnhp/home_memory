@@ -1,17 +1,52 @@
-<%= form_with(model: analisys, local: true) do |form| %>
-  <% if analisys.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(analisys.errors.count, "error") %> prohibited this analisys from being saved:</h2>
-
-      <ul>
-      <% analisys.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="row">
+  <%= form_with(model: @medical_test, local: true) do |form| %>
+    <%= form.hidden_field :patient_id, value: @patient.id %>
+    <div class="small-12 columns">
+      <div class="medium-6 small-12 columns">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+      </div>
     </div>
-  <% end %>
+    <div class="small-12 columns">
+      <div class="medium-4 small-12 columns">
+        <%= form.label :performed_at %>
+        <%= form.datetime_field :performed_at %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+      <div class="medium-4 small-12 columns">
+        <%= form.label :medical_center_id %>
+        <%= form.select :medical_center_id, options_for_select(MedicalCenter.select_option, @medical_test.medical_center) %>
+      </div>
+
+      <div class="medium-2 small-12 columns end">
+        <%= form.label :performed_in %>
+        <%= form.text_field :performed_in %>
+      </div>
+    </div>
+
+    <div class="small-12 columns">
+      <div class="medium-6 small-12 columns">
+        <%= label_tag :professional_id %>
+        <%= form.select :professional_id, options_for_select(Professional.select_option, @medical_test.professional) %>
+      </div>
+    </div>
+
+    <div class="small-12 columns">
+      <div class="medium-6 small-12 columns">
+        <%= form.label :instructions %>
+        <%= form.text_area :instructions %>
+      </div>
+    </div>
+    <div class="small-12 columns">
+      <div class="medium-6 small-12 columns">
+        <%= form.label :report %>
+        <%= form.text_area :report %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= form.submit class: "button hollow" %>
+    </div>
+
+  <% end %>
+</div>

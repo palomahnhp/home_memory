@@ -1,45 +1,31 @@
-<h3> Anaĺitica de <%= @medical_test.patient.full_name %> </h3>
+<div class="row">
+  <div class="small-12 columns" >
+    <h3><%= t('medical_tests.show.title')%> <%= @medical_test.name %> </h3>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 columns" >
+    <p> Paciente: <strong><%= @medical_test.patient.full_name %> </strong>
+      <br>Fecha de realización: <strong><%= l @medical_test.performed_at %></strong>
+      <br>Prescrito por: <strong> Dr/a <%= @medical_test.professional.full_name %> </strong> -
+      <%= @medical_test.professional.speciality.denomination %>  - <%= @medical_test.medical_center.name %>
+    </p>
 
-<p> <strong> Dr/a <%= @medical_test.professional.full_name %> </strong> - <%= @medical_test.professional.speciality.denomination %>  - <%= @medical_test.medical_center.name %> </p>
-<p> <strong>Fecha de extraccion: </strong><%= l @medical_test.performed_at %>  </p>
+    <% if @medical_test.instructions.present? %>
+      <p><strong>Instrucciones: </strong> <%= simple_format(@medical_test.instructions) %> </p>
+    <% end %>
 
-<div class="row" >
-  <div class="small-12 columns">
-    <table>
-      <thead>
-      <tr>
-        <th>  </th>
-        <th> Determinación </th>
-        <th> Rango </th>
-        <th> Cantidad </th>
-        <th> Detalles </th>
-        <th colspan="4"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <% AnalyticalGroup.all.each do |group| %>
-        <% next if items_by_group(@medical_test, group).empty? %>
-        <tr>
-          <td colspan="6"> <h3> <%= group.name %> </h3></td>
-        </tr>
-        <% @items_by_group.each do |item| %>
-          <tr>
-            <td><%= result(@medical_test, item)[:level] %> <%= @result[:grade] %></td>
-            <td><%= item.name %></td>
-            <td><%= item.min_range %>-<%= item.max_range %> </td>
-            <td><%= @result[:amount] %>  <%= @result[:unit] %></td>
+    <p><strong> Informe: </strong> <%= @medical_test.report %> </p>
 
-            <td><%= link_to '', @medical_test, class: "icon-search" %></td>
-            <td><%= link_to '', edit_medical_test_path(@medical_test), class: "icon-pencil" %></td>
-            <td><%= link_to '', @medical_test, method: :delete, data: { confirm: 'Are you sure?' }, class: "icon-trash" %></td>
-          </tr>
-        <% end %>
-      <% end %>
-      </tbody>
-    </table>
+    <% if @medical_test.name == 'Análisis' %>
+      <%= render 'show_analysis' %>
+    <% else %>
+
+    <% end %>
+
   </div>
 </div>
 
 
 <%= link_to 'Edit', edit_medical_test_path(@medical_test) %> |
-<%= link_to 'Back', medical_tests_path %>
+<%= link_to 'Back', medical_tests_path(patient_id: @medical_test.patient_id) %>

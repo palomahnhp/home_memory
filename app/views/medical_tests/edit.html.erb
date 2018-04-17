@@ -1,10 +1,11 @@
 <div class="row">
   <div class="row">
-    <h1><%= t('analisys.edit.title')  %>></h1>
+    <h1><%= t('medical_tests.edit.title') %></h1>
+    <h4> Paciente: <%= @patient.full_name %> <h4>
 
-    <%= render 'form', analisy: @analisy %>
+    <%= render 'form'%>
 
-    <%= link_to 'Show', @analisy %> |
-    <%= link_to 'Back', analisies_path %>
+    <%= link_to t('actions.show'), @medical_test %> |
+    <%= link_to t('actions.back'), medical_tests_path %>
   </div>
 </div>

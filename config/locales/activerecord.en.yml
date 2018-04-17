@@ -19,6 +19,10 @@ en:
         performed_at: Fecha de realización
         patient: Paciente
         professional: Médico
+        instructions: Instrucciones
+        report: Informe
+        medical_center: Centro médico
+        performed_in: Sala
     models:
       patient:
         one: Paciente

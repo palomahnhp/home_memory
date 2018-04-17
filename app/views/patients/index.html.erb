@@ -20,7 +20,7 @@
             <td> <%= patient.surname %> </td>
             <td> <%= l patient.born_date %> </td>
             <td><%= link_to '  ', patient, class: "icon-search", title: 'Detalle' %></td>
-            <td><%= link_to '  ', medical_tests_path(id: patient), class: "icon-calendar", title: "Pruebas" %></td>
+            <td><%= link_to '  ', medical_tests_path(patient_id: patient), class: "icon-calendar", title: "Pruebas" %></td>
             <td><%= link_to '  ', edit_patient_path(patient), class: "icon-pencil", title: 'Editar'  %></td>
             <td><%= link_to '  ', patient, method: :delete, title: 'Borrar', data: { confirm: t('actions.destroy.confirmation') },  class: "icon-trash" %></td>
           </tr>

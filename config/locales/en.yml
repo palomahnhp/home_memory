@@ -47,6 +47,7 @@ en:
     destroy:
       confirmation: "¿Quieres borrarlo,seguro?"
     edit: "Editar"
+    show: "Mostrar"
   patients:
     new:
       title: "Nuevo paciente"
@@ -121,4 +122,12 @@ en:
       import:
         title: "Importar"
         button: "Importar"
-      title: "Analíticas"
+      title: "Pruebas Médicas"
+    edit:
+      title: "Prueba diagnóstica:"
+    new:
+      title: "Nueva prueba"
+    show:
+      title: "Prueba:"
+  medical_test:
+    new: "Nueva prueba"

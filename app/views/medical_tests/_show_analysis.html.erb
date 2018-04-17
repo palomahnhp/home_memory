@@ -1,0 +1,36 @@
+<div class="row" >
+  <div class="small-12 columns">
+    <table>
+      <thead>
+      <tr>
+        <th>  </th>
+        <th> Determinación </th>
+        <th> Rango </th>
+        <th> Cantidad </th>
+        <th> Detalles </th>
+        <th colspan="4"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% AnalyticalGroup.all.each do |group| %>
+        <% next if items_by_group(@medical_test, group).empty? %>
+        <tr>
+          <td colspan="6"> <h3> <%= group.name %> </h3></td>
+        </tr>
+        <% @items_by_group.each do |item| %>
+          <tr>
+            <td><%= result(@medical_test, item)[:level] %> <%= @result[:grade] %></td>
+            <td><%= item.name %></td>
+            <td><%= item.min_range %>-<%= item.max_range %> </td>
+            <td><%= @result[:amount] %>  <%= @result[:unit] %></td>
+
+            <td><%= link_to '', @medical_test, class: "icon-search" %></td>
+            <td><%= link_to '', edit_medical_test_path(@medical_test), class: "icon-pencil" %></td>
+            <td><%= link_to '', @medical_test, method: :delete, data: { confirm: 'Are you sure?' }, class: "icon-trash" %></td>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
