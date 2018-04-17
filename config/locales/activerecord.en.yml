@@ -16,6 +16,7 @@ en:
         speciality: Especialidad
       medical_test:
         name: Prueba
+        kind: Tipo
         performed_at: Fecha de realización
         patient: Paciente
         professional: Médico

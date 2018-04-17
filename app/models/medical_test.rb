@@ -9,7 +9,7 @@ class MedicalTest < ApplicationRecord
   has_many   :analysis_results
   has_many   :analytical_items, through: :analysis_results
 
-  KIND = %w(Sangre, Sangre y Orina, Orina)
 
   scope :by_patient, ->(patient) { where(patient: patient) }
+
 end

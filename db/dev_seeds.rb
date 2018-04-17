@@ -78,11 +78,14 @@ p 'Creating appointments ... '
      )
    end
 
+p 'Creating medicaments ... '
+
    medicaments = [
      {'PARACETAMOL Comp. 1 g': 'Paracetamol'}, {'IBUPROFENO Comp. recub. con película 600 mg':  'Ibuprofeno'},
      {'AMOXICILINA + ACIDO CLAVULANICO Comp. recub. con película 875/125 mg': 'Amoxicilina y ácido clavulánico'},
      {'ACFOL Comp. 5 mg': 'Ácido fólico'}, {'SILVEDERMA Crema 10 mg/g': 'Sulfadiazina argéntica'}
    ]
+
    (1..5).each do |n|
      Medication.create(
        name: medicaments[n-1].keys[0],
@@ -103,18 +106,28 @@ p 'Analytical items'
   end
 
 p 'Medical Tests'
-   tests = [{'RX': 'de torax'}, {'Colonoscopia': ''}, {'RM': 'de abdomen'}]
-   (1..5).each do
-     type = tests.shuffle.first
-     appointment = Appointment.all.shuffle.first
-     medical_Center = MedicalCenter.all.shuffle.first
 
-     test = MedicalTest.create(name: type.keys.first.to_s,
-                               kind: type[type.keys.first],
+   tests = [{'Imagen': 'Radiografia'}, {'Imagen': 'Colonospia'}, {'Imagen': 'Resonancia magnética'},
+            {'Imagen': 'Endoscopia'}, {'Ultrasonidos': 'Ecografía'}, {'Análisis': 'Análisis'},
+            {'Biopsia': 'Citología'}, {'Tests': 'Prueba del aliento'},
+            {'Ultrasonidos': 'Ecocardiograma'}, {'Eléctrico': 'Electrocardiograma'},
+            {'Médidas': 'Audiometría'}
+           ]
+
+   tests.each do |test|
+     NameTest.create(code: test.keys.first, name: test.values.first)
+   end
+
+   (1..15).each do
+     type = NameTest.all.shuffle.first
+     appointment = Appointment.all.shuffle.first
+
+     test = MedicalTest.create(name: type.name,
+                               kind: type.code,
                                patient: appointment.patient,
                                professional: appointment.professional,
                                appointment: appointment,
-                               medical_center: MedicalCenter.first,
+                               medical_center: MedicalCenter.all.shuffle.first,
                                performed_at: Date.today - rand(40..233).days,
                                performed_in: 'planta 0, sala 4',
        )

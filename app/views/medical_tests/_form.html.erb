@@ -2,10 +2,16 @@
   <%= form_with(model: @medical_test, local: true) do |form| %>
     <%= form.hidden_field :patient_id, value: @patient.id %>
     <div class="small-12 columns">
-      <div class="medium-6 small-12 columns">
+      <div class="medium-4 small-12 columns">
         <%= form.label :name %>
-        <%= form.text_field :name %>
+        <%= form.select :name, options_from_collection_for_select(NameTest.all.order(:name), 'name', 'name') %>
       </div>
+
+      <div class="medium-4 small-12 columns end">
+        <%= form.label :kind %>
+        <%= form.text_field :kind %>
+      </div>
+
     </div>
     <div class="small-12 columns">
       <div class="medium-4 small-12 columns">

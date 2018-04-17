@@ -77,13 +77,13 @@ class MedicalTestsController < ApplicationController
 
   def import
     filepath = params[:file].tempfile.path
-    if File.exists?(filepath)
+    if File.exist?(filepath)
       message = 'Lanzada tarea de importación. Carga disponible en unos minutos'
       MedicalTestImporter.new(File.extname(params[:file].original_filename), filepath).run
     else
       message =  'Error al obtener el fichero de importación. No se ha iniciado el proceso: ' + filepath
     end
-    redirect_to medical_tests_path(), notice: message
+    redirect_to medical_tests_path(patient_id: params[:patient_id]), notice: message
 
   end
 
@@ -96,6 +96,7 @@ class MedicalTestsController < ApplicationController
       params.require(:medical_test).permit(:patient_id,
                                            :professional_id,
                                            :name,
+                                           :kind,
                                            :performed_at,
                                            :instructions,
                                            :report,
