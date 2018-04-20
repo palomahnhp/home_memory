@@ -16,17 +16,23 @@
             <li <%= "class=active" if controller_name == "patients" %> >
               <%= link_to t('activerecord.models.patient', count: 2), patients_path %>
             </li>
-            <li <%= "class=active" if controller_name == "professionals" %>>
-              <%= link_to t('activerecord.models.profesional', count: 2), professionals_path %>
-            </li>
-            <li <%= "class=active" if controller_name == "medical_centers" %> >
-              <%= link_to t('activerecord.models.medical_center', count: 2), medical_centers_path %>
-            </li>
-            <li <%= "class=active" if controller_name == "medications" %>>
-              <%= link_to t('activerecord.models.medication', count: 2), medications_path %>
-            </li>
-            <li <%= "class=active" if controller_name == "specialities" %>>
-              <%= link_to t('activerecord.models.speciality', count: 2), specialities_path %>
+
+            <li class="has-dropdown" >
+              <a href="#">Datos maestros</a>
+              <ul class="dropdown">
+                <li <%= "class=active" if controller_name == "professionals" %>>
+                  <%= link_to t('activerecord.models.profesional', count: 2), professionals_path %>
+                </li>
+                <li <%= "class=active" if controller_name == "medical_centers" %> >
+                  <%= link_to t('activerecord.models.medical_center', count: 2), medical_centers_path %>
+                </li>
+                <li <%= "class=active" if controller_name == "medications" %>>
+                  <%= link_to t('activerecord.models.medication', count: 2), medications_path %>
+                </li>
+                <li <%= "class=active" if controller_name == "specialities" %>>
+                  <%= link_to t('activerecord.models.speciality', count: 2), specialities_path %>
+                </li>
+              </ul>
             </li>
 
             <li class="has-dropdown" >
@@ -36,7 +42,6 @@
                 <li class="active"><a href="#">Informe 2</a></li>
               </ul>
             </li>
-
           </ul>
 
           <ul class="right">
