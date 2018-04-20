@@ -39,10 +39,10 @@ class MedicalTestsController < ApplicationController
   # POST /analisies.json
   def create
     @medical_test = MedicalTest.new(medical_test_params)
-
     respond_to do |format|
       if @medical_test.save
-        format.html { redirect_to medical_test_path(@medical_test), notice: 'MedicalTest was successfully created.' }
+        format.html { redirect_to medical_test_path(@medical_test),
+                                  notice: 'MedicalTest was successfully created.' }
         format.json { render :show, status: :created, location: @medical_test }
       else
         format.html { render :new }
@@ -70,7 +70,8 @@ class MedicalTestsController < ApplicationController
   def destroy
     @medical_test.destroy
     respond_to do |format|
-      format.html { redirect_to medical_tests_path(patient_id: params[:patient_id]), notice: 'Prueba eliminada.' }
+      format.html { redirect_to medical_tests_path(patient_id: params[:patient_id]),
+                                notice: 'Prueba eliminada.' }
       format.json { head :no_content }
     end
   end
@@ -79,11 +80,14 @@ class MedicalTestsController < ApplicationController
     filepath = params[:file].tempfile.path
     if File.exist?(filepath)
       message = 'Lanzada tarea de importación. Carga disponible en unos minutos'
-      MedicalTestImporter.new(File.extname(params[:file].original_filename), filepath).run
+      MedicalTestImporter.new(File.extname(params[:file].original_filename),
+                              filepath).run
     else
-      message =  'Error al obtener el fichero de importación. No se ha iniciado el proceso: ' + filepath
+      message =  'Error al obtener el fichero de importación.' +
+          ' No se ha iniciado el proceso: ' + filepath
     end
-    redirect_to medical_tests_path(patient_id: params[:patient_id]), notice: message
+    redirect_to medical_tests_path(patient_id: params[:patient_id]),
+                notice: message
 
   end
 
@@ -93,13 +97,22 @@ class MedicalTestsController < ApplicationController
     end
 
     def medical_test_params
-      params.require(:medical_test).permit(:patient_id,
-                                           :professional_id,
-                                           :name,
-                                           :kind,
-                                           :performed_at,
-                                           :instructions,
-                                           :report,
-                                           :medical_center_id)
+      params.require(:medical_test).
+          permit(:patient_id,
+                 :professional_id,
+                 :name,
+                 :kind,
+                 :performed_at,
+                 :instructions,
+                 :report,
+                 :medical_center_id,
+                 analysis_results_attributes: [:id,
+                                               :analytical_item_id,
+                                               :amount,
+                                               :unit,
+                                               :level,
+                                               :grade,
+                                               :interpretation,
+                                               :_destroy])
     end
 end

@@ -11,11 +11,10 @@
       <thead>
         <tr>
           <th> <%= sort_link @search, :name %></th>
+          <th> Fecha de prescripción  </th>
           <th> <%= sort_link @search, :performed_at %></th>
           <th> <%= sort_link @search, :patient %></th>
           <th> <%= sort_link @search, :professional %></th>
-          <th> Fecha de prescripción</th>
-          <th> Centro </th>
           <th colspan="4"></th>
         </tr>
       </thead>
@@ -23,16 +22,16 @@
       <tbody>
         <% @medical_tests.each do |medical_test| %>
           <tr>
-            <td><%= medical_test.name %></td>
+            <td title="<%= medical_test.id %>"><%= medical_test.name %></td>
+            <td><%= l medical_test.appointment&.appointment_time&.to_date if medical_test.appointment&.appointment_time.present? %></td>
             <td><%= l medical_test.performed_at %></td>
-            <td><%= medical_test.patient.nickname %></td>
-            <td><%= medical_test.professional.firstname %></td>
-            <td><%= medical_test.appointment&.appointment_time %></td>
-            <td><%= medical_test.medical_center.name %></td>
+            <td><%= medical_test.patient.full_name %></td>
+            <td><%= medical_test.professional.full_name %></td>
 
-            <td><%= link_to '', medical_test_path(medical_test, patient_id: @patient), class: "icon-search" %></td>
-            <td><%= link_to '', edit_medical_test_path(medical_test, patient_id: @patient), class: "icon-pencil" %></td>
-            <td><%= link_to '', medical_test_path(medical_test, patient_id: @patient), method: :delete, data: { confirm: 'Are you sure?' }, class: "icon-trash" %></td>
+            <td><%= link_to '', analysis_results_path(medical_test: medical_test) , class: "icon-calendar", title: "Resultados" %></td>
+            <td><%= link_to '', medical_test_path(medical_test, patient_id: @patient), class: "icon-search", title: "Detalle" %></td>
+            <td><%= link_to '', edit_medical_test_path(medical_test, patient_id: @patient), class: "icon-pencil", title: "Editar" %></td>
+            <td><%= link_to '', medical_test_path(medical_test, patient_id: @patient), method: :delete, data: { confirm: 'Are you sure?' }, class: "icon-trash", title: "Eliminar" %></td>
           </tr>
         <% end %>
       </tbody>

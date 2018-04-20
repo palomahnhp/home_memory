@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'analysis_results/index'
+
+  get 'analysis_results/edit'
+
+  get 'analysis_results/show'
+
+  get 'analysis_results/destroy'
+
   devise_for :users
 
   root to: "patients#index"
@@ -16,5 +24,7 @@ Rails.application.routes.draw do
   resources :patients
   resources :specialities
   resources :medical_histories
+  resources :analysis_results
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

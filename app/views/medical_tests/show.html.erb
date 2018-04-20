@@ -5,11 +5,8 @@
 </div>
 <div class="row">
   <div class="small-12 columns" >
-    <p> Paciente: <strong><%= @medical_test.patient.full_name %> </strong>
-      <br>Fecha de realización: <strong><%= l @medical_test.performed_at %></strong>
-      <br>Prescrito por: <strong> Dr/a <%= @medical_test.professional.full_name %> </strong> -
-      <%= @medical_test.professional.speciality.denomination %>  - <%= @medical_test.medical_center.name %>
-    </p>
+    <%= render 'shared/test_header', medical_test: @medical_test %>
+
 
     <% if @medical_test.instructions.present? %>
       <p><strong>Instrucciones: </strong> <%= simple_format(@medical_test.instructions) %> </p>
@@ -18,14 +15,13 @@
     <p><strong> Informe: </strong> <%= @medical_test.report %> </p>
 
     <% if @medical_test.name == 'Análisis' %>
-      <%= render 'show_analysis' %>
+      <%= render 'shared/show_analysis' %>
     <% else %>
 
     <% end %>
 
   </div>
 </div>
-
 
 <%= link_to 'Edit', edit_medical_test_path(@medical_test) %> |
 <%= link_to 'Back', medical_tests_path(patient_id: @medical_test.patient_id) %>

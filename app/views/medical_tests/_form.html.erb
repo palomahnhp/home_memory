@@ -1,10 +1,15 @@
 <div class="row">
   <%= form_with(model: @medical_test, local: true) do |form| %>
     <%= form.hidden_field :patient_id, value: @patient.id %>
+    <div class="actions">
+      <%= form.submit class: "button hollow" %>
+    </div>
+
+
     <div class="small-12 columns">
       <div class="medium-4 small-12 columns">
         <%= form.label :name %>
-        <%= form.select :name, options_from_collection_for_select(NameTest.all.order(:name), 'name', 'name') %>
+        <%= form.select :name, options_from_collection_for_select(NameTest.all, 'name', 'name') %>
       </div>
 
       <div class="medium-4 small-12 columns end">
@@ -49,10 +54,19 @@
         <%= form.text_area :report %>
       </div>
     </div>
+    <div class="row">
+      <h3>
+        Resultados de los análisis
+        <%= link_to_add_association '[+]', form, :analysis_results %>
+      </h3>
 
-    <div class="actions">
-      <%= form.submit class: "button hollow" %>
     </div>
-
+    <div class="row">
+      <div id='analysis_result'>
+        <%= form.fields_for :analysis_results do |result| %>
+          <%= render 'analysis_result_fields', :f => result %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 </div>
