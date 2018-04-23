@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   create_table "analytical_items", force: :cascade do |t|
     t.string "name"
     t.bigint "analytical_group_id"
+    t.bigint "analytical_subgroup_id"
     t.string "unit"
     t.string "max_range"
     t.string "min_range"
@@ -46,6 +47,16 @@ ActiveRecord::Schema.define(version: 20180417155102) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["analytical_group_id"], name: "index_analytical_items_on_analytical_group_id"
+    t.index ["analytical_subgroup_id"], name: "index_analytical_items_on_analytical_subgroup_id"
+  end
+
+  create_table "analytical_subgroups", force: :cascade do |t|
+    t.string "name"
+    t.bigint "analytical_group_id"
+    t.boolean "inactive"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["analytical_group_id"], name: "index_analytical_subgroups_on_analytical_group_id"
   end
 
   create_table "appointments", force: :cascade do |t|
@@ -185,6 +196,7 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   add_foreign_key "analysis_results", "analytical_items"
   add_foreign_key "analysis_results", "medical_tests"
   add_foreign_key "analytical_items", "analytical_groups"
+  add_foreign_key "analytical_items", "analytical_subgroups"
   add_foreign_key "appointments", "medical_centers"
   add_foreign_key "appointments", "patients"
   add_foreign_key "appointments", "professionals"

@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="small-12 columns">
+    <h3><%= @item.name %></h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <strong>Grupo: </strong><%= @item.analytical_group.name %> - <%= @item.analytical_subgroup.name %></h3>
+  </div>
+  <div class="small-12 columns">
+    <strong>Unidad</strong> <%= @item.unit %>
+  </div>
+  <div class="small-12 columns">
+    <strong>Rango: </strong><%= @item.min_range %> - <%= @item.max_range %></h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <strong>Activa:</strong> <%= t("boolean.#{@item.inactive.blank?}") %>
+  </div>
+</div>
+
+

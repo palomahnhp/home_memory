@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  get 'analysis_results/index'
-
-  get 'analysis_results/edit'
-
-  get 'analysis_results/show'
-
-  get 'analysis_results/destroy'
 
   devise_for :users
 
@@ -25,6 +18,11 @@ Rails.application.routes.draw do
   resources :specialities
   resources :medical_histories
   resources :analysis_results
+  resources :analytical_groups  do
+    collection { post :import }
+  end
+  resources :analytical_subgroups
+  resources :analytical_items
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

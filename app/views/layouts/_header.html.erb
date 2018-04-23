@@ -32,6 +32,9 @@
                 <li <%= "class=active" if controller_name == "specialities" %>>
                   <%= link_to t('activerecord.models.speciality', count: 2), specialities_path %>
                 </li>
+                <li <%= "class=active" if controller_name == "anaytical_groups" %>>
+                  <%= link_to t('activerecord.models.analytical_group', count: 2), analytical_groups_path %>
+                </li>
               </ul>
             </li>
 

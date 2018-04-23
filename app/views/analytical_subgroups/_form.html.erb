@@ -1,0 +1,15 @@
+<%= form_with  @group do |form| %>
+  <div class="row">
+    <div class="small-12 columns">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+      <%= form.label :inactive %>
+      <%= form.check_field :inactive %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

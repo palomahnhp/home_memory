@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="small-12 columns">
+    <h1>AnalyticalItems#index</h1>
+  </div>
+  <div><%= link_to "Nueva determinación", new_analytical_item_path, class: "button hollow small" %></div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns">
+    <table>
+      <tr>
+        <th>Determinación</th>
+        <th>Grupo</th>
+        <th>Subgrupo</th>
+        <th>Unidades</th>
+        <th>Valor máximo</th>
+        <th>Valor mínimo</th>
+        <th>Documentación</th>
+        <th colspan="3">Acciones</th>
+      </tr>
+
+      <% @items.each do |item| %>
+        <tr>
+          <td><%= item.name %>
+          <td><%= item.analytical_group.name %></td>
+          <td><%= item.analytical_subgroup.name %></td>
+          <td><%= item.unit %></td>
+          <td><%= item.max_range %></td>
+          <td><%= item.min_range %></td>
+          <td><%= link_to "", item, class: "icon-search", title:"Detalles" %></td>
+          <td><%= link_to "", edit_analytical_item_path(item), class: "icon-pencil", title:"Editar" %></td>
+          <td><%= link_to "", analytical_item_path(item), class: "icon-trash", method: :delete, title:"Eliminar", confirm: "¿Seguro?" %> </td>
+
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+</div>
+

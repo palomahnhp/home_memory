@@ -1,5 +1,6 @@
 class AnalyticalItem  < ApplicationRecord
   belongs_to :analytical_group
+  belongs_to :analytical_subgroup
   has_many :analysis_results
 
   default_scope { order(:name) }

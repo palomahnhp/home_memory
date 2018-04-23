@@ -1,0 +1,59 @@
+<%= form_with(model: @item, local: true) do |form| %>
+
+  <div class="row">
+    <div class="medium-12 columns">
+      <h4> Colección </h4>
+      <div class="medium-6 small-12 columns">
+        <%= form.select :analytical_group_id,
+                        options_from_collection_for_select(AnalyticalGroup.all,
+                                                           'id', 'name',
+                                                           form.object.id) %>
+      </div>
+      <div class="medium-6 small-12 columns">
+        <%= form.select :analytical_subgroup_id,
+                        options_from_collection_for_select(AnalyticalSubgroup.all,
+                                                           'id', 'name',
+                                                           form.object.id) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="small-12 columns">
+      <h4> Determinación </h4>
+      <div class="medium-3 small-6 columns">
+         <%= form.label :name %>
+         <%= form.text_field :name %>
+      </div>
+      <div class="medium-2 small-6 columns">
+        <%= form.label :unit %>
+        <%= form.text_field :unit, list: "units" %>
+        <datalist id="units">
+          <% AnalyticalItem.unscoped.pluck(:unit).uniq.each do |unit| %>
+            <option value="<%= unit %> ">
+          <% end %>
+        </datalist>
+      </div>
+
+      <div class="medium-3 small-6 columns">
+        <%= form.label :max_range %>
+        <%= form.number_field :max_range, min: 0, step: 0.01 %>
+      </div>
+
+      <div class="medium-3 small-6 columns">
+       <%= form.label :min_range %>
+       <%= form.number_field :min_range, min: 0, step: 0.01 %>
+      </div>
+    </div>
+
+    <div class="medium-3 small-6 columns end">
+      <%= form.label :inactive %>
+      <%= form.check_box :inactive %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

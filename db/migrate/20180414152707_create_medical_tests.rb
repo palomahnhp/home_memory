@@ -12,7 +12,6 @@ class CreateMedicalTests < ActiveRecord::Migration[5.1]
 
       t.text       :instructions
       t.text       :report
-
     end
 
     create_table :analytical_groups do |t|
@@ -22,9 +21,18 @@ class CreateMedicalTests < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
+   create_table :analytical_subgroups do |t|
+      t.string  :name
+      t.belongs_to  :analytical_group
+      t.boolean :inactive
+
+      t.timestamps
+    end
+
     create_table :analytical_items do |t|
       t.string    :name
       t.belongs_to :analytical_group, index: true, foreign_key: true
+      t.belongs_to :analytical_subgroup, index: true, foreign_key: true
       t.string    :unit
       t.string    :max_range
       t.string    :min_range
