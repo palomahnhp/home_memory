@@ -74,6 +74,22 @@ ActiveRecord::Schema.define(version: 20180417155102) do
     t.index ["professional_id"], name: "index_appointments_on_professional_id"
   end
 
+  create_table "documents", force: :cascade do |t|
+    t.string "title"
+    t.string "attachment_file_name"
+    t.string "attachment_content_type"
+    t.integer "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.bigint "user_id"
+    t.string "documentable_type"
+    t.bigint "documentable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id"
+    t.index ["user_id", "documentable_type", "documentable_id"], name: "access_documents"
+    t.index ["user_id"], name: "index_documents_on_user_id"
+  end
+
   create_table "histories", force: :cascade do |t|
     t.bigint "patient_id"
     t.bigint "appointment_id"
@@ -118,12 +134,14 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   create_table "medications", force: :cascade do |t|
     t.string "name"
     t.string "active_ingredient"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "presentation"
+    t.string "laboratory"
     t.string "prospect_file_name"
     t.string "prospect_content_type"
     t.integer "prospect_file_size"
     t.datetime "prospect_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "name_tests", force: :cascade do |t|
@@ -200,6 +218,7 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   add_foreign_key "appointments", "medical_centers"
   add_foreign_key "appointments", "patients"
   add_foreign_key "appointments", "professionals"
+  add_foreign_key "documents", "users"
   add_foreign_key "histories", "appointments"
   add_foreign_key "histories", "patients"
   add_foreign_key "prescriptions", "appointments", column: "appointments_id"

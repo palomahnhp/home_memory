@@ -1,133 +1,133 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
+---
 en:
-  hello: "Hello world"
-  layouts:
-    subnavigation_menu:
-      patients: "Pacientes"
-      professionals: "Profesionales"
-      medications: "Medicinas"
-    footer:
-      copyright: "© Copyright %{year}"
-  app:
-    name: "Medical Care"
   actions:
-    back: "Volver"
-    column: "Acciones"
+    back: Volver
+    column: Acciones
     create: Crear %{resource}
-    new: "Crear"
     destroy:
       confirmation: "¿Quieres borrarlo,seguro?"
-    edit: "Editar"
-    show: "Mostrar"
-  patients:
-    new:
-      title: "Nuevo paciente"
-    index:
-      title: "Pacientes"
-    show:
-      title: "Paciente"
-  medications:
-    new:
-      title: "Nuevo medicamento"
-    index:
-      title: "Medicamentos"
-    show:
-      title: "Detalles de medicamento"
-    edit:
-      title: "Editar medicamento"
-  professionals:
-    new:
-      title: "Nuevo profesional"
-    index:
-      title: "Profesionales"
-    show:
-      title: "Detalles de medicamento"
-    edit:
-      title: "Editar profesional"
-  medical_center:
-    new:
-      title: "Centros médico"
-    index:
-      title: "Centro médicos"
-    show:
-      title: "Detalles de centro médico"
-    edit:
-      title: "Modificar centro médico"
+    edit: Editar
+    new: Crear
+    show: Mostrar
   activerecord:
     attributes:
-      medical_center:
-        name: "Nombre"
-        address: "Dirección postal"
-        web: "Web"
-        email: "e-mail"
-        main_phone: "Teléfono"
-        appointment_phone: "Teléfono de citas"
-      medication:
-        name: Nombre
-        active_ingredient: Principio activo
-        prospect: "Prospecto"
       appointment:
-        professional: "Profesional"
-        speciality: "Especialidad"
-        reason: "Motivo"
-        appointment_date: "Cita"
-        location: "Lugar"
+        appointment_date: Cita
+        location: Lugar
+        professional: Profesional
+        reason: Motivo
+        speciality: Especialidad
+      medical_center:
+        address: Dirección postal
+        appointment_phone: Teléfono de citas
+        email: e-mail
+        main_phone: Teléfono
+        name: Nombre
+        web: Web
+      medication:
+        active_ingredient: Principio activo
+        name: Nombre
+        prospect: Prospecto
     models:
-      speciality: "Especialidades"
-  specialities:
-    index:
-      title: "Especialidades médicas"
-    show:
-      title: "Especialidad médica"
-  medical_centers:
-    edit:
-      title: "Editar centro médico"
-  histories:
-    edit:
-      title: "Historial"
+      speciality: Especialidades
+  app:
+    name: Medical Care
   appointments:
     edit:
-      title: "Modificar Cita"
+      title: Modificar Cita
+  documents:
+    actions:
+      destroy:
+        alert: El documento no se ha podido eliminar.
+        confirm: "¿Está seguro de que desea eliminar el documento? Esta acción no
+          se puede deshacer!"
+        notice: El documento se ha eliminado correctamente.
+    buttons:
+      destroy_document: Eliminar
+      download_document: Descargar archivo
+    errors:
+      messages:
+        in_between: debe estar entre %{min} y %{max}
+        wrong_content_type: El tipo de contenido %{content_type} del archivo no coincide
+          con ninguno de los tipos de contenido aceptados %{accepted_content_types}
+    form:
+      add_new_document: Añadir nuevo documento
+      attachment_label: Selecciona un documento
+      delete_button: Eliminar documento
+      note: 'Puedes subir hasta un máximo de %{max_documents_allowed} documentos en
+        los formatos: %{accepted_content_types}, y de hasta %{max_file_size} MB por
+        archivo.'
+      title: Documentos
+      title_placeholder: Añade un título descriptivo para el documento
+    max_documents_allowed_reached_html: "¡Has alcanzado el número máximo de documentos
+      permitidos! <strong>Tienes que eliminar uno antes de poder subir otro.</strong>"
+    no_documents: No hay documentos subidos
+    tab: Documentos
+    upload_document: Subir documento
+  hello: Hello world
+  histories:
+    edit:
+      title: Historial
+  layouts:
+    footer:
+      copyright: "© Copyright %{year}"
+    subnavigation_menu:
+      medications: Medicinas
+      patients: Pacientes
+      professionals: Profesionales
+  medical_center:
+    edit:
+      title: Modificar centro médico
+    index:
+      title: Centro médicos
+    new:
+      title: Centros médico
+    show:
+      title: Detalles de centro médico
+  medical_centers:
+    edit:
+      title: Editar centro médico
+  medical_test:
+    new: Nueva prueba
   medical_tests:
+    edit:
+      title: 'Prueba diagnóstica:'
     index:
       import:
-        title: "Importar"
-        button: "Importar"
-      title: "Pruebas Médicas"
-    edit:
-      title: "Prueba diagnóstica:"
+        button: Importar
+        title: Importar
+      title: Pruebas Médicas
     new:
-      title: "Nueva prueba"
+      title: Nueva prueba
     show:
-      title: "Prueba:"
-  medical_test:
-    new: "Nueva prueba"
+      title: 'Prueba:'
+  medications:
+    edit:
+      title: Editar medicamento
+    index:
+      title: Medicamentos
+    new:
+      title: Nuevo medicamento
+    show:
+      title: Detalles de medicamento
+  patients:
+    index:
+      title: Pacientes
+    new:
+      title: Nuevo paciente
+    show:
+      title: Paciente
+  professionals:
+    edit:
+      title: Editar profesional
+    index:
+      title: Profesionales
+    new:
+      title: Nuevo profesional
+    show:
+      title: Detalles de medicamento
+  specialities:
+    index:
+      title: Especialidades médicas
+    show:
+      title: Especialidad médica

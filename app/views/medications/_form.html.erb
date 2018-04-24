@@ -20,13 +20,10 @@
   </div>
 
   <div class="row">
-    <div class="small-12 columns">
-      <fieldset class="prospect" >
-        <legend><%= t('activerecord.attributes.medication.prospect')%></legend>
-        <iframe src="<% @medication.prospect %>"></iframe>
-        <%= f.file_field :prospect %>
-      </fieldset>
+    <div class="documents small-12">
+      <%= render 'documents/nested_documents', documentable: @medication, f: f %>
     </div>
+
     <div class="small-12 columns">
       <div class="actions">
         <%= f.submit t("actions.#{action_name}") %>

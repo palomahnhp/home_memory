@@ -1,25 +1,36 @@
 <div class="row" >
-<div class="small-12 columns" >
-  <div class="small-6 medium-1 columns" >
-  </div>
-  <div class="small-6 medium-11 columns" >
-    <h1><%= t('medications.show.title') %> </h1>
-    <table>
-      <tr>
-        <th> <%= t('activerecord.attributes.medication.name') %> </th>
-        <td> <%= @medication.name %> </td>
-      </tr>
-      <tr>
-        <th> <%= t('activerecord.attributes.medication.active_ingredient') %> </th>
-        <td class="text-center"> <%= @medication.active_ingredient %> </td>
-      </tr>
-      <tr>
-        <th> <%= t('activerecord.attributes.medication.active_ingredient') %> </th>
-        <td> <%= link_to ' ', @medication.prospect.url(:original, false), class: "icon-file-pdf-o", target: "_blank" %> </td>
-      </tr>
-    </table>
+  <div class="small-12 columns" >
+    <div class="small-6 medium-1 columns" >
+    </div>
+    <div class="small-6 medium-11 columns" >
+      <h1><%= t('medications.show.title') %> </h1>
+      <table>
+        <tr>
+          <th> <%= t('activerecord.attributes.medication.name') %> </th>
+          <td> <%= @medication.name %> </td>
+        </tr>
+        <tr>
+          <th> <%= t('activerecord.attributes.medication.active_ingredient') %> </th>
+          <td class="text-center"> <%= @medication.active_ingredient %> </td>
+        </tr>
+        <tr>
+          <th> <%= t('activerecord.attributes.medication.prospect') %> </th>
+          <td> <%= link_to ' ', @medication.prospect.url(:original, false), class: "icon-file-pdf-o", target: "_blank" %> </td>
+        </tr>
+        <tr>
+          <th>Documentación</th>
+          <td>
+            <div class="tabs-panel" id="tab-documents">
+              <%= render 'documents/documents',
+                         documents: @medication.documents,
+                         max_documents_allowed: Medication.max_documents_allowed %>
+            </div>
+          </td>
+        </tr>
+      </table>
 
-  <%= link_to 'Edit', edit_medication_path(@medication) %> |
-  <%= link_to 'Back', medications_path %>
+    <%= link_to 'Edit', edit_medication_path(@medication) %> |
+    <%= link_to 'Back', medications_path %>
+    </div>
   </div>
 </div>

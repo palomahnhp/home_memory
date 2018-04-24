@@ -2,6 +2,12 @@
 en:
   activerecord:
     attributes:
+      appointment:
+        appointment_date: Fecha de la cita
+        location: Lugar
+        professional: Profesional
+        reason: Motivo
+        speciality: Especialidad
       patient:
         nickname: Nick
         firstname: Nombre
