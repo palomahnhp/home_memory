@@ -7,7 +7,7 @@ en:
     destroy:
       confirmation: "¿Quieres borrarlo,seguro?"
     edit: Editar
-    new: Crear
+    new: Guardar datos
     show: Mostrar
   activerecord:
     attributes:
@@ -117,6 +117,8 @@ en:
       title: Nuevo paciente
     show:
       title: Paciente
+    edit:
+      title: "Modificar paciente"
   professionals:
     edit:
       title: Editar profesional

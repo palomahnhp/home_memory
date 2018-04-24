@@ -1,20 +1,63 @@
 <div class="row" >
   <div class="small-12 columns" >
-    <div class="small-6 medium-1 columns" >
-    </div>
-    <div class="small-6 medium-11 columns" >
-      <h1><%= @patient.full_name %> </h1>
-      <table>
-        <tr>
-          <th> <%= t('activerecord.attributes.patient.born_date') %> </th>
-          <td> <%= @patient.born_date %> </td>
-        </tr>
-      </table>
-      <%= render 'appointments' %>
-      <%= render 'histories' %>
+    <h1><%= @patient.full_name %> </h1>
+    <fieldset>
+      <legend> Datos personales  </legend>
+      <div class="row" >
+        <div class="small-12 medium-12 columns" >
+          <div class="small-12 medium-5 columns" >
+            <strong><%= t('activerecord.attributes.patient.born_date') %>: </strong>
+            <%= l @patient.born_date %>
+          </div>
+          <div class="small-12 medium-3 columns end " >
+            <strong><%= t('activerecord.attributes.patient.document') %>: </strong>
+            <%= @patient.document %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend><%= @patient.public_health_org %></legend>
+      <div class="row" >
+        <div class="small-12 medium-12 columns" >
+          <div class="small-12 medium-3 columns" >
+            <strong><%= t('activerecord.attributes.patient.public_health_membership_number') %>: </strong>
+            <%= @patient.public_health_membership_number%>
+          </div>
+          <div class="small-12 medium-3 columns" >
+            <strong><%= t('activerecord.attributes.patient.public_health_card_number') %>: </strong>
+            <%= @patient.public_health_card_number %>
+          </div>
+          <div class="small-12 medium-3 columns" >
+            <strong><%= t('activerecord.attributes.patient.public_health_autonomic_code') %>: </strong>
+            <%= @patient.public_health_autonomic_code %>
+          </div>
+          <div class="small-12 medium-3 columns" >
+            <strong><%= t('activerecord.attributes.patient.public_health_org_url') %>: </strong>
+            <%= link_to @patient.public_health_org_url, target: '_blank' %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend><%= @patient.private_health_company %></legend>
+      <div class="row" >
+        <div class="small-12 medium-12 columns" >
+          <div class="small-12 medium-6 columns" >
+            <strong><%= t('activerecord.attributes.patient.private_health_card_number') %>: </strong>
+            <%= @patient.private_health_card_number %>
+          </div>
+          <div class="small-12 medium-4 columns end" >
+            <strong><%= t('activerecord.attributes.patient.private_health_company_url') %>: </strong>
+            <%= link_to @patient.private_health_company_url, target: '_blank' %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <%= render 'appointments' %>
+    <%= render 'histories' %>
 
-      <%= link_to 'Edit', edit_patient_path(@patient) %> |
-      <%= link_to 'Back', patients_path %>
-    </div>
+    <%= link_to 'Edit', edit_patient_path(@patient) %> |
+    <%= link_to 'Back', patients_path %>
   </div>
 </div>

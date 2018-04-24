@@ -5,7 +5,7 @@ class MedicationsController < ApplicationController
   # GET /medications.json
   def index
     @search  = Medication.search(params[:q])
-    @search.sorts = 'nickname asc' if @search.sorts.empty?
+    @search.sorts = 'name asc' if @search.sorts.empty?
     @medications = @search.result.page(params[:page])
     @search.build_condition
   end

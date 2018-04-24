@@ -1,8 +1,7 @@
 <%= form_with(model: patient, local: true) do |f| %>
   <% if patient.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
-
+      <h2><%= pluralize(patient.errors.count, "error") %> No se ha podidio gurdar, por los siguientes errores:</h2>
       <ul>
       <% patient.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,30 +10,105 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <div class="small-12 columns">
-      <%= f.label :nickname %>
-      <%= f.text_field :nickname %>
-      <%= f.label :firstname %>
-      <%= f.text_field :firstname %>
-      <%= f.label :surname %>
-      <%= f.text_field :surname %>
-      <%= f.label :born_date %>
-      <%= f.date_field :born_date %>
+  <fieldset>
+    <legend>
+      Datos personales
+    </legend>
+    <div class="row">
+      <div class="fieldset small-12 columns">
+        <div  class="medium-4 small-12 columns">
+          <%= f.label :firstname %>
+          <%= f.text_field :firstname %>
+        </div>
+        <div  class="medium-8 small-12 columns">
+          <%= f.label :surname %>
+          <%= f.text_field :surname %>
+        </div>
+      </div>
+      <div  class="medium-12 small-12 columns">
+        <div  class="medium-3 small-12 columns">
+          <%= f.label :document %>
+          <%= f.text_field :document %>
+        </div>
+        <div  class="medium-3 small-12 columns end">
+          <%= f.label :born_date %>
+          <%= f.date_field :born_date %>
+        </div>
+      </div>
     </div>
-  </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>
+      Organismo público de salud
+    </legend>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <div  class="medium-6 small-12 columns">
+          <%= f.label :public_health_org %>
+          <%= f.text_field :public_health_org %>
+        </div>
+        <div  class="medium-6 small-12 columns">
+          <%= f.label :public_health_org_url %>
+          <%= f.text_field :public_health_org_url %>
+        </div>
+      </div>
+      <div  class="medium-12 small-12 columns">
+        <div  class="medium-4 small-12 columns">
+          <%= f.label :public_health_membership_number %>
+          <%= f.text_field :public_health_membership_number %>
+        </div>
+        <div  class="medium-4 small-12 columns">
+          <%= f.label :public_health_card_number %>
+          <%= f.text_field :public_health_card_number %>
+        </div>
+        <div  class="medium-4 small-12 columns">
+          <%= f.label :public_health_autonomic_code %>
+          <%= f.text_field :public_health_autonomic_code %>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>
+      Compañía de salud
+    </legend>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <div  class="medium-6 small-12 columns">
+          <%= f.label :private_health_company %>
+          <%= f.text_field :private_health_company %>
+        </div>
+        <div  class="medium-6 small-12 columns">
+          <%= f.label :private_health_company_url %>
+          <%= f.text_field :private_health_company_url %>
+        </div>
+      </div>
+      <div  class="medium-12 small-12 columns">
+        <div  class="medium-4 small-12 columns">
+          <%= f.label :private_health_card_number %>
+          <%= f.text_field :private_health_card_number %>
+        </div>
+      </div>
+   </div>
+  </fieldset>
 
   <div class="row">
-    <div class="small-12 columns">
+    <div class="small-10 columns">
       <h3> Citas </h3>
     </div>
+    <div class="small-2 columns end">
+      <%= link_to_add_association 'Añadir cita', f, :appointments %>
+    </div>
+
     <div class="small-12 columns">
       <%= f.fields_for :appointments do |appointment| %>
 
         <%= render 'appointment_fields', f: appointment %>
       <% end %>
-
-      <%= link_to_add_association 'add task', f, :appointments %>
     </div>
   </div>
   <div class="actions">

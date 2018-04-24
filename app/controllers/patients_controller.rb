@@ -1,73 +1,41 @@
 class PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :edit, :update, :destroy]
 
-  # GET /patients
-  # GET /patients.json
   def index
-    @search  = Patient.search(params[:q])
-    @search.sorts = 'nickname asc' if @search.sorts.empty?
+    @search = Patient.search(params[:q])
+    @search.sorts = 'firstname asc' if @search.sorts.empty?
     @patients = @search.result.page(params[:page])
     @search.build_condition
   end
 
-  # GET /patients/1
-  # GET /patients/1.json
-  def show
-  end
+  def show; end
 
-  # GET /patients/new
   def new
     @patient = Patient.new
   end
 
-  def add_note
-    commentable = Patient.create
-    comment = commentable.comments.create
-    comment.title = "First comment."
-    comment.comment = "This is the first comment."
-    comment.save
-  end
-  # GET /patients/1/edit
-  def edit
-  end
+  def edit; end
 
-  # POST /patients
-  # POST /patients.json
   def create
     @patient = Patient.new(patient_params)
-    respond_to do |format|
-      if @patient.save
-        format.html { redirect_to patients_path, notice: 'Pacient was successfully created.' }
-        format.json { render :index, status: :created, location: @patient }
-      else
-        format.html { render :new }
-        format.json { render json: @patient.errors, status: :unprocessable_entity }
-      end
+    if @patient.save
+      redirect_to patients_path, notice: 'Pacient was successfully created.'
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /patients/1
-  # PATCH/PUT /patients/1.json
   def update
-    respond_to do |format|
-      if @patient.update(patient_params)
-        format.html { redirect_to @patient, notice: 'Pacient was successfully updated.' }
-        format.json { render :show, status: :ok, location: @patient }
-      else
-        format.html { render :edit }
-        format.json { render json: @patient.errors, status: :unprocessable_entity }
-      end
+    if @patient.update(patient_params)
+      redirect_to @patient, notice: 'Pacient was successfully updated.'
+    else
+      render :edit
     end
   end
 
-  # DELETE /patients/1
-  # DELETE /patients/1.json
   def destroy
     @patient.destroy
-    respond_to do |format|
-      format.html { redirect_to patients_url, notice: 'Pacient was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to patients_url, notice: 'Pacient was successfully destroyed.'
   end
 
   private
@@ -77,8 +45,18 @@ class PatientsController < ApplicationController
     end
 
     def patient_params
-      params.require(:patient).permit(:nickname, :firstname, :surname, :born_date,
-                                      appointments_attributes: [:id, :professional_id, :_destroy])
+      params.require(:patient).permit(:firstname, :surname, :born_date,
+                                      :document, :public_health_org,
+                                      :public_health_org_url,
+                                      :public_health_membership_number,
+                                      :public_health_card_number,
+                                      :public_health_autonomic_code,
+                                      :private_health_company,
+                                      :private_health_company_url,
+                                      :private_health_card_number,
+                                      appointments_attributes: [
+                                          :id,
+                                          :professional_id,
+                                          :_destroy])
     end
-
 end

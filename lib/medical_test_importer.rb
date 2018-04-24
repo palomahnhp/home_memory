@@ -11,7 +11,7 @@ class MedicalTestImporter < BaseImporter
       row = Hash[[header, spreadsheet.row(i)].transpose]
       parse_columns(row)
       if i == 2
-        @patient = Patient.find_by(nickname: row['paciente'])
+        @patient = Patient.find_by(fisrtname: row['paciente'])
         @center  = MedicalCenter.find_by(name: row['centro'])
         @professional  = Professional.find_by(firstname: row['profesional'])
       end

@@ -15,7 +15,7 @@ p  'Creating Pacients ...'
  ['Popi',   'Paloma', 'Hernández Navarro', '1961/08/02'],
  ['Jb',    'Justo',  'Beltrán Vicente', '1964/06/22']
 ].each do |reg|
-  patient =  Patient.create(nickname: reg[0], firstname: reg[1], surname: reg[2], born_date: reg[3])
+  patient =  Patient.create(firstname: reg[1], surname: reg[2], born_date: reg[3])
 end
 
 p  'Creating Centers ...'

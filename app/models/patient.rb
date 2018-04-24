@@ -9,8 +9,14 @@ class Patient < ApplicationRecord
 
   accepts_nested_attributes_for :appointments, reject_if: :all_blank, allow_destroy: true
 
+  validates_presence_of :born_date, :firstname, :surname
+
   def full_name
     firstname + " " + surname
+  end
+
+  def age
+    Age.in_years(born_date)
   end
 
 end

@@ -150,10 +150,18 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   end
 
   create_table "patients", force: :cascade do |t|
-    t.string "nickname"
     t.string "firstname"
     t.string "surname"
     t.date "born_date"
+    t.string "document"
+    t.string "public_health_org"
+    t.string "public_health_org_url"
+    t.string "public_health_membership_number"
+    t.string "public_health_autonomic_code"
+    t.string "public_health_card_number"
+    t.string "private_health_company"
+    t.string "private_health_company_url"
+    t.string "private_health_card_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

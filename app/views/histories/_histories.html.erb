@@ -1,5 +1,5 @@
 <h4>Historia</h4>
-
+<%= link_to t("actions.create", resource: 'Historia'), new_history_path(patient_id: @patient) %>
 <% @patient.histories.each do |history| %>
   <div class="panel">
     <p>

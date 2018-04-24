@@ -5,7 +5,7 @@ class ProfessionalsController < ApplicationController
   # GET /professionals.json
   def index
     @search  = Professional.search(params[:q])
-    @search.sorts = 'nickname asc' if @search.sorts.empty?
+    @search.sorts = 'name asc' if @search.sorts.empty?
     @professionals = @search.result.page(params[:page])
     @search.build_condition
   end
