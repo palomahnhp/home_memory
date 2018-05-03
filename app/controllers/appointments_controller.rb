@@ -1,5 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :set_patient, only: [:index, :new, :destroy]
 
   # GET /appointments
   # GET /appointments.json
@@ -25,29 +26,20 @@ class AppointmentsController < ApplicationController
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-
-    respond_to do |format|
-      if @appointment.save
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
-        format.json { render :show, status: :created, location: @appointment }
-      else
-        format.html { render :new }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
-      end
+    if @appointment.save
+      redirect_to appointment_path(@appointment), notice: 'Appointment was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
-    respond_to do |format|
-      if @appointment.update(appointment_params)
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @appointment }
-      else
-        format.html { render :edit }
-        format.json { render json: @appointment.errors, status: :unprocessable_entity }
-      end
+    if @appointment.update(appointment_params)
+      redirect_to appointment_path(@appointment, patient_id: @patient), notice: 'Appointment was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -55,10 +47,7 @@ class AppointmentsController < ApplicationController
   # DELETE /appointments/1.json
   def destroy
     @appointment.destroy
-    respond_to do |format|
-      format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to histories_path(patient_id: @patient), notice: 'Appointment was successfully destroyed.'
   end
 
   private
@@ -67,8 +56,13 @@ class AppointmentsController < ApplicationController
       @appointment = Appointment.find(params[:id])
     end
 
+    def set_patient
+      @patient = Patient.find(params[:patient_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.fetch(:appointment, {})
+      params.require(:appointment).permit(:id, :patient_id, :appointment_time, :professional_id,
+                                          :medical_center_id, :reason, :location)
     end
 end

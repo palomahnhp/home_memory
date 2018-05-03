@@ -1,5 +1,10 @@
-<h1>New History</h1>
+<div class="row">
+  <div class="small-12 columns" >
+    <h2>Añadir historia </h2>
+    <h3> <%= @patient.full_name %></h3>
+  </div>
+</div>
 
-<%= render 'form', history: @history %>
+<%= render 'form' %>
 
-<%= link_to 'Back', histories_path %>
+<%= link_to t('actions.back'), histories_path(patient_id: @patient) %>

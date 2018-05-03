@@ -1,0 +1,20 @@
+<div class="row" >
+  <div class="small-4 columns">
+    <%= form.label :event_at, 'fecha y hora de la cita' %>
+    <%= form.datetime_field :event_at %>
+  </div>
+  <br>
+  <div class="small- columns">
+    <%= form.label :professional_id %>
+    <%= form.select :professional_id, options_from_collection_for_select(Professional.all, 'id', 'full_name') %>
+  </div>
+
+  <div class="small-4 columns">
+    <%= form.label :medical_center_id %>
+    <%= form.select :medical_center_id, options_from_collection_for_select(MedicalCenter.all, 'id', 'name') %>
+  </div>
+  <div class="small-4 columns">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+</div>

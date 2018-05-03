@@ -5,7 +5,6 @@
       <%= form.submit class: "button hollow" %>
     </div>
 
-
     <div class="small-12 columns">
       <div class="medium-4 small-12 columns">
         <%= form.label :name %>
@@ -37,8 +36,8 @@
 
     <div class="small-12 columns">
       <div class="medium-6 small-12 columns">
-        <%= label_tag :professional_id %>
-        <%= form.select :professional_id, options_for_select(Professional.select_option, @medical_test.professional) %>
+        <%= label_tag :history_id %>
+        <%= form.select :history_id, options_for_select(History.select_option(@patient), @medical_test.history) %>
       </div>
     </div>
 

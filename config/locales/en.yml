@@ -3,16 +3,22 @@ en:
   actions:
     back: Volver
     column: Acciones
-    create: Crear %{resource}
+    create: Añadir %{resource}
+    delete: Eliminar  %{resource}
     destroy:
-      confirmation: "¿Quieres borrarlo,seguro?"
+      confirmation: "¿Quieres borrarlo?,¿seguro?"
     edit: Editar
-    new: Guardar datos
+    new: Nueva
     show: Mostrar
+    save: "Guardar"
+    search: "Buscar"
   activerecord:
     attributes:
-      appointment:
-        appointment_date: Cita
+      history:
+        appointment: Cita
+        annotation: Nota
+        note: Nota
+        even_at: Feha
         location: Lugar
         professional: Profesional
         reason: Motivo
@@ -28,6 +34,16 @@ en:
         active_ingredient: Principio activo
         name: Nombre
         prospect: Prospecto
+      patient:
+        speciality: "Especialidad"
+        medical_center: "Centro médico"
+        comments: "Notas"
+      appointments:
+        patient: "Paciente"
+        appointment_time: "Cita"
+        professiona_id: "Profesional"
+        location: "Lugar"
+        reason: "Motivo"
     models:
       speciality: Especialidades
   app:
@@ -35,6 +51,8 @@ en:
   appointments:
     edit:
       title: Modificar Cita
+    new:
+      title: "Crear cita"
   documents:
     actions:
       destroy:
@@ -68,6 +86,10 @@ en:
   histories:
     edit:
       title: Historial
+    index:
+      search:
+        title: "Búsqueda avanzada"
+        information: "Para añadir una condición selecciona el campo de búsqueda, para eliminarla dejalo en blanco."
   layouts:
     footer:
       copyright: "© Copyright %{year}"
@@ -119,6 +141,10 @@ en:
       title: Paciente
     edit:
       title: "Modificar paciente"
+    block:
+      personal_data: "Datos personales"
+      public_org: "Organismo público de salud"
+      private_company: "Compañía de salud"
   professionals:
     edit:
       title: Editar profesional
@@ -133,3 +159,8 @@ en:
       title: Especialidades médicas
     show:
       title: Especialidad médica
+  professional:
+    show:
+      title: "Datos de profesional"
+      data_legend: "Datos del profesional"
+      data_comments: "Notas"

@@ -1,5 +1,4 @@
 class Prescription < ApplicationRecord
-  belongs_to :appointment
-  belongs_to :proffesional, throught: :appointment
-
+  belongs_to :history
+  belongs_to :medication
 end

@@ -54,10 +54,10 @@
         </div>
       </div>
     </fieldset>
-    <%= render 'appointments' %>
-    <%= render 'histories' %>
 
-    <%= link_to 'Edit', edit_patient_path(@patient) %> |
-    <%= link_to 'Back', patients_path %>
+    <%= link_to t('actions.edit'), edit_patient_path(@patient) %> |
+    <%= link_to 'Citas e historias', histories_path(patient_id: @patient) %> |
+    <%= link_to 'Pruebas', medical_tests_path(patient_id: @patient) %> |
+    <%= link_to t('actions.back'), patients_path %>
   </div>
 </div>

@@ -5,7 +5,7 @@ class CreateMedicalCenters < ActiveRecord::Migration[5.1]
       t.string :address
       t.string :kind
       t.string :main_phone
-      t.string :appointment_phone
+      t.string :phone
       t.string :email
       t.string :web
 

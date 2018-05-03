@@ -3,7 +3,7 @@ class PatientsController < ApplicationController
 
   def index
     @search = Patient.search(params[:q])
-    @search.sorts = 'firstname asc' if @search.sorts.empty?
+    @search.sorts = 'first_name asc' if @search.sorts.empty?
     @patients = @search.result.page(params[:page])
     @search.build_condition
   end
@@ -45,7 +45,7 @@ class PatientsController < ApplicationController
     end
 
     def patient_params
-      params.require(:patient).permit(:firstname, :surname, :born_date,
+      params.require(:patient).permit(:first_name, :last_name, :born_date,
                                       :document, :public_health_org,
                                       :public_health_org_url,
                                       :public_health_membership_number,

@@ -1,4 +1,13 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="small-12 columns" >
+    <h2>Nota médica </h2>
+    <h3> <%= @history.patient.full_name %></h3>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_history_path(@history) %> |
-<%= link_to 'Back', histories_path %>
+<%= link_to t('actions.edit'), edit_history_path(@history) %> |
+<%= link_to t('actions.back'), histories_path %>
+
+<br>
+
+<%= render "shared/history", history: @history %>

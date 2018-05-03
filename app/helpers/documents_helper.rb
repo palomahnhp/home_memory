@@ -27,7 +27,7 @@ module DocumentsHelper
                   remote: true,
                   class: "delete remove-cached-attachment"
     else
-      link_to_remove_association t('documents.form.delete_button'), builder, class: "delete remove-document"
+      link_to_remove_association '', builder, class: "delete icon-trash remove-document"
     end
   end
 
@@ -36,9 +36,11 @@ module DocumentsHelper
     klass = document.persisted? || document.cached_attachment.present?  ? " hide" : ""
     html = builder.label :attachment,
                          t("documents.form.attachment_label"),
-                         class: "button hollow #{klass}"
+                         class: "button hollow sm#{klass}",
+                         for: "file-input"
     html += builder.file_field :attachment,
                                label: false,
+                               id:"file-input",
                                accept: accepted_content_types_extensions(document.documentable_type.constantize),
                                class: 'js-document-attachment',
                                data: {

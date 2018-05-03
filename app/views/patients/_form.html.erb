@@ -1,28 +1,17 @@
 <%= form_with(model: patient, local: true) do |f| %>
-  <% if patient.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(patient.errors.count, "error") %> No se ha podidio gurdar, por los siguientes errores:</h2>
-      <ul>
-      <% patient.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <fieldset>
     <legend>
-      Datos personales
+      <%= t('patients.block.personal_data') %>
     </legend>
     <div class="row">
       <div class="fieldset small-12 columns">
         <div  class="medium-4 small-12 columns">
-          <%= f.label :firstname %>
-          <%= f.text_field :firstname %>
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name %>
         </div>
         <div  class="medium-8 small-12 columns">
-          <%= f.label :surname %>
-          <%= f.text_field :surname %>
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name %>
         </div>
       </div>
       <div  class="medium-12 small-12 columns">
@@ -39,9 +28,7 @@
   </fieldset>
 
   <fieldset>
-    <legend>
-      Organismo público de salud
-    </legend>
+    <legend> <%= t('patients.block.public_org') %> </legend>
 
     <div class="row">
       <div class="small-12 columns">
@@ -72,9 +59,7 @@
   </fieldset>
 
   <fieldset>
-    <legend>
-      Compañía de salud
-    </legend>
+    <legend><%= t('patients.block.private_company') %> </legend>
 
     <div class="row">
       <div class="small-12 columns">
@@ -96,22 +81,7 @@
    </div>
   </fieldset>
 
-  <div class="row">
-    <div class="small-10 columns">
-      <h3> Citas </h3>
-    </div>
-    <div class="small-2 columns end">
-      <%= link_to_add_association 'Añadir cita', f, :appointments %>
-    </div>
-
-    <div class="small-12 columns">
-      <%= f.fields_for :appointments do |appointment| %>
-
-        <%= render 'appointment_fields', f: appointment %>
-      <% end %>
-    </div>
-  </div>
   <div class="actions">
-    <%= f.submit t('actions.new') %>
+    <%= f.submit t('actions.save'), class: "button hollow" %>
   </div>
 <% end %>

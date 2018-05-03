@@ -6,13 +6,13 @@
     <div class="small-6 medium-11 columns" >
       <table>
         <tr>
-          <th> <%= t('activerecord.attributes.speciality.denomination') %> </th>
-          <td> <%= @speciality.denomination %> </td>
+          <th> <%= t('activerecord.attributes.speciality.name') %> </th>
+          <td> <%= @speciality.name %> </td>
         </tr>
       </table>
 
-      <%= link_to 'Edit', edit_speciality_path(@speciality) %> |
-      <%= link_to 'Back', specialities_path %>
+      <%= link_to t('actions.edit'), edit_speciality_path(@speciality) %> |
+      <%= link_to t('actions.back'), specialities_path %>
     </div>
   </div>
 </div>

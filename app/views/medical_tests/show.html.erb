@@ -23,5 +23,5 @@
   </div>
 </div>
 
-<%= link_to 'Edit', edit_medical_test_path(@medical_test) %> |
-<%= link_to 'Back', medical_tests_path(patient_id: @medical_test.patient_id) %>
+<%= link_to t('actions.edit'), edit_medical_test_path(@medical_test) %> |
+<%= link_to t('actions.back'), medical_tests_path(patient_id: @medical_test.patient_id) %>

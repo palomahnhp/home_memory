@@ -1,12 +1,12 @@
-<h2><%= @patient.full_name %></h2>
+<h2><%= @patient.full_name %>  </h2>
 <div class="row" >
   <div class="small-12 columns" >
-   <%= render 'appointments' %>
 
-   <%= render 'histories' %>
+   <%= render 'shared/appointments', type: 'pending', patient: @patient %>
 
+   <%= render 'shared/histories', patient: @patient  %>
 
    <br>
-   <%= link_to t("actions.create", resource: 'Historia'), new_patient_path %>
+   <%= link_to t('actions.back'), patients_path %>
   </div>
 </div>

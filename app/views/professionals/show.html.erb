@@ -6,21 +6,26 @@
       <h1><%= t('professional.show.title') %> </h1>
       <table>
          <tr>
-          <th> <%= t('activerecord.attributes.patient.firstname') %> </th>
-          <td> <%= @professional.firstname %> </td>
+          <th> <%= t('activerecord.attributes.patient.first_name') %> </th>
+          <td> <%= @professional.full_name %> </td>
+        </tr>
+
+        <tr>
+          <th> <%= t('activerecord.attributes.patient.speciality') %> </th>
+          <td> <%= @professional.speciality.name %> </td>
         </tr>
         <tr>
-          <th> <%= t('activerecord.attributes.patient.surname') %> </th>
-          <td> <%= @professional.surname %> </td>
+          <th> <%= t('activerecord.attributes.patient.medical_center') %> </th>
+          <td> <%= @professional.medical_center.name %> </td>
         </tr>
         <tr>
-          <th> <%= t('activerecord.attributes.patient.born_date') %> </th>
-          <td> <%= @professional.born_date %> </td>
+          <th> <%= t('activerecord.attributes.patient.comments') %> </th>
+          <td> <%= simple_format(@professional.comments) %> </td>
         </tr>
       </table>
-
-      <%= link_to 'Edit', edit_professional_path(@professional) %> |
-      <%= link_to 'Back', professionals_path %>
+      <hr>
+      <%= link_to t('actions.edit'), edit_professional_path(@professional) %> |
+      <%= link_to t('actions.back'), professionals_path %>
     </div>
   </div>
 </div>

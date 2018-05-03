@@ -1,19 +1,28 @@
 class HistoriesController < ApplicationController
   before_action :set_history, only: [:show, :edit, :update, :destroy]
+  before_action :set_patient, only: [:show, :edit, :update, :new, :create, :destroy]
 
   def index
     @patient = Patient.find_by(id: params[:patient_id])
-    @histories = @patient.histories
+
+    @search = @patient.histories.search(params[:q])
+    @search.sorts = "even_at desc"  if @search.sorts.empty?
+
+    @histories = @search.result
+    @search.build_condition
+
   end
 
   # GET /histories/1
   # GET /histories/1.json
   def show
+
   end
 
   # GET /histories/new
   def new
     @history = History.new
+    @history.kind = params[:kind]
   end
 
   # GET /histories/1/edit
@@ -24,15 +33,10 @@ class HistoriesController < ApplicationController
   # POST /histories.json
   def create
     @history = History.new(history_params)
-
-    respond_to do |format|
-      if @history.save
-        format.html { redirect_to @history, notice: 'History was successfully created.' }
-        format.json { render :show, status: :created, location: @history }
-      else
-        format.html { render :new }
-        format.json { render json: @history.errors, status: :unprocessable_entity }
-      end
+    if @history.save
+      redirect_to @history, notice: 'History was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -68,6 +72,20 @@ class HistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def history_params
-      params.require(:history).permit(:id, :name, :patient)
+      params.require(:history).permit(:id, :name, :note, :patient_id,
+                                      :professional_id,
+                                      :appointment_id,
+                                       prescription_attributes: [
+                                          :id,
+                                          :medicament_id,
+                                          :posology,
+                                          :inii_at,
+                                          :end_at
+                                          ]
+                                      )
+    end
+
+    def set_patient
+      @patient = Patient.find_by(id: params[:patient_id])
     end
 end

@@ -1,18 +1,32 @@
 <tr id="<%= dom_id(document)%>">
-  <td class="document-link">
-    <%= document.title %>
-  </td>
   <td class="text-center">
-    <%= link_to t('documents.buttons.download_document'),
+    <%= link_to document.title,
                 document.attachment.url,
                 target: "_blank",
                 rel: "nofollow",
-                class: 'button hollow' %>
+                title: t('documents.buttons.download_document') %>
   </td>
   <td class="text-center">
-    <%= link_to t('documents.buttons.destroy_document'),
+    <%= link_to '',
                 document_path(document, from: request.url), method: :delete,
+                title: t('documents.buttons.destroy_document'),
                 data: { confirm: t('documents.actions.destroy.confirm') },
-                class: 'button hollow alert' %>
+                class: 'icon-trash' %>
+  </td>
+</tr>
+<tr id="<%= dom_id(document)%>">
+  <td class="text-center">
+    <%= link_to document.title,
+                document.attachment.url,
+                target: "_blank",
+                rel: "nofollow",
+                title: t('documents.buttons.download_document') %>
+  </td>
+  <td class="text-center">
+    <%= link_to '',
+                document_path(document, from: request.url), method: :delete,
+                title: t('documents.buttons.destroy_document'),
+                data: { confirm: t('documents.actions.destroy.confirm') },
+                class: 'icon-trash' %>
   </td>
 </tr>

@@ -1,44 +1,6 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 en:
   activerecord:
-    attributes:
-      appointment:
-        appointment_date: Fecha de la cita
-        location: Lugar
-        professional: Profesional
-        reason: Motivo
-        speciality: Especialidad
-      patient:
-        firstname: Nombre
-        surname: Apellidos
-        born_date: Fecha de nacimiento
-        age: Edad
-        document: NIF
-        public_health_org: Organismo publico de Salud
-        public_health_org_url: Página web
-        public_health_membership_number: Número de afiliación
-        public_health_card_number: Número de tarjeta sanitaria
-        public_health_autonomic_code: Código personal autonómico
-        private_health_company: Compañia seguro de salud
-        private_health_company_url: Página web
-        private_health_card_number: Número de tarjeta
-      speciality:
-        denomination: Denominación
-      professional:
-        firstname: Nombre
-        surname: Apellidos
-        medical_center: Centro médico
-        speciality: Especialidad
-      medical_test:
-        name: Prueba
-        kind: Tipo
-        performed_at: Fecha de realización
-        patient: Paciente
-        professional: Médico
-        instructions: Instrucciones
-        report: Informe
-        medical_center: Centro médico
-        performed_in: Sala
     models:
       patient:
         one: Paciente
@@ -61,3 +23,56 @@ en:
       medical_center:
         one: Centro médico
         other: Centros médicos
+      history:
+        one: Historia
+        other: Historias
+      appointment:
+        one: Cita
+        other: Citas
+    attributes:
+      appointment:
+        appointment_time: Fecha de la cita
+        location: Lugar
+        professional_id: Profesional
+        reason: Motivo
+        speciality: Especialidad
+        medical_center_id: Centro médico
+      patient:
+        first_name: Nombre
+        last_name: Apellidos
+        born_date: Fecha de nacimiento
+        age: Edad
+        document: NIF
+        public_health_org: Organismo publico de Salud
+        public_health_org_url: Página web
+        public_health_membership_number: Número de afiliación
+        public_health_card_number: Número de tarjeta sanitaria
+        public_health_autonomic_code: Código personal autonómico
+        private_health_company: Compañia seguro de salud
+        private_health_company_url: Página web
+        private_health_card_number: Número de tarjeta
+      speciality:
+        name: Denominación
+      professional:
+        first_name: Nombre
+        last_name: Apellidos
+        medical_center: Centro médico
+        speciality: Especialidad
+      medical_test:
+        name: Prueba
+        kind: Tipo
+        performed_at: Fecha de realización
+        patient: Paciente
+        professional: Médico
+        instructions: Instrucciones
+        report: Informe
+        medical_center: Centro médico
+        performed_in: Sala
+      history:
+        kind: Clase de historia
+        patient: Paciente
+      prescription:
+        medication_id: Medicamento
+        init_at: Fecha de inicio
+        end_at:  Fecha fin
+        posology: Posología

@@ -10,9 +10,13 @@ Rails.application.routes.draw do
   end
 
   resources :prescriptions
-  resources :appointments
   resources :medications
-  resources :histories
+  resources :histories do
+    collection {
+      post :search, to:'histories#index'
+      get  :search, to:'histories#index'
+    }
+  end
   resources :professionals
   resources :patients
   resources :specialities

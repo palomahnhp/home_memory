@@ -13,7 +13,7 @@ class MedicalTestImporter < BaseImporter
       if i == 2
         @patient = Patient.find_by(fisrtname: row['paciente'])
         @center  = MedicalCenter.find_by(name: row['centro'])
-        @professional  = Professional.find_by(firstname: row['profesional'])
+        @professional  = Professional.find_by(first_name: row['profesional'])
       end
 
       group = AnalyticalGroup.find_or_create_by(name: @group_data[:name] )

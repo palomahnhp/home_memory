@@ -1,17 +1,54 @@
-<%= form_with(model: history, local: true) do |form| %>
-  <% if history.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(history.errors.count, "error") %> prohibited this history from being saved:</h2>
+<div class="row">
+  <%= form_with(model: @history, local: true) do |form| %>
 
-      <ul>
-      <% history.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+    <div class="small-12 columns" >
+      <% if form.object.kind.present?  %>
+        <h3><%= form.object.kind.capitalize %></h3>
+      <% else %>
+        <div class="small-6 columns" >
+          <%= form.label :kind %>
+          <%= form.select :kind,
+              options_for_select(History::KIND, form.object.kind),
+                          {:include_blank => 'Selecciona nota o cita'} %>
+        </div>
       <% end %>
-      </ul>
+    </div>
+
+    <div class="small-12 columns" >
+      <% if form.object.kind = 'cita' %>
+        <%= render 'appointment', form: form %>
+      <% else %>
+        <%= render 'annotation', form: form %>
+      <% end %>
+    </div>
+
+    <div class="small-12 columns">
+      <%= form.label :reason %>
+      <%= form.text_area :reason %>
+    </div>
+
+    <div class="small-12 columns" >
+      <div class="small-6 columns" >
+        <%= form.label :note %>
+        <%= form.text_area :note %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-3 columns">
+        <strong> <%= t('activerecord.models.prescription.other') %> </strong>
+      </div>
+      <div class="small-2 columns">
+        <%= link_to_add_association 'Añadir receta', form, :prescriptions %>
+      </div>
+
+      <div class="small-12 columns">
+        <%= form.fields_for :prescriptions do |prescription| %>
+          <%= render 'prescription_fields', f: prescription %>
+        <% end %>
+      </div>
+    </div>
+    <div class="actions">
+      <%= form.submit t('actions.save'), class: "button, hollow" %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

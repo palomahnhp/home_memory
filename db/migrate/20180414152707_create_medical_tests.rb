@@ -1,17 +1,16 @@
 class CreateMedicalTests < ActiveRecord::Migration[5.1]
   def change
     create_table :medical_tests do |t|
-      t.belongs_to :appointment
+      t.belongs_to :history
       t.belongs_to :patient
-      t.belongs_to :professional
       t.string     :name
       t.string     :kind
-      t.datetime   :performed_at
-      t.string     :performed_in
       t.belongs_to :medical_center
-
       t.text       :instructions
       t.text       :report
+
+      t.datetime   :performed_at
+      t.string     :performed_in
     end
 
     create_table :analytical_groups do |t|

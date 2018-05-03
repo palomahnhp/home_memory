@@ -23,10 +23,10 @@
         <% @medical_tests.each do |medical_test| %>
           <tr>
             <td title="<%= medical_test.id %>"><%= medical_test.name %></td>
-            <td><%= l medical_test.appointment&.appointment_time&.to_date if medical_test.appointment&.appointment_time.present? %></td>
+            <td><%= l medical_test.history.event_at&.to_date if medical_test.history.present? %></td>
             <td><%= l medical_test.performed_at %></td>
             <td><%= medical_test.patient.full_name %></td>
-            <td><%= medical_test.professional.full_name %></td>
+            <td><%= medical_test.history.professional.full_name if medical_test.history.present? %></td>
 
             <td><%= link_to '', analysis_results_path(medical_test: medical_test) , class: "icon-calendar", title: "Resultados" %></td>
             <td><%= link_to '', medical_test_path(medical_test, patient_id: @patient), class: "icon-search", title: "Detalle" %></td>

@@ -3,7 +3,7 @@
     <h1><%= t('medical_centers.edit.title')  %>></h1>
     <%= render 'form', medical_center: @medical_center %>
 
-    <%= link_to 'Show', @medical_center %> |
-    <%= link_to 'Back', medical_centers_path %>
+    <%= link_to t('actions.show'), @medical_center %> |
+    <%= link_to t('actions.back'), medical_centers_path %>
   </div>
 </div>

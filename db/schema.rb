@@ -59,21 +59,6 @@ ActiveRecord::Schema.define(version: 20180417155102) do
     t.index ["analytical_group_id"], name: "index_analytical_subgroups_on_analytical_group_id"
   end
 
-  create_table "appointments", force: :cascade do |t|
-    t.bigint "patient_id"
-    t.bigint "professional_id"
-    t.text "reason"
-    t.datetime "appointment_time"
-    t.bigint "medical_center_id"
-    t.string "location"
-    t.string "update_by"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["medical_center_id"], name: "index_appointments_on_medical_center_id"
-    t.index ["patient_id"], name: "index_appointments_on_patient_id"
-    t.index ["professional_id"], name: "index_appointments_on_professional_id"
-  end
-
   create_table "documents", force: :cascade do |t|
     t.string "title"
     t.string "attachment_file_name"
@@ -91,15 +76,21 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   end
 
   create_table "histories", force: :cascade do |t|
+    t.datetime "event_at"
+    t.string "kind"
     t.bigint "patient_id"
-    t.bigint "appointment_id"
+    t.bigint "professional_id"
+    t.bigint "medical_center_id"
+    t.text "reason"
+    t.string "location"
     t.text "note"
     t.integer "order"
     t.string "update_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["appointment_id"], name: "index_histories_on_appointment_id"
+    t.index ["medical_center_id"], name: "index_histories_on_medical_center_id"
     t.index ["patient_id"], name: "index_histories_on_patient_id"
+    t.index ["professional_id"], name: "index_histories_on_professional_id"
   end
 
   create_table "medical_centers", force: :cascade do |t|
@@ -107,7 +98,7 @@ ActiveRecord::Schema.define(version: 20180417155102) do
     t.string "address"
     t.string "kind"
     t.string "main_phone"
-    t.string "appointment_phone"
+    t.string "phone"
     t.string "email"
     t.string "web"
     t.datetime "created_at", null: false
@@ -115,20 +106,18 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   end
 
   create_table "medical_tests", force: :cascade do |t|
-    t.bigint "appointment_id"
+    t.bigint "history_id"
     t.bigint "patient_id"
-    t.bigint "professional_id"
     t.string "name"
     t.string "kind"
-    t.datetime "performed_at"
-    t.string "performed_in"
     t.bigint "medical_center_id"
     t.text "instructions"
     t.text "report"
-    t.index ["appointment_id"], name: "index_medical_tests_on_appointment_id"
+    t.datetime "performed_at"
+    t.string "performed_in"
+    t.index ["history_id"], name: "index_medical_tests_on_history_id"
     t.index ["medical_center_id"], name: "index_medical_tests_on_medical_center_id"
     t.index ["patient_id"], name: "index_medical_tests_on_patient_id"
-    t.index ["professional_id"], name: "index_medical_tests_on_professional_id"
   end
 
   create_table "medications", force: :cascade do |t|
@@ -150,8 +139,8 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   end
 
   create_table "patients", force: :cascade do |t|
-    t.string "firstname"
-    t.string "surname"
+    t.string "first_name"
+    t.string "last_name"
     t.date "born_date"
     t.string "document"
     t.string "public_health_org"
@@ -167,21 +156,21 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   end
 
   create_table "prescriptions", force: :cascade do |t|
-    t.bigint "appointments_id"
+    t.bigint "history_id"
     t.bigint "medication_id"
     t.string "posology"
     t.date "init_at"
     t.date "end_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["appointments_id"], name: "index_prescriptions_on_appointments_id"
+    t.index ["history_id"], name: "index_prescriptions_on_history_id"
     t.index ["medication_id"], name: "index_prescriptions_on_medication_id"
     t.index ["posology"], name: "index_prescriptions_on_posology"
   end
 
   create_table "professionals", force: :cascade do |t|
-    t.string "firstname"
-    t.string "surname"
+    t.string "first_name"
+    t.string "last_name"
     t.bigint "speciality_id"
     t.bigint "medical_center_id"
     t.text "comments"
@@ -192,7 +181,7 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   end
 
   create_table "specialities", force: :cascade do |t|
-    t.string "denomination"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -223,12 +212,10 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   add_foreign_key "analysis_results", "medical_tests"
   add_foreign_key "analytical_items", "analytical_groups"
   add_foreign_key "analytical_items", "analytical_subgroups"
-  add_foreign_key "appointments", "medical_centers"
-  add_foreign_key "appointments", "patients"
-  add_foreign_key "appointments", "professionals"
   add_foreign_key "documents", "users"
-  add_foreign_key "histories", "appointments"
+  add_foreign_key "histories", "medical_centers"
   add_foreign_key "histories", "patients"
-  add_foreign_key "prescriptions", "appointments", column: "appointments_id"
+  add_foreign_key "histories", "professionals"
+  add_foreign_key "prescriptions", "histories"
   add_foreign_key "prescriptions", "medications"
 end
