@@ -55,19 +55,7 @@
       </div>
     </fieldset>
 
-    <fieldset>
-      <legend>Documentos</legend>
-      <ul>
-        <% @patient.documents.each do |document| %>
-          <li>
-            <%= link_to document_link_name(document), document.attachment.url,
-                        class: 'icon-file-pdf-o', target: '_blank',
-                        title: document.title
-            %>
-          </li>
-        <% end %>
-      </ul>
-    </fieldset>
+    <%= render 'shared/show_documents', resource: @patient %>
 
     <%= link_to t('actions.edit'), edit_patient_path(@patient) %> |
     <%= link_to 'Citas e historias', histories_path(patient_id: @patient) %> |

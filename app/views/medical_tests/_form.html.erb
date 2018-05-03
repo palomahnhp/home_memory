@@ -1,28 +1,24 @@
 <div class="row">
   <%= form_with(model: @medical_test, local: true) do |form| %>
     <%= form.hidden_field :patient_id, value: @patient.id %>
+
     <div class="actions">
-      <%= form.submit class: "button hollow" %>
+      <%= form.submit t('actions.save'), class: "button hollow" %>
     </div>
 
     <div class="small-12 columns">
       <div class="medium-4 small-12 columns">
         <%= form.label :name %>
-        <%= form.select :name, options_from_collection_for_select(NameTest.all, 'name', 'name') %>
+        <%= form.select :name, options_from_collection_for_select(NameTest.all, 'name', 'name'),
+                        {:include_blank => 'Selecciona la prueba'}%>
       </div>
-
       <div class="medium-4 small-12 columns end">
-        <%= form.label :kind %>
-        <%= form.text_field :kind %>
-      </div>
-
-    </div>
-    <div class="small-12 columns">
-      <div class="medium-4 small-12 columns">
         <%= form.label :performed_at %>
         <%= form.datetime_field :performed_at %>
       </div>
+    </div>
 
+    <div class="small-12 columns">
       <div class="medium-4 small-12 columns">
         <%= form.label :medical_center_id %>
         <%= form.select :medical_center_id, options_for_select(MedicalCenter.select_option, @medical_test.medical_center) %>
@@ -36,30 +32,35 @@
 
     <div class="small-12 columns">
       <div class="medium-6 small-12 columns">
-        <%= label_tag :history_id %>
-        <%= form.select :history_id, options_for_select(History.select_option(@patient), @medical_test.history) %>
-      </div>
-    </div>
-
-    <div class="small-12 columns">
-      <div class="medium-6 small-12 columns">
         <%= form.label :instructions %>
         <%= form.text_area :instructions %>
       </div>
     </div>
+
     <div class="small-12 columns">
       <div class="medium-6 small-12 columns">
         <%= form.label :report %>
         <%= form.text_area :report %>
       </div>
     </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <div class="row">
+          <div class="documents small-12">
+            <%= render 'documents/nested_documents', documentable: @medical_test, f: form %>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <h3>
         Resultados de los análisis
         <%= link_to_add_association '[+]', form, :analysis_results %>
       </h3>
-
     </div>
+
     <div class="row">
       <div id='analysis_result'>
         <%= form.fields_for :analysis_results do |result| %>
@@ -67,5 +68,10 @@
         <% end %>
       </div>
     </div>
+
+    <div class="actions">
+      <%= form.submit t('actions.save'), class: "button hollow" %>
+    </div>
+
   <% end %>
 </div>

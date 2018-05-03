@@ -10,6 +10,13 @@ class MedicalTest < ApplicationRecord
 
   accepts_nested_attributes_for :analysis_results , reject_if: :all_blank, allow_destroy: true
 
+  include Documentable
+  documentable max_documents_allowed: 10,
+               max_file_size: 3.megabytes,
+               accepted_content_types: [ "application/pdf",
+                                         "image/jpeg",
+                                         'image/png']
+
   scope :by_patient, ->(patient) { where(patient: patient) }
 
 end

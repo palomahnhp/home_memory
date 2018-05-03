@@ -1,0 +1,16 @@
+<fieldset>
+  <legend>Documentos</legend>
+  <ul>
+    <% resource.documents.each do |document| %>
+      <li>
+        <%= link_to document_link_name(document), document.attachment.url,
+                    class: 'icon-file-pdf-o', target: '_blank',
+                    title: document.title
+        %>
+      </li>
+    <% end %>
+    <% if resource.documents.empty? %>
+      No se han incluido documentos
+    <% end %>
+  </ul>
+</fieldset>

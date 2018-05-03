@@ -103,6 +103,7 @@ class MedicalTestsController < ApplicationController
                  :name,
                  :kind,
                  :performed_at,
+                 :performed_in,
                  :instructions,
                  :report,
                  :medical_center_id,
@@ -113,6 +114,13 @@ class MedicalTestsController < ApplicationController
                                                :level,
                                                :grade,
                                                :interpretation,
-                                               :_destroy])
+                                               :_destroy],
+                 documents_attributes: [:id,
+                                        :title,
+                                        :attachment,
+                                        :cached_attachment,
+                                        :user_id,
+                                        :_destroy]
+      )
     end
 end

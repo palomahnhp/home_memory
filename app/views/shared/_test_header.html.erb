@@ -1,8 +1,12 @@
-<p> Paciente: <strong><%= medical_test.patient.full_name %> </strong>
-  <br>Fecha de realización: <strong><%= l medical_test.performed_at %></strong>
-   en <%= medical_test.medical_center.name %>
+<fieldset>
+  <legend><%= @medical_test.name %> </legend>
+  Fecha de realización: <strong><%= l medical_test.performed_at %></strong>
+  en <%= medical_test.medical_center.name %>
   <% if medical_test.history.professional.present? %>
     <br>Prescrito por: <strong> Dr/a <%= medical_test.history.professional.full_name  %> </strong> -
     <%= medical_test.history.professional.speciality.name %>  -
   <% end %>
-</p>
+  Motivo:
+
+</fieldset>
+
