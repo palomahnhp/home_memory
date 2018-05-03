@@ -152,8 +152,6 @@ en:
       title: Profesionales
     new:
       title: Nuevo profesional
-    show:
-      title: Detalles de medicamento
   specialities:
     index:
       title: Especialidades médicas

@@ -7,6 +7,12 @@ class Patient < ApplicationRecord
 
   validates_presence_of :born_date, :first_name, :last_name
 
+  include Documentable
+  documentable max_documents_allowed: 10,
+               max_file_size: 3.megabytes,
+               accepted_content_types: [ "application/pdf",
+                                         "image/jpeg",
+                                         'image/png']
   def full_name
     first_name + " " + last_name
   end

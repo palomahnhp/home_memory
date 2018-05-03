@@ -17,5 +17,8 @@ module ApplicationHelper
     History.all
   end
 
+  def document_link_name(document)
+    ' ' + document.title + ' (' + document.attachment_file_name + ')'
+  end
 
 end

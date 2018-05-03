@@ -57,6 +57,13 @@ class PatientsController < ApplicationController
                                       appointments_attributes: [
                                           :id,
                                           :professional_id,
-                                          :_destroy])
+                                          :_destroy],
+                                      documents_attributes: [:id,
+                                                             :title,
+                                                             :attachment,
+                                                             :cached_attachment,
+                                                             :user_id,
+                                                             :_destroy]
+                                      )
     end
 end

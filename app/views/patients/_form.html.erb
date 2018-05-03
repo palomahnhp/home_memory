@@ -81,6 +81,16 @@
    </div>
   </fieldset>
 
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="documents small-12">
+          <%= render 'documents/nested_documents', documentable: @patient, f: f %>
+        </div>
+
+      </div>
+    </div>
+  </div>
   <div class="actions">
     <%= f.submit t('actions.save'), class: "button hollow" %>
   </div>
