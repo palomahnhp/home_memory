@@ -85,7 +85,7 @@ en:
   hello: Hello world
   histories:
     edit:
-      title: Historial
+      title: Modificar historia
     index:
       search:
         title: "Búsqueda avanzada"
@@ -162,3 +162,7 @@ en:
       title: "Datos de profesional"
       data_legend: "Datos del profesional"
       data_comments: "Notas"
+  history:
+    kind:
+      appointment: Cita
+      annotation:  Nota

@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="small-6">
+    <fieldset>
+      <legend>Pruebas</legend>
+      <div class="small-12">
+        <%= f.label  :name %>
+        <%= f.select :name,
+                     options_from_collection_for_select(NameTest.all, 'name', 'name',  f.object.name),
+                     {:include_blank => 'Selecciona prueba'} %>
+      </div>
+
+      <div class="small-4">
+        <%= f.label      :performed_at %>
+        <%= f.date_field :performed_at %>
+      </div>
+
+      <div class="small-6">
+        <%= f.label  :medical_center_id %>
+        <%= f.select :medical_center_id,
+                     options_from_collection_for_select(MedicalCenter.all, 'id', 'name', ' '),
+                     {:include_blank => 'Selecciona lugar de realización'} %>
+      </div>
+
+      <div class="small-2">
+        <%= f.label       :performed_in %>
+        <%= f.text_field :performed_in %>
+      </div>
+
+      <div class="small-12">
+        <%= f.label      :instructions %>
+        <%= f.text_field :instructions %>
+      </div>
+      <%= link_to_remove_association "eliminar prueba", f %>
+
+    </fieldset>
+  </div>
+</div>
+

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="small-12 columns" >
-    <h3><%=  t('medical_tests.show.title')%> de <%= @medical_test.patient.full_name %></h3>
+    <h3><%=  t('medical_tests.show.title')%> de <%= @medical_test.history.patient.full_name %></h3>
   </div>
 </div>
 <div class="row">
@@ -20,16 +20,16 @@
       </fieldset>
     <% end %>
 
-    <% if @medical_test.name == 'Análisis' %>
-      <%= render 'shared/show_analysis' %>
-    <% else %>
-
-    <% end %>
-
     <%= render 'shared/show_documents', resource: @medical_test %>
+
+    <% if @medical_test.analysis_results.present?  %>
+      <%= render 'shared/show_analysis', medical_test: @medical_test %>
+    <% end %>
 
   </div>
 </div>
 
 <%= link_to t('actions.edit'), edit_medical_test_path(@medical_test) %> |
-<%= link_to t('actions.back'), medical_tests_path(patient_id: @medical_test.patient_id) %>
+<%= link_to 'Historia', history_path(@medical_test.history) %> |
+<%= link_to 'Todas las pruebas', medical_tests_path(patient_id: @medical_test.history.patient) %>
+

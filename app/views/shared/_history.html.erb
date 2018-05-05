@@ -1,62 +1,70 @@
 <div class="panel">
   <div class="row" >
+    <% if history.professional.present? %>
+      <div class="small-12 columns" >
+        <strong>Consulta: </strong>  Dr/a. <%= history.professional.full_name %> -
+        <%= history.professional.speciality.name %>, <%= l history.event_at %>
+        <br>
+        <%= history.professional.medical_center.name %>
+      </div>
+    <% else %>
+      <div class="small-12 columns" >
+        <strong>Fecha de la anotación: </strong> <%= l history.event_at %><br>
+      </div>
+    <% end %>
+
     <div class="small-12 columns" >
-
-      <% if history.professional.present? %>
-        <div class="small-12 columns" >
-          <strong>Consulta: </strong>  Dr/a. <%= history.professional.full_name %> -
-          <%= history.professional.speciality.name %>, <%= l history.event_at %>
-          <br>
-          <%= history.professional.medical_center.name %>
-        </div>
-      <% else %>
-        <div class="small-12 columns" >
-          <strong>Fecha de la anotación: </strong> <%= l history.event_at %><br>
-        </div>
-      <% end %>
-
-      <div class="small-12 columns" >
-        <br>
-        <strong>Motivo: </strong><%= history.reason %><br>
-      </div>
-      <div class="small-12 columns" >
-        <br>
-        <strong>Notas: </strong>
-        <%= simple_format(history.note) %>
-      </div>
-
-      <% if history.prescriptions.present? %>
-        <div class="small-12 columns" >
-          <strong>Recetas: </strong>
-          <ul>
-            <% history.prescriptions.each do |prescription| %>
-              <li>
-                <% if prescription.medication.documents.present? %>
-                  <%= link_to '',
-                              prescription.medication.documents.first.attachment.url,
-                              class: 'icon-file-pdf-o', target: '_blank',
-                              title: prescription.medication.documents.first.title%>
-                <% end %>
-                <%= prescription.medication.name %>. Dosis:  => <%= prescription.posology %>, desde <%= l prescription.init_at %>
-                hasta <%= l prescription.end_at %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <% if history.medical_tests.present? %>
-        <div class="small-12 columns" >
-          <strong>Pruebas: </strong>
-          <ul>
-            <% history.medical_tests.each do |test| %>
-              <li>
-                <%= test.name %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+      <br>
+      <strong>Motivo: </strong><%= history.reason %><br>
     </div>
+    <div class="small-12 columns" >
+      <br>
+      <strong>Notas: </strong>
+      <%= simple_format(history.note) %>
+    </div>
+
+    <% if history.prescriptions.present? %>
+      <div class="small-12 columns" >
+        <strong>Recetas: </strong>
+        <ul>
+          <% history.prescriptions.each do |prescription| %>
+            <li>
+              <% if prescription.medication.documents.present? %>
+                <%= link_to '',
+                            prescription.medication.documents.first.attachment.url,
+                            class: 'icon-file-pdf-o', target: '_blank',
+                            title: prescription.medication.documents.first.title%>
+              <% end %>
+              <%= prescription.medication.name %>. Dosis:  => <%= prescription.posology %>, desde <%= l prescription.init_at %>
+              hasta <%= l prescription.end_at %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <% if history.medical_tests.present? %>
+      <div class="small-12 columns" >
+        <strong>Pruebas: </strong>
+        <ul>
+          <% history.medical_tests.each do |test| %>
+            <li>
+              <%= link_to test.name, test, target: '_blank', title: test.name %>
+              => <%= l test.performed_at %> en
+              <%= test.medical_center.name %> - <%= test.performed_in %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= render 'shared/show_documents', resource: history %>
+  </div>
+  <div class="small-10 columns" >
+  </div>
+  <div class="small-2 columns" >
+    <strong>Acciones: </strong><%= link_to '', edit_history_path(history), class: 'icon-pencil' %>
+    <%= link_to '', history_path(history), method: :delete, class: 'icon-trash',
+                data: { confirm: t('actions.destroy.confirmation') } %>
+    <br>
   </div>
 </div>

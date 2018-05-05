@@ -8,4 +8,5 @@ class Medication < ApplicationRecord
                accepted_content_types: [ "application/pdf",
                                          "image/jpeg",
                                          'image/png']
+  default_scope -> { order( :name ) }
 end

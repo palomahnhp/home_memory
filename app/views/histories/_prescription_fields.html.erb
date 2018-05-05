@@ -5,7 +5,7 @@
       <div class="small-12">
         <%= f.label  :medication_id %>
         <%= f.select :medication_id,
-                     options_from_collection_for_select(Medication.all, 'id', 'name', ' '),
+                     options_from_collection_for_select(Medication.all, 'id', 'name', f.object.medication_id),
                      {:include_blank => 'Selecciona medicamento'} %>
       </div>
       <div class="small-12">
@@ -19,7 +19,7 @@
         <%= f.label  :end_at %>
         <%= f.date_field   :end_at %>
       </div>
-
+      <%= link_to_remove_association "Eliminar receta", f %>
     </fieldset>
   </div>
 </div>

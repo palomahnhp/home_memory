@@ -1,13 +1,24 @@
 class History < ApplicationRecord
-  has_many :medical_tests
+  has_many :medical_tests, dependent: :destroy
+  accepts_nested_attributes_for :medical_tests, allow_destroy: true
+
   belongs_to :medical_center, optional: true
   belongs_to :patient
   belongs_to :professional, optional: true
-  has_many :prescriptions
+  has_many :prescriptions, dependent: :destroy
+  accepts_nested_attributes_for :prescriptions, allow_destroy: true
 
-  KIND = %w( cita anotación )
+  KIND = %w( appointment annotation )
+
+  include Documentable
+  documentable max_documents_allowed: 10,
+               max_file_size: 3.megabytes,
+               accepted_content_types: [ "application/pdf",
+                                         "image/jpeg",
+                                         'image/png']
 
   default_scope -> { order(event_at: :desc) }
+
   scope :pending, -> { where( "event_at > ?", Time.now) }
   scope :no_pending, -> { where( "event_at <= ?", Time.now) }
   scope :appointments, -> { where( kind: 'cita' ) }

@@ -1,12 +1,10 @@
 <fieldset>
-  <legend><%= @medical_test.name %> </legend>
+  <legend> Cita </legend>
   Fecha de realización: <strong><%= l medical_test.performed_at %></strong>
   en <%= medical_test.medical_center.name %>
   <% if medical_test.history.professional.present? %>
     <br>Prescrito por: <strong> Dr/a <%= medical_test.history.professional.full_name  %> </strong> -
     <%= medical_test.history.professional.speciality.name %>  -
   <% end %>
-  Motivo:
-
 </fieldset>
 

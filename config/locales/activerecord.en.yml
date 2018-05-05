@@ -71,6 +71,7 @@ en:
       history:
         kind: Clase de historia
         patient: Paciente
+        professional: Profesional
       prescription:
         medication_id: Medicamento
         init_at: Fecha de inicio

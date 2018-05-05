@@ -31,23 +31,17 @@ class MedicalTestsController < ApplicationController
   end
 
   # GET /analisies/1/edit
-  def edit
-    @patient = @medical_test.patient
-  end
+  def edit; end
 
   # POST /analisies
   # POST /analisies.json
   def create
     @medical_test = MedicalTest.new(medical_test_params)
-    respond_to do |format|
-      if @medical_test.save
-        format.html { redirect_to medical_test_path(@medical_test),
-                                  notice: 'MedicalTest was successfully created.' }
-        format.json { render :show, status: :created, location: @medical_test }
-      else
-        format.html { render :new }
-        format.json { render json: @medical_test.errors, status: :unprocessable_entity }
-      end
+    if @medical_test.save
+      redirect_to medical_test_path(@medical_test),
+                                  notice: 'MedicalTest was successfully created.'
+    else
+        render :new, alert: 'Error creando prueba #{@medical_test.errors.messages}'
     end
   end
 
@@ -98,10 +92,9 @@ class MedicalTestsController < ApplicationController
 
     def medical_test_params
       params.require(:medical_test).
-          permit(:patient_id,
+          permit(:history_id,
                  :professional_id,
                  :name,
-                 :kind,
                  :performed_at,
                  :performed_in,
                  :instructions,

@@ -1,10 +1,10 @@
 <div class="row">
   <div class="row">
-    <h1><%= t('histories.edit.title')  %>></h1>
+    <h1><%= t('histories.edit.title')  %> </h1>
 
     <%= render 'form', history: @history %>
 
     <%= link_to t('actions.show'), @history %> |
-    <%= link_to t('actions.back'), histories_path(patient_id: @ħistory.patient) %>
+    <%= link_to t('actions.back'), histories_path(patient_id: @history.patient ) %>
   </div>
 </div>

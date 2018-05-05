@@ -1,65 +1,86 @@
 <div class="row">
   <%= form_with(model: @history, local: true) do |form| %>
+    <%= form.hidden_field :patient_id, value: @history.patient.id %>
 
-    <div class="small-12 columns" >
-      <% if form.object.kind.present?  %>
-        <h3><%= form.object.kind.capitalize %></h3>
-      <% else %>
+    <div class="small-10 columns actions">
+      <%= link_to t('actions.back'), histories_path(patient_id: @patient) %>
+    </div>
+    <div class="small-2 columns actions">
+      <%= form.submit t('actions.save'), class: "button hollow" %>
+    </div>
+
+    <fieldset>
+      <legend> Datos de la historia</legend>
+
+      <% unless form.object.kind.present?  %>
         <div class="small-6 columns" >
-          <%= form.label :kind %>
-          <%= form.select :kind,
-              options_for_select(History::KIND, form.object.kind),
-                          {:include_blank => 'Selecciona nota o cita'} %>
+            <%= form.label :kind %>
+            <%= form.select :kind,
+                            options_for_select(History::KIND, form.object.kind),
+                            {:include_blank => 'Selecciona nota o cita'} %>
         </div>
       <% end %>
-    </div>
 
-    <div class="small-12 columns" >
-      <% if form.object.kind = 'cita' %>
-        <%= render 'appointment', form: form %>
-      <% else %>
-        <%= render 'annotation', form: form %>
-      <% end %>
-    </div>
-
-    <div class="small-12 columns">
-      <%= form.label :reason %>
-      <%= form.text_area :reason %>
-    </div>
-
-    <div class="small-12 columns" >
-      <div class="small-6 columns" >
-        <%= form.label :note %>
-        <%= form.text_area :note %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-3 columns">
-        <strong> <%= t('activerecord.models.prescription.other') %> </strong>
-      </div>
-      <div class="small-2 columns">
-        <%= link_to_add_association 'Añadir receta', form, :prescriptions %>
-      </div>
-
-      <div class="small-12 columns">
-        <%= form.fields_for :prescriptions do |prescription| %>
-          <%= render 'prescription_fields', f: prescription %>
+      <div class="small-12 columns" >
+        <% if form.object.kind == 'appointment' %>
+          <%= render 'appointment', form: form %>
+        <% else %>
+          <%= render 'annotation', form: form %>
         <% end %>
       </div>
-    </div>
+
+      <div class="small-12 columns" >
+        <div class="small-12 columns">
+          <%= form.label :reason %>
+          <%= form.text_area :reason %>
+        </div>
+        <div class="small-12 columns" >
+          <%= form.label :note %>
+          <%= form.text_area :note %>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Prescripciones</legend>
+      <% if form.object.prescriptions.present? %>
+        <div class="small-12 columns">
+          <%= form.fields_for :prescriptions do |prescription| %>
+            <%= render 'prescription_fields', f: prescription %>
+          <% end %>
+        </div>
+      <% end %>
+      <br>
+      <%= link_to_add_association 'Añadir receta', form, :prescriptions,
+                                   class: "button hollow small" %>
+    </fieldset>
+
+    <fieldset>
+      <legend>Pruebas</legend>
+      <% if form.object.medical_tests.present? %>
+        <div class="small-12 columns">
+          <%= form.fields_for :medical_tests do |medical_test| %>
+            <%= render 'medical_test_fields', f: medical_test %>
+          <% end %>
+        </div>
+      <% end %>
+      <br>
+      <%= link_to_add_association 'Añadir prueba', form, :medical_tests,
+                                  class: "button hollow small" %>
+
+    </fieldset>
 
     <div class="row">
-      <div class="small-12 columns">
-        <div class="row">
-          <div class="documents small-12">
-            <%= render 'documents/nested_documents', documentable: @patient, f: f %>
-          </div>
-        </div>
+      <div class="documents small-12">
+        <%= render 'documents/nested_documents', documentable: @history, f: form %>
       </div>
     </div>
 
-    <div class="actions">
-      <%= form.submit t('actions.save'), class: "button, hollow" %>
+    <div class="small-10 columns actions">
+      <%= link_to t('actions.back'), histories_path(patient_id: @history.patient) %>
+    </div>
+    <div class="small-2 columns actions">
+      <%= form.submit t('actions.save'), class: "button hollow" %>
     </div>
   <% end %>
 </div>

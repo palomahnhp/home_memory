@@ -1,6 +1,5 @@
-  <div class="row" >
-    <div class="small-4 columns">
-      <%= form.label :event_at, 'Fecha de anotación' %>
-      <%= form.datetime_field :event_at, Time.now %>
-    </div>
-  </div>
+<div class="small-4 columns">
+  <% form.object.event_at = Time.zone.now if form.object.event_at.blank? %>
+  <%= form.label :event_at, 'Fecha de anotación' %>
+  <%= form.datetime_field :event_at %>
+</div>

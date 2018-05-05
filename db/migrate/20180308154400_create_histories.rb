@@ -10,7 +10,6 @@ class CreateHistories < ActiveRecord::Migration[5.1]
       t.string     :location
       t.text       :note
       t.integer    :order
-      t.string     :update_at
 
       t.timestamps
     end

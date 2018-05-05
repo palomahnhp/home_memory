@@ -1,16 +1,18 @@
 <div class="row">
   <%= form_with(model: @medical_test, local: true) do |form| %>
-    <%= form.hidden_field :patient_id, value: @patient.id %>
-
-    <div class="actions">
-      <%= form.submit t('actions.save'), class: "button hollow" %>
+    <div class="row">
+      <div class="small-10 columns"></div>
+      <div class="small-2 columns">
+        <%= form.submit t('actions.save'), class: "button hollow" %>
+      </div>
     </div>
 
     <div class="small-12 columns">
       <div class="medium-4 small-12 columns">
         <%= form.label :name %>
-        <%= form.select :name, options_from_collection_for_select(NameTest.all, 'name', 'name'),
-                        {:include_blank => 'Selecciona la prueba'}%>
+        <%= form.select :name, options_from_collection_for_select(NameTest.all, 'name', 'name',
+                                                                  form.object.name),
+                        {:include_blank => 'Selecciona la prueba'} %>
       </div>
       <div class="medium-4 small-12 columns end">
         <%= form.label :performed_at %>
@@ -21,7 +23,10 @@
     <div class="small-12 columns">
       <div class="medium-4 small-12 columns">
         <%= form.label :medical_center_id %>
-        <%= form.select :medical_center_id, options_for_select(MedicalCenter.select_option, @medical_test.medical_center) %>
+        <%= form.select :medical_center_id,
+                        options_for_select(MedicalCenter.select_option,
+                                           @medical_center),
+            {:include_blank => 'Selecciona el centro'} %>
       </div>
 
       <div class="medium-2 small-12 columns end">
@@ -69,7 +74,8 @@
       </div>
     </div>
 
-    <div class="actions">
+    <div class="small-10 columns"></div>
+    <div class="small-2 columns">
       <%= form.submit t('actions.save'), class: "button hollow" %>
     </div>
 

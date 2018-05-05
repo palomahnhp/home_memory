@@ -13,7 +13,7 @@
           <th> <%= sort_link @search, :name %></th>
           <th> Fecha de prescripción  </th>
           <th> <%= sort_link @search, :performed_at %></th>
-          <th> <%= sort_link @search, :patient %></th>
+          <th> Paciente </th>
           <th> <%= sort_link @search, :professional %></th>
           <th colspan="4"></th>
         </tr>
@@ -25,12 +25,18 @@
             <td title="<%= medical_test.id %>"><%= medical_test.name %></td>
             <td><%= l medical_test.history.event_at&.to_date if medical_test.history.present? %></td>
             <td><%= l medical_test.performed_at %></td>
-            <td><%= medical_test.patient.full_name %></td>
-            <td><%= medical_test.history.professional.full_name if medical_test.history.present? %></td>
+            <td><%= medical_test.history.patient.full_name %></td>
+            <td><%= medical_test.history.professional.full_name if medical_test.history.professional.present? %></td>
 
-            <td><%= link_to '', medical_test_path(medical_test, patient_id: @patient), class: "icon-search", title: "Detalle" %></td>
-            <td><%= link_to '', edit_medical_test_path(medical_test, patient_id: @patient), class: "icon-pencil", title: "Editar" %></td>
-            <td><%= link_to '', medical_test_path(medical_test, patient_id: @patient), method: :delete, data: { confirm: 'Are you sure?' }, class: "icon-trash", title: "Eliminar" %></td>
+            <td><%= link_to '', medical_test_path(medical_test,
+                                                  patient_id: medical_test.history.patient),
+                            class: "icon-search", title: "Detalle" %></td>
+            <td><%= link_to '', edit_medical_test_path(medical_test,
+                                                       patient_id: medical_test.history.patient),
+                            class: "icon-pencil", title: "Editar" %></td>
+            <td><%= link_to '', medical_test_path(medical_test, patient_id: @patient),
+                            method: :delete, data: { confirm: 'Are you sure?' },
+                            class: "icon-trash", title: "Eliminar" %></td>
           </tr>
         <% end %>
       </tbody>

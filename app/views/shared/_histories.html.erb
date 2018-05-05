@@ -2,19 +2,16 @@
 
 <%= render "histories/search_form" %>
 
-<%= link_to t('actions.create', resource: 'historia'), new_history_path(patient_id: patient) %>
+<%= link_to t('actions.create', resource: 'cita'), new_history_path(patient_id: patient, kind: 'appointment') %> |
+<%= link_to t('actions.create', resource: 'nota'), new_history_path(patient_id: patient, kind: 'annotation' ) %>
 
 <% @histories.no_pending.each do |history| %>
-
   <br>
   <%= render "shared/history", history: history%>
-
 <% end %>
 
-
 <% if histories(patient).empty? %>
-  <div class="panel" >
+  <div class="panel">
     No hay datos
   </div>
-
 <% end %>

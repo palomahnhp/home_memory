@@ -2,9 +2,7 @@ class CreateMedicalTests < ActiveRecord::Migration[5.1]
   def change
     create_table :medical_tests do |t|
       t.belongs_to :history
-      t.belongs_to :patient
       t.string     :name
-      t.string     :kind
       t.belongs_to :medical_center
       t.text       :instructions
       t.text       :report
