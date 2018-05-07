@@ -3,8 +3,6 @@ class MedicalTestsController < ApplicationController
   before_action :set_medical_test, only: [:show, :edit, :update, :destroy]
   Thread.abort_on_exception=true
 
-  # GET /analisies
-  # GET /analisies.json
   def index
     @patient = Patient.find(params[:patient_id])
     if @patient
@@ -18,23 +16,15 @@ class MedicalTestsController < ApplicationController
     @search.build_condition
   end
 
-  # GET /analisies/1
-  # GET /analisies/1.json
-  def show
+  def show; end
 
-  end
-
-  # GET /analisies/new
   def new
     @medical_test = MedicalTest.new
     @patient = Patient.find(params[:patient_id])
   end
 
-  # GET /analisies/1/edit
   def edit; end
 
-  # POST /analisies
-  # POST /analisies.json
   def create
     @medical_test = MedicalTest.new(medical_test_params)
     if @medical_test.save
@@ -45,8 +35,6 @@ class MedicalTestsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /analisies/1
-  # PATCH/PUT /analisies/1.json
   def update
     respond_to do |format|
       if @medical_test.update(medical_test_params)
@@ -59,8 +47,6 @@ class MedicalTestsController < ApplicationController
     end
   end
 
-  # DELETE /analisies/1
-  # DELETE /analisies/1.json
   def destroy
     @medical_test.destroy
     respond_to do |format|
@@ -82,12 +68,11 @@ class MedicalTestsController < ApplicationController
     end
     redirect_to medical_tests_path(patient_id: params[:patient_id]),
                 notice: message
-
   end
 
   private
     def set_medical_test
-      @medical_test = MedicalTest.find(params[:id])
+      @medical_test = MedicalTest.includes(:analysis_results).find(params[:id])
     end
 
     def medical_test_params

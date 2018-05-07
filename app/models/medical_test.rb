@@ -18,4 +18,11 @@ class MedicalTest < ApplicationRecord
 
   scope :by_patient, ->(patient) { where(history: History.patient(patient) ) }
 
+  def initialize_analysis_results
+    AnalyticalGroup.all.each do |group|
+      group.analytical_items.each do |item|
+        analysis_results.new(analytical_item: item, unit: item.unit)
+      end
+    end
+  end
 end

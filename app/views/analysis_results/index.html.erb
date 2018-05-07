@@ -12,19 +12,42 @@
   </div>
 </div>
 
+<%= render 'shared/show_documents', resource: @medical_test %>
 
-<div class="row">
-  <div class="small-12 columns">
-    <%= render 'shared/show_test_docs', medical_test: @medical_test %>
-  </div>
-</div>
-<br>
 <% if @medical_test.name == 'Análisis' %>
-  <div class="row">
-    <div class="small-12 columns">
-      <%= render 'shared/show_analysis', medical_test: @medical_test %>
+  <%= form_with model: @medical_test, local:true do |form| %>
+    <% if @medical_test.analysis_results.blank? %>
+      <% @medical_test.initialize_analysis_results %>
+    <% end %>
+    <div class="row">
+      <div id='analysis_result'>
+        <fieldset>
+          <legend>Determinaciones</legend>
+          <%= form.submit t('actions.save'), class: "button hollow small" %>
+
+          <table>
+            <tr>
+              <th colspan="2">        Nivel</th>
+              <th class="long-col">   Determinación</th>
+              <th class="medium-col"> Cantidad</th>
+              <th class="medium-col"> Unidad</th>
+              <th class="long-col">   Observaciones</th>
+              <th class="short-col">  </th>
+            </tr>
+          </table>
+
+            <%= link_to_add_association '[+] añadir determinación', form,
+                                        :analysis_results,
+                                        :partial => 'medical_tests/analysis_result_fields',
+                                        :locals => {header: true}  %>
+            <%= form.fields_for :analysis_results do |result| %>
+              <%= render 'medical_tests/analysis_result_fields', :f => result %>
+            <% end %>
+
+        </fieldset>
+      </div>
     </div>
-  </div>
+    <%= form.submit t('actions.save'), class: "button hollow small" %>
+  <% end %>
+
 <% end %>
-
-

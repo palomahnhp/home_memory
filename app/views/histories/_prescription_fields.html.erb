@@ -1,25 +1,28 @@
-<div class="row">
-  <div class="small-6">
+<div class="row nested-fields">
+  <div class="small-12 columns">
     <fieldset>
       <legend>Prescripción</legend>
-      <div class="small-12">
+      <div class="small-3 columns">
         <%= f.label  :medication_id %>
         <%= f.select :medication_id,
                      options_from_collection_for_select(Medication.all, 'id', 'name', f.object.medication_id),
                      {:include_blank => 'Selecciona medicamento'} %>
       </div>
-      <div class="small-12">
+      <div class="small-3 columns">
         <%= f.label  :posology %>
         <%= f.text_field :posology %>
       </div>
-      <div class="small-6">
+      <div class="small-3  columns">
         <%= f.label  :init_at %>
         <%= f.date_field   :init_at %>
-
+      </div>
+      <div class="small-3  columns">
         <%= f.label  :end_at %>
         <%= f.date_field   :end_at %>
       </div>
-      <%= link_to_remove_association "Eliminar receta", f %>
+      <div class="small-6  columns end">
+        <%= link_to_remove_association "Eliminar receta", f %>
+      </div>
     </fieldset>
   </div>
 </div>

@@ -4,10 +4,11 @@
     <h1><%= t('medical_tests.edit.title') %></h1>
     <h4> Paciente: <%= @medical_test.history.patient.full_name %> </h4>
 
+    <%= render 'edit_links'%>
+
     <%= render 'form'%>
 
-    <%= link_to t('actions.show'), @medical_test %> |
-    <%= link_to 'Historia', histories_path(@medical_test.history) %>  |
-    <%= link_to 'Todas las pruebas', medical_tests_path(patient_id: @medical_test.history.patient) %>
+    <%= render 'edit_links'%>
+
   </div>
 </div>

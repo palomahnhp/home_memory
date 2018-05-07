@@ -34,6 +34,12 @@
             <td><%= link_to '', edit_medical_test_path(medical_test,
                                                        patient_id: medical_test.history.patient),
                             class: "icon-pencil", title: "Editar" %></td>
+            <td>
+              <% if medical_test.name == 'Análisis' %>
+                <%= link_to '', analysis_results_path(medical_test: medical_test),
+                                class: "icon-tags", title: "Resultados" %>
+              <% end %>
+            </td>
             <td><%= link_to '', medical_test_path(medical_test, patient_id: @patient),
                             method: :delete, data: { confirm: 'Are you sure?' },
                             class: "icon-trash", title: "Eliminar" %></td>

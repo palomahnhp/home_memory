@@ -1,0 +1,30 @@
+<div class="row">
+  <table>
+    <tr>
+      <th colspan="2">        Nivel</th>
+      <th class="long-col">   Determinación</th>
+      <th class="medium-col"> Cantidad</th>
+      <th class="medium-col"> Unidad</th>
+      <th class="long-col">   Interpretación</th>
+      <th class="short-col">  </th>
+    </tr>
+    <tr>
+      <td class="short-col"><%= f.select :level, options_for_select([ "B", "A" ], f.object.level), include_blank: true %></td>
+      <td class="short-col"><%= f.select :grade, options_for_select(['+', '-'], f.object.grade), include_blank: true %></td>
+      <td><%= f.select :analytical_item, options_from_collection_for_select(AnalyticalItem.all, 'id',  'name', f.object.analytical_item_id),
+                       {:include_blank => 'Selecciona la prueba'}  %></td>
+      <td><%= f.number_field :amount, min: 0, step: 0.01 %></td>
+      <td>
+        <datalist id="unit">
+          <% AnalyticalItem.all.each do |item| %>
+            <option value="<%= item.unit %>"><%= item.unit %></option>
+          <% end %>
+        </datalist>
+      </td>
+      <td><%= f.text_area :interpretation %></td>
+      <td><%= link_to_remove_association "[-]", f %></td>
+    </tr>
+
+  </table>
+
+</div>

@@ -1,0 +1,3 @@
+<%= link_to t('actions.show'), @medical_test %> |
+<%= link_to 'Historia', histories_path(@medical_test.history) %>  |
+<%= link_to 'Todas las pruebas', medical_tests_path(patient_id: @medical_test.history.patient) %>

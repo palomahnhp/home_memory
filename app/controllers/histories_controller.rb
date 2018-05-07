@@ -10,14 +10,12 @@ class HistoriesController < ApplicationController
     @search.build_condition
   end
 
-  def show
-
-  end
+  def show;  end
 
   def new
     @history = History.new
     @history.kind = params[:kind]
-    @patient = Patient.find_by(id: params[:patient_id])
+    @history.patient = Patient.find_by(id: params[:patient_id])
   end
 
   def edit

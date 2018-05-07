@@ -1,7 +1,7 @@
 class AnalysisResultsController < ApplicationController
 
   def index
-    @medical_test = MedicalTest.find(params[:medical_test])
+    @medical_test = MedicalTest.find_by(id: params[:medical_test])
     @results = AnalysisResult.where(medical_test: @medical_test)
   end
 

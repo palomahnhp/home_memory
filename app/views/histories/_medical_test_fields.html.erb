@@ -1,37 +1,38 @@
-<div class="row">
-  <div class="small-6">
+<div class="row nested-fields">
+  <div class="small-12 columns">
     <fieldset>
       <legend>Pruebas</legend>
-      <div class="small-12">
+      <div class="small-3 columns">
         <%= f.label  :name %>
         <%= f.select :name,
                      options_from_collection_for_select(NameTest.all, 'name', 'name',  f.object.name),
                      {:include_blank => 'Selecciona prueba'} %>
       </div>
 
-      <div class="small-4">
+      <div class="small-3 columns">
         <%= f.label      :performed_at %>
         <%= f.date_field :performed_at %>
       </div>
 
-      <div class="small-6">
+      <div class="small-4 columns">
         <%= f.label  :medical_center_id %>
         <%= f.select :medical_center_id,
                      options_from_collection_for_select(MedicalCenter.all, 'id', 'name', ' '),
                      {:include_blank => 'Selecciona lugar de realización'} %>
       </div>
 
-      <div class="small-2">
+      <div class="small-2 columns">
         <%= f.label       :performed_in %>
         <%= f.text_field :performed_in %>
       </div>
 
-      <div class="small-12">
+      <div class="small-12 columns">
         <%= f.label      :instructions %>
         <%= f.text_field :instructions %>
       </div>
-      <%= link_to_remove_association "eliminar prueba", f %>
-
+      <div class="small-12 columns">
+        <%= link_to_remove_association "Eliminar prueba", f %>
+      </div>
     </fieldset>
   </div>
 </div>
