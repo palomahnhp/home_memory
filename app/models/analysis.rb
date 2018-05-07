@@ -1,5 +1,5 @@
 class Analysis < ApplicationRecord
-  belongs_to :patient
+  belongs_to :user
   belongs_to :appointment, optional: true
 
   belongs_to :professional

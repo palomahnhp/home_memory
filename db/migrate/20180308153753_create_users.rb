@@ -1,9 +1,11 @@
-# frozen_string_literal: true
-
-class DeviseCreateUsers < ActiveRecord::Migration[5.1]
+class CreateUsers < ActiveRecord::Migration[5.1]
   def change
     create_table :users do |t|
 
+      t.string :first_name
+      t.string :last_name
+      t.date   :born_date
+      t.string :document
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
@@ -33,12 +35,23 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-      t.timestamps null: false
+      t.string :public_health_org
+      t.string :public_health_org_url
+      t.string :public_health_membership_number
+      t.string :public_health_autonomic_code
+      t.string :public_health_card_number
+      t.string :private_health_company
+      t.string :private_health_company_url
+      t.string :private_health_card_number
+
+      t.timestamps
     end
+
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
+
   end
 end

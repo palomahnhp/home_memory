@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
-  before_action :set_patient, only: [:index, :new, :destroy]
+  before_action :set_user, only: [:index, :new, :destroy]
 
   # GET /appointments
   # GET /appointments.json
@@ -37,7 +37,7 @@ class AppointmentsController < ApplicationController
   # PATCH/PUT /appointments/1.json
   def update
     if @appointment.update(appointment_params)
-      redirect_to appointment_path(@appointment, patient_id: @patient), notice: 'Appointment was successfully updated.'
+      redirect_to appointment_path(@appointment, user_id: @user), notice: 'Appointment was successfully updated.'
     else
       render :edit
     end
@@ -47,7 +47,7 @@ class AppointmentsController < ApplicationController
   # DELETE /appointments/1.json
   def destroy
     @appointment.destroy
-    redirect_to histories_path(patient_id: @patient), notice: 'Appointment was successfully destroyed.'
+    redirect_to histories_path(user_id: @user), notice: 'Appointment was successfully destroyed.'
   end
 
   private
@@ -56,13 +56,13 @@ class AppointmentsController < ApplicationController
       @appointment = Appointment.find(params[:id])
     end
 
-    def set_patient
-      @patient = Patient.find(params[:patient_id])
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def appointment_params
-      params.require(:appointment).permit(:id, :patient_id, :appointment_time, :professional_id,
+      params.require(:appointment).permit(:id, :user_id, :appointment_time, :professional_id,
                                           :medical_center_id, :reason, :location)
     end
 end

@@ -3,7 +3,7 @@
     <ul>
       <% if true # current_user %>
           <li>
-            <%= link_to t("shared.subnavigation_menu.patients"), patients_path, class: ("active" if controller_name == "patiens") , accesskey: "p" %>
+            <%= link_to t("shared.subnavigation_menu.users"), users_path, class: ("active" if controller_name == "users") , accesskey: "p" %>
           </li>
           <li>
             <%= link_to t("shared.subnavigation_menu.professionals"), professionals_path, class: ("active" if controller_name == "profesionals"), accesskey: "r" %>

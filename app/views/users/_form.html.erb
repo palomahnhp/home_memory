@@ -1,7 +1,7 @@
-<%= form_with(model: patient, local: true) do |f| %>
+<%= form_with(model: user, local: true) do |f| %>
   <fieldset>
     <legend>
-      <%= t('patients.block.personal_data') %>
+      <%= t('users.block.personal_data') %>
     </legend>
     <div class="row">
       <div class="fieldset small-12 columns">
@@ -28,7 +28,7 @@
   </fieldset>
 
   <fieldset>
-    <legend> <%= t('patients.block.public_org') %> </legend>
+    <legend> <%= t('users.block.public_org') %> </legend>
 
     <div class="row">
       <div class="small-12 columns">
@@ -59,7 +59,7 @@
   </fieldset>
 
   <fieldset>
-    <legend><%= t('patients.block.private_company') %> </legend>
+    <legend><%= t('users.block.private_company') %> </legend>
 
     <div class="row">
       <div class="small-12 columns">
@@ -85,7 +85,7 @@
     <div class="small-12 columns">
       <div class="row">
         <div class="documents small-12">
-          <%= render 'documents/nested_documents', documentable: @patient, f: f %>
+          <%= render 'documents/nested_documents', documentable: @user, f: f %>
         </div>
       </div>
     </div>

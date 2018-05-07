@@ -1,9 +1,9 @@
 <div class="row">
   <%= form_with(model: @history, local: true) do |form| %>
-    <%= form.hidden_field :patient_id, value: @history.patient.id %>
+    <%= form.hidden_field :user_id, value: @history.user.id %>
 
     <div class="small-10 columns actions">
-      <%= link_to t('actions.back'), histories_path(patient_id: @patient) %>
+      <%= link_to t('actions.back'), histories_path(user_id: @user) %>
     </div>
     <div class="small-2 columns actions">
       <%= form.submit t('actions.save'), class: "button hollow small" %>
@@ -77,7 +77,7 @@
     </div>
 
     <div class="small-10 columns actions">
-      <%= link_to t('actions.back'), histories_path(patient_id: @history.patient) %>
+      <%= link_to t('actions.back'), histories_path(user_id: @history.user) %>
     </div>
     <div class="small-2 columns actions">
       <%= form.submit t('actions.save'), class: "button hollow" %>

@@ -1,0 +1,65 @@
+<div class="row" >
+  <div class="small-12 columns" >
+    <h1><%= @user.full_name %> </h1>
+    <fieldset>
+      <legend> Datos personales  </legend>
+      <div class="row" >
+        <div class="small-12 medium-12 columns" >
+          <div class="small-12 medium-5 columns" >
+            <strong><%= t('activerecord.attributes.user.born_date') %>: </strong>
+            <%= l @user.born_date %>
+          </div>
+          <div class="small-12 medium-3 columns end " >
+            <strong><%= t('activerecord.attributes.user.document') %>: </strong>
+            <%= @user.document %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend><%= @user.public_health_org %></legend>
+      <div class="row" >
+        <div class="small-12 medium-12 columns" >
+          <div class="small-12 medium-3 columns" >
+            <strong><%= t('activerecord.attributes.user.public_health_membership_number') %>: </strong>
+            <%= @user.public_health_membership_number%>
+          </div>
+          <div class="small-12 medium-3 columns" >
+            <strong><%= t('activerecord.attributes.user.public_health_card_number') %>: </strong>
+            <%= @user.public_health_card_number %>
+          </div>
+          <div class="small-12 medium-3 columns" >
+            <strong><%= t('activerecord.attributes.user.public_health_autonomic_code') %>: </strong>
+            <%= @user.public_health_autonomic_code %>
+          </div>
+          <div class="small-12 medium-3 columns" >
+            <strong><%= t('activerecord.attributes.user.public_health_org_url') %>: </strong>
+            <%= link_to @user.public_health_org_url, target: '_blank' %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend><%= @user.private_health_company %></legend>
+      <div class="row" >
+        <div class="small-12 medium-12 columns" >
+          <div class="small-12 medium-6 columns" >
+            <strong><%= t('activerecord.attributes.user.private_health_card_number') %>: </strong>
+            <%= @user.private_health_card_number %>
+          </div>
+          <div class="small-12 medium-4 columns end" >
+            <strong><%= t('activerecord.attributes.user.private_health_company_url') %>: </strong>
+            <%= link_to @user.private_health_company_url, target: '_blank' %>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <%= render 'shared/show_documents', resource: @user %>
+
+    <%= link_to t('actions.edit'), edit_user_path(@user) %> |
+    <%= link_to 'Citas e historias', histories_path(user_id: @user) %> |
+    <%= link_to 'Pruebas', medical_tests_path(user_id: @user) %> |
+    <%= link_to t('actions.back'), users_path %>
+  </div>
+</div>

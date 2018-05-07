@@ -1,12 +1,12 @@
 <div class="row">
   <div class="small-12 columns" >
     <h2>Nota médica </h2>
-    <h3> <%= @history.patient.full_name %></h3>
+    <h3> <%= @history.user.full_name %></h3>
   </div>
 </div>
 
 <%= link_to t('actions.edit'), edit_history_path(@history) %> |
-<%= link_to t('actions.back'), histories_path(patient_id: @history.patient) %>
+<%= link_to t('actions.back'), histories_path(user_id: @history.user) %>
 
 <br>
 

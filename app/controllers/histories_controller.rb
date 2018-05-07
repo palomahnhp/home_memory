@@ -1,10 +1,10 @@
 class HistoriesController < ApplicationController
   before_action :set_history, only: [:show, :edit, :update, :destroy]
-  before_action :set_patient, only: [:create, :destroy]
+  before_action :set_user, only: [:create, :destroy]
 
   def index
-    @patient = Patient.find_by(id: params[:patient_id])
-    @search = @patient.histories.search(params[:q])
+    @user = User.find_by(id: params[:user_id])
+    @search = @user.histories.search(params[:q])
     @search.sorts = "even_at desc"  if @search.sorts.empty?
     @histories = @search.result.order(event_at: :desc)
     @search.build_condition
@@ -15,18 +15,18 @@ class HistoriesController < ApplicationController
   def new
     @history = History.new
     @history.kind = params[:kind]
-    @history.patient = Patient.find_by(id: params[:patient_id])
+    @history.user = User.find_by(id: params[:user_id])
   end
 
   def edit
-    @patient = @history.patient
+    @user = @history.user
   end
 
   def create
     @history = History.new(history_params)
 
     if @history.save
-      redirect_to histories_path(patient_id: @patient), notice: 'History was successfully created.'
+      redirect_to histories_path(user_id: @user), notice: 'History was successfully created.'
     else
       render :new
     end
@@ -60,7 +60,7 @@ class HistoriesController < ApplicationController
     def history_params
       params.require(:history).permit(:id, :event_at, :kind,
                                       :note,
-                                      :patient_id,
+                                      :user_id,
                                       :professional_id,
                                       :appointment_id,
                                       :medical_center_id,
@@ -92,7 +92,7 @@ class HistoriesController < ApplicationController
 
     end
 
-    def set_patient
-      @patient = Patient.find_by(id: params[:history][:patient_id])
+    def set_user
+      @user = User.find_by(id: params[:history][:user_id])
     end
 end

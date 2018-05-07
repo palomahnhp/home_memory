@@ -1,9 +1,9 @@
 <div class="row">
   <div class="small-12 columns" >
     <% if params[:kind].present?  %>
-      <h2>Nueva  <%= t("history.kind.#{params[:kind]}")%> para <%= @history.patient.full_name %></h2>
+      <h2>Nueva  <%= t("history.kind.#{params[:kind]}")%> para <%= @history.user.full_name %></h2>
     <% else %>
-      <h2>Nueva historia para <%= @history.patient.full_name %></h2>
+      <h2>Nueva historia para <%= @history.user.full_name %></h2>
     <% end %>
   </div>
 </div>

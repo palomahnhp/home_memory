@@ -3,7 +3,7 @@ class History < ApplicationRecord
   accepts_nested_attributes_for :medical_tests, allow_destroy: true
 
   belongs_to :medical_center, optional: true
-  belongs_to :patient
+  belongs_to :user
   belongs_to :professional, optional: true
   has_many :prescriptions, dependent: :destroy
   accepts_nested_attributes_for :prescriptions, allow_destroy: true
@@ -23,13 +23,13 @@ class History < ApplicationRecord
   scope :no_pending, -> { where( "event_at <= ?", Time.now) }
   scope :appointments, -> { where( kind: 'cita' ) }
   scope :annotations,  -> { where( kind: 'anotación' ) }
-  scope :patient, -> (patient) { where( patient: patient ) }
+  scope :user, -> (user) { where( user: user ) }
 
   def self.ransackable_attributes(auth_object = nil)
     %w(note reason) + _ransackers.keys
   end
 
-  def self.select_option(patient)
-    patient(patient).appointments.map { |history| [history.id, history.professional.full_name + ' - ' + history.event_at.to_s] }
+  def self.select_option(user)
+    user(user).appointments.map { |history| [history.id, history.professional.full_name + ' - ' + history.event_at.to_s] }
   end
 end

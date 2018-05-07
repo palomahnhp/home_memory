@@ -4,7 +4,7 @@
       <% if current_user %>
           <li>
             <%= current_user %>
-            <%= link_to t("layouts.subnavigation_menu.patients"), patients_path, class: ("active" if controller_name == "patients") , accesskey: "e" %>
+            <%= link_to t("layouts.subnavigation_menu.users"), users_path, class: ("active" if controller_name == "users") , accesskey: "e" %>
           </li>
           <li>
             <%= link_to t("layouts.subnavigation_menu.professionals"), professionals_path, class: ("active" if controller_name == "professionals"), accesskey: "d" %>

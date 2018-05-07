@@ -1,1 +1,1 @@
-json.array! @professionals, partial: 'patients/patient', as: :professional
+json.array! @professionals, partial: 'users/user', as: :professional

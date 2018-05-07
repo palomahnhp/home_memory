@@ -2,9 +2,9 @@
 en:
   activerecord:
     models:
-      patient:
-        one: Paciente
-        other: Pacientes
+      user :
+        one: Usuario
+        other: Usuarios
       profesional:
         one: Profesional
         other: Profesionales
@@ -27,7 +27,7 @@ en:
         one: Historia
         other: Historias
     attributes:
-      patient:
+      user:
         first_name: Nombre
         last_name: Apellidos
         born_date: Fecha de nacimiento
@@ -52,7 +52,7 @@ en:
         name: Prueba
         kind: Tipo
         performed_at: Fecha de realización
-        patient: Paciente
+        user: Paciente
         professional: Médico
         instructions: Instrucciones
         report: Informe
@@ -60,7 +60,7 @@ en:
         performed_in: Sala
       history:
         kind: Clase de historia
-        patient: Paciente
+        user: Paciente
         professional_id: Profesional
         medical_center_id: Centro médico
         location: Planta, sala

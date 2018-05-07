@@ -3,19 +3,15 @@ DatabaseCleaner.clean_with :truncation
 DatabaseCleaner.clean
 
 p 'Creating user ...'
-user = User.find_or_create_by!(email: Rails.application.secrets.user_email) do |user|
-  user.password = Rails.application.secrets.user_password
-  user.password_confirmation = Rails.application.secrets.user_password
-
-end
-
-p  'Creating Pacients ...'
 [
- ['Cherry', 'Sara',   'Beltrán Hernández', '1998/03/26'],
- ['Popi',   'Paloma', 'Hernández Navarro', '1961/08/02'],
- ['Jb',    'Justo',  'Beltrán Vicente', '1964/06/22']
+    ['cherry@gmail.com', 'Sara',   'Beltrán Hernández', '1998/03/26'],
+    ['popi@gmail.com',   'Paloma', 'Hernández Navarro', '1961/08/02'],
+    ['jb@gmail.com',    'Justo',  'Beltrán Vicente', '1964/06/22']
 ].each do |reg|
-  patient =  Patient.create(first_name: reg[1], last_name: reg[2], born_date: reg[3])
+  user =  User.create!(email:reg[0], first_name: reg[1], last_name: reg[2],
+                       born_date: reg[3],
+                       password: Rails.application.secrets.user_password,
+                       password_confirmation: Rails.application.secrets.user_password)
 end
 
 p  'Creating Centers ...'
@@ -93,9 +89,9 @@ end
 
 p 'Creating histories ... '
 
-  Patient.all.each do |patient|
+  User.all.each do |user|
     (1..3).each do |n|
-      a = History.create!(patient: patient,
+      a = History.create!(user: user,
                          event_at:rand((Time.current - 2.years) .. (Time.current + 3.months)),
                          kind: 'appointment',
                          professional: Professional.all.shuffle.first,
@@ -106,7 +102,7 @@ p 'Creating histories ... '
                          )
     end
     (1..2).each do |n|
-      a = History.create!(patient: patient,
+      a = History.create!(user: user,
                          event_at:rand((Time.current - 2.years) .. (Time.current + 3.months)),
                          kind: 'annotation',
                          medical_center: MedicalCenter.all.shuffle.first,
@@ -122,7 +118,7 @@ p 'Creating histories ... '
 
    test = MedicalTest.create!(name: type.name,
                              kind: type.code,
-                             patient: history.patient,
+                             user: history.user,
                              history: history,
                              medical_center: MedicalCenter.all.shuffle.first,
                              performed_at: Date.today - rand(40..233).days,

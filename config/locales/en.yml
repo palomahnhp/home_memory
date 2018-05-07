@@ -34,12 +34,12 @@ en:
         active_ingredient: Principio activo
         name: Nombre
         prospect: Prospecto
-      patient:
+      user:
         speciality: "Especialidad"
         medical_center: "Centro médico"
         comments: "Notas"
       appointments:
-        patient: "Paciente"
+        user: "Paciente"
         appointment_time: "Cita"
         professiona_id: "Profesional"
         location: "Lugar"
@@ -95,7 +95,7 @@ en:
       copyright: "© Copyright %{year}"
     subnavigation_menu:
       medications: Medicinas
-      patients: Pacientes
+      users: Usuarios
       professionals: Profesionales
   medical_center:
     edit:
@@ -132,15 +132,15 @@ en:
       title: Nuevo medicamento
     show:
       title: Detalles de medicamento
-  patients:
+  users:
     index:
-      title: Pacientes
+      title: Usuarios
     new:
-      title: Nuevo paciente
+      title: Nuevo usuario
     show:
-      title: Paciente
+      title: Usuario
     edit:
-      title: "Modificar paciente"
+      title: "Modificar usuario"
     block:
       personal_data: "Datos personales"
       public_org: "Organismo público de salud"

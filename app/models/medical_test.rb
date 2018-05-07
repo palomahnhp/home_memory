@@ -16,7 +16,7 @@ class MedicalTest < ApplicationRecord
                                          "image/jpeg",
                                          'image/png']
 
-  scope :by_patient, ->(patient) { where(history: History.patient(patient) ) }
+  scope :by_user, ->(user) { where(history: History.user(user) ) }
 
   def initialize_analysis_results
     AnalyticalGroup.all.each do |group|

@@ -8,12 +8,12 @@ module ApplicationHelper
     @items_by_group = analysis.analytical_items.by_group(group)
   end
 
-  def appointments(patient)
-    return patient.histories.appointments
+  def appointments(user)
+    return user.histories.appointments
   end
 
-  def histories(patient = '')
-    return patient.histories if patient.present?
+  def histories(user = '')
+    return user.histories if user.present?
     History.all
   end
 

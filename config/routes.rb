@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root to: "patients#index"
+  root to: "users#index"
 
   resources :medical_centers
   resources :medical_tests do
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     }
   end
   resources :professionals
-  resources :patients
+  resources :users
   resources :specialities
   resources :medical_histories
   resources :analysis_results

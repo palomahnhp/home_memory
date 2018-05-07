@@ -5,6 +5,6 @@
     <%= render 'form', history: @history %>
 
     <%= link_to t('actions.show'), @history %> |
-    <%= link_to t('actions.back'), histories_path(patient_id: @history.patient ) %>
+    <%= link_to t('actions.back'), histories_path(user_id: @history.user ) %>
   </div>
 </div>

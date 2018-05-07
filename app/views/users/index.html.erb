@@ -1,0 +1,35 @@
+<h1><%= t('users.index.title') %> </h1>
+<div class="row" >
+  <div class="small-12 columns" >
+    <table>
+      <thead>
+        <tr>
+          <th> <%= sort_link @search, :first_name %></th>
+          <th> <%= sort_link @search, :last_name %></th>
+          <th> <%= sort_link @search, :born_date %></th>
+          <th> Edad </th>
+          <th colspan="4"><%= t('actions.column') %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td> <%= user.first_name %> </td>
+            <td> <%= user.last_name %> </td>
+            <td> <%= l user.born_date %> </td>
+            <td> <%= user.age %> </td>
+            <td><%= link_to '  ', user, class: "icon-search", title: 'Ver paciente' %></td>
+            <td><%= link_to '  ', histories_path(user_id: user), class: "icon-calendar", title: "Citas e historia" %></td>
+            <td><%= link_to '  ', medical_tests_path(user_id: user), class: "icon-drug-medecine-streamline-syringue", title: "Pruebas" %></td>
+            <td><%= link_to '  ', edit_user_path(user), class: "icon-pencil", title: 'Editar'  %></td>
+            <td><%= link_to '  ', user, method: :delete, title: 'Borrar', data: { confirm: t('actions.destroy.confirmation') },  class: "icon-trash" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+    <%= link_to t("actions.create", resource: 'Paciente'), new_user_path %>
+  </div>
+</div>

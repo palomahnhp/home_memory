@@ -2,7 +2,7 @@
   <div class="medium-11 medium-centered short-12 columns">
     <fieldset class="fieldset">
       <legend><%= t('histories.index.search.title') %> </legend>
-      <%= search_form_for @search, url: search_histories_path(patient_id: @patient), method: :post do |f| %>
+      <%= search_form_for @search, url: search_histories_path(user_id: @user), method: :post do |f| %>
         <div class= "row" >
           <div class="small-12 columns ">
             <p>

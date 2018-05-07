@@ -1,0 +1,8 @@
+<%= link_to t('actions.back'), users_path %>
+<h1><%= t('users.new.title')%> </h1>
+
+<div class="row" %>
+  <div class="small-12 columns">
+    <%= render 'form', user: @user %>
+  </div>
+</div>

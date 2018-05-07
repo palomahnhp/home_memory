@@ -6,20 +6,20 @@
       <h1><%= t('professional.show.title') %> </h1>
       <table>
          <tr>
-          <th> <%= t('activerecord.attributes.patient.first_name') %> </th>
+          <th> <%= t('activerecord.attributes.user.first_name') %> </th>
           <td> <%= @professional.full_name %> </td>
         </tr>
 
         <tr>
-          <th> <%= t('activerecord.attributes.patient.speciality') %> </th>
+          <th> <%= t('activerecord.attributes.user.speciality') %> </th>
           <td> <%= @professional.speciality.name %> </td>
         </tr>
         <tr>
-          <th> <%= t('activerecord.attributes.patient.medical_center') %> </th>
+          <th> <%= t('activerecord.attributes.user.medical_center') %> </th>
           <td> <%= @professional.medical_center.name %> </td>
         </tr>
         <tr>
-          <th> <%= t('activerecord.attributes.patient.comments') %> </th>
+          <th> <%= t('activerecord.attributes.user.comments') %> </th>
           <td> <%= simple_format(@professional.comments) %> </td>
         </tr>
       </table>

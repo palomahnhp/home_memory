@@ -1,1 +1,1 @@
-json.partial! "patients/patient", professional: @professional
+json.partial! "users/user", professional: @professional

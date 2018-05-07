@@ -25,14 +25,14 @@
             <td title="<%= medical_test.id %>"><%= medical_test.name %></td>
             <td><%= l medical_test.history.event_at&.to_date if medical_test.history.present? %></td>
             <td><%= l medical_test.performed_at %></td>
-            <td><%= medical_test.history.patient.full_name %></td>
+            <td><%= medical_test.history.user.full_name %></td>
             <td><%= medical_test.history.professional.full_name if medical_test.history.professional.present? %></td>
 
             <td><%= link_to '', medical_test_path(medical_test,
-                                                  patient_id: medical_test.history.patient),
+                                                  user_id: medical_test.history.user),
                             class: "icon-search", title: "Detalle" %></td>
             <td><%= link_to '', edit_medical_test_path(medical_test,
-                                                       patient_id: medical_test.history.patient),
+                                                       user_id: medical_test.history.user),
                             class: "icon-pencil", title: "Editar" %></td>
             <td>
               <% if medical_test.name == 'Análisis' %>
@@ -40,7 +40,7 @@
                                 class: "icon-tags", title: "Resultados" %>
               <% end %>
             </td>
-            <td><%= link_to '', medical_test_path(medical_test, patient_id: @patient),
+            <td><%= link_to '', medical_test_path(medical_test, user_id: @user),
                             method: :delete, data: { confirm: 'Are you sure?' },
                             class: "icon-trash", title: "Eliminar" %></td>
           </tr>
@@ -53,7 +53,7 @@
 <div class="row">
   <div class="small-12 columns">
     <div class="medium-4 small-12 columns">
-      <%= link_to t('medical_test.new'), new_medical_test_path(patient_id: @patient) %>
+      <%= link_to t('medical_test.new'), new_medical_test_path(user_id: @user) %>
     </div>
     <div class="medium-8 small-12 columns">
       <%= render 'import_analysis' %>

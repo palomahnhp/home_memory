@@ -78,19 +78,18 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   create_table "histories", force: :cascade do |t|
     t.datetime "event_at"
     t.string "kind"
-    t.bigint "patient_id"
+    t.bigint "user_id"
     t.bigint "professional_id"
     t.bigint "medical_center_id"
     t.text "reason"
     t.string "location"
     t.text "note"
     t.integer "order"
-    t.string "update_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["medical_center_id"], name: "index_histories_on_medical_center_id"
-    t.index ["patient_id"], name: "index_histories_on_patient_id"
     t.index ["professional_id"], name: "index_histories_on_professional_id"
+    t.index ["user_id"], name: "index_histories_on_user_id"
   end
 
   create_table "medical_centers", force: :cascade do |t|
@@ -107,9 +106,7 @@ ActiveRecord::Schema.define(version: 20180417155102) do
 
   create_table "medical_tests", force: :cascade do |t|
     t.bigint "history_id"
-    t.bigint "patient_id"
     t.string "name"
-    t.string "kind"
     t.bigint "medical_center_id"
     t.text "instructions"
     t.text "report"
@@ -117,7 +114,6 @@ ActiveRecord::Schema.define(version: 20180417155102) do
     t.string "performed_in"
     t.index ["history_id"], name: "index_medical_tests_on_history_id"
     t.index ["medical_center_id"], name: "index_medical_tests_on_medical_center_id"
-    t.index ["patient_id"], name: "index_medical_tests_on_patient_id"
   end
 
   create_table "medications", force: :cascade do |t|
@@ -136,23 +132,6 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   create_table "name_tests", force: :cascade do |t|
     t.string "name"
     t.string "code"
-  end
-
-  create_table "patients", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.date "born_date"
-    t.string "document"
-    t.string "public_health_org"
-    t.string "public_health_org_url"
-    t.string "public_health_membership_number"
-    t.string "public_health_autonomic_code"
-    t.string "public_health_card_number"
-    t.string "private_health_company"
-    t.string "private_health_company_url"
-    t.string "private_health_card_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "prescriptions", force: :cascade do |t|
@@ -187,6 +166,10 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "born_date"
+    t.string "document"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -201,6 +184,14 @@ ActiveRecord::Schema.define(version: 20180417155102) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.string "public_health_org"
+    t.string "public_health_org_url"
+    t.string "public_health_membership_number"
+    t.string "public_health_autonomic_code"
+    t.string "public_health_card_number"
+    t.string "private_health_company"
+    t.string "private_health_company_url"
+    t.string "private_health_card_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
@@ -214,8 +205,8 @@ ActiveRecord::Schema.define(version: 20180417155102) do
   add_foreign_key "analytical_items", "analytical_subgroups"
   add_foreign_key "documents", "users"
   add_foreign_key "histories", "medical_centers"
-  add_foreign_key "histories", "patients"
   add_foreign_key "histories", "professionals"
+  add_foreign_key "histories", "users"
   add_foreign_key "prescriptions", "histories"
   add_foreign_key "prescriptions", "medications"
 end

@@ -4,9 +4,9 @@ class MedicalTestsController < ApplicationController
   Thread.abort_on_exception=true
 
   def index
-    @patient = Patient.find(params[:patient_id])
-    if @patient
-      @search = MedicalTest.by_patient(@patient).search(params[:q])
+    @user = User.find(params[:user_id])
+    if @user
+      @search = MedicalTest.by_user(@user).search(params[:q])
     else
       @search  = MedicalTest.search(params[:q])
     end
@@ -20,7 +20,7 @@ class MedicalTestsController < ApplicationController
 
   def new
     @medical_test = MedicalTest.new
-    @patient = Patient.find(params[:patient_id])
+    @user = User.find(params[:user_id])
   end
 
   def edit; end
@@ -50,7 +50,7 @@ class MedicalTestsController < ApplicationController
   def destroy
     @medical_test.destroy
     respond_to do |format|
-      format.html { redirect_to medical_tests_path(patient_id: params[:patient_id]),
+      format.html { redirect_to medical_tests_path(user_id: params[:user_id]),
                                 notice: 'Prueba eliminada.' }
       format.json { head :no_content }
     end
@@ -66,7 +66,7 @@ class MedicalTestsController < ApplicationController
       message =  'Error al obtener el fichero de importación.' +
           ' No se ha iniciado el proceso: ' + filepath
     end
-    redirect_to medical_tests_path(patient_id: params[:patient_id]),
+    redirect_to medical_tests_path(user_id: params[:user_id]),
                 notice: message
   end
 
