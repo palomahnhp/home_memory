@@ -8,8 +8,8 @@ module ApplicationHelper
     @items_by_group = analysis.analytical_items.by_group(group)
   end
 
-  def appointments(user)
-    return user.histories.appointments
+  def appointments(user, resource)
+    return user.send(resource.to_s.pluralize).appointments
   end
 
   def histories(user = '')

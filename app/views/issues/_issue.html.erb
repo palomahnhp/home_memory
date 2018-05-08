@@ -1,0 +1,27 @@
+<div class="panel">
+  <div class="row" >
+    <div class="small-12 columns" >
+      <strong>Fecha de la anotación: </strong> <%= l issue.event_at %><br>
+    </div>
+
+    <div class="small-12 columns" >
+      <br>
+      <strong>Motivo: </strong><%= issue.reason %><br>
+    </div>
+    <div class="small-12 columns" >
+      <br>
+      <strong>Notas: </strong>
+      <%= simple_format(issue.note) %>
+    </div>
+
+    <%= render 'shared/show_documents', resource: issue %>
+  </div>
+  <div class="small-10 columns" >
+  </div>
+  <div class="small-2 columns" >
+    <strong>Acciones: </strong><%= link_to '', edit_issue_path(issue), class: 'icon-pencil' %>
+    <%= link_to '', issue_path(issue), method: :delete, class: 'icon-trash',
+                data: { confirm: t('actions.destroy.confirmation') } %>
+    <br>
+  </div>
+</div>

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-
   devise_for :users
-
   root to: "users#index"
 
   resources :medical_centers
@@ -17,10 +15,16 @@ Rails.application.routes.draw do
       get  :search, to:'histories#index'
     }
   end
+
+  resources :issues do
+    collection {
+      post :search, to:'histories#index'
+      get  :search, to:'histories#index'
+    }
+  end
   resources :professionals
   resources :users
   resources :specialities
-  resources :medical_histories
   resources :analysis_results
   resources :analytical_groups  do
     collection { post :import }

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :prescriptions,  through: :histories
   has_many :medications,    through: :prescriptions
   has_many :histories
+  has_many :issues
 
   validates_presence_of :born_date, :first_name, :last_name
 
@@ -25,7 +26,6 @@ class User < ApplicationRecord
   def age
     Age.in_years(born_date)
   end
-
 
   def self.ransackable_attributes(auth_object = nil)
     %w(first_name last_name public_health_org private_health_company) + _ransackers.keys

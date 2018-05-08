@@ -1,12 +1,5 @@
-class History < ApplicationRecord
-  has_many :medical_tests, dependent: :destroy
-  accepts_nested_attributes_for :medical_tests, allow_destroy: true
-
-  belongs_to :medical_center, optional: true
+class Issue < ApplicationRecord
   belongs_to :user
-  belongs_to :professional, optional: true
-  has_many :prescriptions, dependent: :destroy
-  accepts_nested_attributes_for :prescriptions, allow_destroy: true
 
   KIND = %w( appointment annotation )
 
@@ -30,6 +23,6 @@ class History < ApplicationRecord
   end
 
   def self.select_option(user)
-    user(user).appointments.map { |history| [history.id, history.professional.full_name + ' - ' + history.event_at.to_s] }
+    user(user).appointments.map { |issue| [issue.id, issue.professional.full_name + ' - ' + issue.event_at.to_s] }
   end
 end

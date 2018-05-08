@@ -2,10 +2,11 @@
 
 <%= render "histories/search_form" %>
 
-<%= link_to t('actions.create', resource: 'cita'), new_history_path(user_id: user, kind: 'appointment') %> |
-<%= link_to t('actions.create', resource: 'nota'), new_history_path(user_id: user, kind: 'annotation' ) %>
+<%= link_to " " + t('actions.create', resource: 'cita'), new_history_path(user_id: user, kind: 'appointment'), class: "icon-calendar" %> |
+<%= link_to " " + t('actions.create', resource: 'nota'), new_history_path(user_id: user, kind: 'annotation' ),class: "icon-pencil" %>  |
+<%= link_to " " + 'Todas las pruebas', medical_tests_path(user_id: @user), class: "icon-drug-medecine-streamline-syringue", title: "Pruebas" %>
 
-<% @histories.no_pending.each do |history| %>
+<% @histories.each do |history| %>
   <br>
   <%= render "shared/history", history: history%>
 <% end %>

@@ -1,4 +1,4 @@
-<% if appointments(@user, :history).send(kind).present? %>
+<% if appointments(@user, :issue).send(kind).present? %>
   <div class="row" >
     <div class="small-12 columns">
       <div class="small-4 columns end">
@@ -10,7 +10,7 @@
       <div class="small-2 columns end">
         <%= link_to t('actions.create', resource: 'cita'), new_history_path(user_id: @user, kind: 'cita' ) %>
       </div>
-      <% appointments(@user, :history).send(kind).each do |appointment| %>
+      <% appointments(@user, :issue).send(kind).each do |appointment| %>
         <div class="small-12 columns">
           <div class="panel">
             <p>
@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <% if appointments(@user, :history).send(kind).empty? %>
+        <% if appointments(@user, :issue).send(kind).empty? %>
           <div class="small-12 columns">
             <div class="panel" >
               No hay citas pendientes
