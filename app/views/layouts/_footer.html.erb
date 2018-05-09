@@ -2,7 +2,9 @@
   <div class="row">
     <div class="note text-center small-12 column">
       <hr>
-      <%= t("layouts.footer.copyright", year: Time.current.year) %>&nbsp;
+      <%= t("layouts.footer.copyright", year: Time.current.year) %>&nbsp;| Env: <strong><%= Rails.env.capitalize %></strong>
+      <br>
+      <%= t("layouts.footer.webmaster") %> &nbsp; <%= mail_to('palomahnhp@gmail.com', 'Paloma' ) %>
     </div>
   </div>
 </footer>
