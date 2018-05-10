@@ -16,11 +16,13 @@
       <div class="small-12 medium-12 columns">
         <div class="small-12 medium-6 columns">
           <%= f.label :speciality_id %>
-          <%= f.select :speciality_id, options_from_collection_for_select(Speciality.all, 'id', 'name', f.object.speciality.id) %>
+          <%= f.select :speciality_id,
+                       options_from_collection_for_select(Speciality.all, 'id', 'name', @professional.speciality_id) %>
         </div>
         <div class="small-12 medium-6 columns">
           <%= f.label :medical_center_id %>
-          <%= f.select :medical_center_id, options_from_collection_for_select(MedicalCenter.all, 'id', 'name', f.object.medical_center.id) %>
+          <%= f.select :medical_center_id,
+                       options_from_collection_for_select(MedicalCenter.all, 'id', 'name', @professional.medical_center_id) %>
         </div>
       </div>
     </fieldset>

@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   end
   resources :professionals
   resources :users
-  resources :specialities
+  resources :specialities   do
+    collection { post :import }
+  end
   resources :analysis_results
   resources :analytical_groups  do
     collection { post :import }

@@ -1,4 +1,6 @@
 class AnalyticalGroupsController < ApplicationController
+  include Imports
+
   before_action :set_analytical_group, only: [:show, :edit, :update, :destroy ]
 
   def index
@@ -38,19 +40,6 @@ class AnalyticalGroupsController < ApplicationController
       message = "No se ha podido eliminar el grupo, no está vacio"
     end
     redirect_to analytical_groups_path, notice: message
-  end
-
-  def import
-    filepath = params[:file].tempfile.path
-    if File.exist?(filepath)
-      message = 'Lanzada tarea de importación. Carga disponible en unos minutos'
-      AnalyticalGroupsImporter.new(File.extname(params[:file].original_filename),
-                              filepath).run
-    else
-      message =  'Error al obtener el fichero de importación.' +
-          ' No se ha iniciado el proceso: ' + filepath
-    end
-    redirect_to analytical_groups_path,notice: message
   end
 
   private

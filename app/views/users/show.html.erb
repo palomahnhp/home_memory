@@ -7,7 +7,7 @@
         <div class="small-12 medium-12 columns" >
           <div class="small-12 medium-5 columns" >
             <strong><%= t('activerecord.attributes.user.born_date') %>: </strong>
-            <%= l @user.born_date %>
+            <%= l @user.born_date if @user.born_date.present? %>
           </div>
           <div class="small-12 medium-3 columns end " >
             <strong><%= t('activerecord.attributes.user.document') %>: </strong>

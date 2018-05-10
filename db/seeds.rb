@@ -1,5 +1,5 @@
 p 'Creating admin ...'
-
+p 'admin mail: ' + Rails.application.secrets.admin_email
 User.create!(email: Rails.application.secrets.admin_email,
              first_name: 'Admin', last_name: 'Admin',
              born_date: 30.years.ago,

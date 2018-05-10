@@ -163,3 +163,5 @@ en:
   shared:
     top_links:
       no_user: "No hay usuario conectado"
+    import:
+      button: "Importar"

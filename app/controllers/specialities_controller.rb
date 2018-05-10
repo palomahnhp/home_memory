@@ -1,5 +1,8 @@
 class SpecialitiesController < ApplicationController
+  include Imports
+
   before_action :set_speciality, only: [:show, :edit, :update, :destroy]
+
 
   # GET /specialities
   # GET /specialities.json

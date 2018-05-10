@@ -17,7 +17,11 @@ class ProfessionalsController < ApplicationController
 
   # GET /professionals/new
   def new
-    @professional = Professional.new
+    if Speciality.all.empty?
+      redirect_to professionals_path, alert: 'No hay especialidades, imposible dar de alta un profesional médico. Da de alta la especialidad'
+    else
+      @professional = Professional.new
+    end
   end
 
   # GET /professionals/1/edit
