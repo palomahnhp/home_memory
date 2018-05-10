@@ -11,8 +11,6 @@ class User < ApplicationRecord
   has_many :histories
   has_many :issues
 
-  validates_presence_of :born_date, :first_name, :last_name
-
   include Documentable
   documentable max_documents_allowed: 10,
                max_file_size: 3.megabytes,

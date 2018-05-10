@@ -6,6 +6,7 @@
         <tr>
           <th> <%= sort_link @search, :first_name %></th>
           <th> <%= sort_link @search, :last_name %></th>
+          <th> <%= sort_link @search, :email %></th>
           <th> <%= sort_link @search, :born_date %></th>
           <th> Edad </th>
           <th colspan="5"><%= t('actions.column') %></th>
@@ -17,7 +18,8 @@
           <tr>
             <td> <%= user.first_name %> </td>
             <td> <%= user.last_name %> </td>
-            <td> <%= l user.born_date %> </td>
+            <td> <%= user.email %> </td>
+            <td> <%= l user.born_date if user.born_date.present?%> </td>
             <td> <%= user.age %> </td>
             <td><%= link_to '  ', user, class: "icon-search", title: 'Ver paciente' %></td>
             <td><%= link_to '  ', edit_user_path(user), class: "icon-pencil", title: 'Editar'  %></td>
@@ -30,6 +32,6 @@
     </table>
 
     <br>
-    <%= link_to t("actions.create", resource: 'Paciente'), new_user_path %>
+    <%= link_to t("actions.create", resource: 'Usuario'), new_user_registration_path %>
   </div>
 </div>

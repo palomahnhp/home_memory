@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to users_path, notice: 'Pacient was successfully created.'
+      redirect_to users_path, notice: 'Creado usuario.'
     else
       render :new
     end
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'Pacient was successfully updated.'
+      redirect_to @user, notice: 'Usuario actualizado.'
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: 'Pacient was successfully destroyed.'
+    redirect_to users_url, notice: 'Usuario eliminado'
   end
 
   private
@@ -54,10 +54,6 @@ class UsersController < ApplicationController
                                       :private_health_company,
                                       :private_health_company_url,
                                       :private_health_card_number,
-                                      appointments_attributes: [
-                                          :id,
-                                          :professional_id,
-                                          :_destroy],
                                       documents_attributes: [:id,
                                                              :title,
                                                              :attachment,

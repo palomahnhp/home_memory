@@ -38,16 +38,10 @@ en:
         speciality: "Especialidad"
         medical_center: "Centro médico"
         comments: "Notas"
-      appointments:
-        user: "Paciente"
-        appointment_time: "Cita"
-        professiona_id: "Profesional"
-        location: "Lugar"
-        reason: "Motivo"
     models:
       speciality: Especialidades
   app:
-    name: Medical Care
+    name: Home Memory
   appointments:
     edit:
       title: Modificar Cita
@@ -166,3 +160,6 @@ en:
     kind:
       appointment: Cita
       annotation:  Nota
+  shared:
+    top_links:
+      no_user: "No hay usuario conectado"

@@ -119,6 +119,7 @@ en:
         sign_in: Iniciar sesión
         sign_in_with_provider: Iniciar sesión con %{provider}
         sign_up: Registrarse
+      sign_in: "Sign in"
     unlocks:
       new:
         resend_unlock_instructions: Reenviar instrucciones para desbloquear
@@ -135,3 +136,9 @@ en:
       not_saved:
         one: 'Ocurrió un error al tratar de guardar %{resource}:'
         other: 'Ocurrieron %{count} errores al tratar de guardar %{resource}:'
+  devise_views:
+    menu:
+      login_items:
+        logout: "Desconectar"
+        login: "Conectar"
+        signup: "Registrarse"
