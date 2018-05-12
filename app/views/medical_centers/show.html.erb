@@ -3,7 +3,7 @@
     <div class="small-6 medium-1 columns" >
     </div>
     <div class="small-6 medium-11 columns" >
-      <h1><%= @medical_center.name %></h1>
+      <h1 class="page-title"><%= @medical_center.name %></h1>
       <table>
         <tr>
           <th> <%= t('activerecord.attributes.medical_center.name') %> </th>
@@ -15,7 +15,8 @@
         </tr>
         <tr>
           <th> <%= t('activerecord.attributes.medical_center.web') %> </th>
-          <td> <%= link_to 'Web Hospital del Sureste', @medical_center.web, target: "_blank" %> </td>
+          <td> <%= link_to @medical_center.name,
+                           "http://#{@medical_center.web}", target: "_blank" unless @medical_center.web.blank? %> </td>
         </tr>
         <tr>
           <th> <%= t('activerecord.attributes.medical_center.email') %> </th>
@@ -26,8 +27,12 @@
           <td> <%= @medical_center.main_phone %> </td>
         </tr>
         <tr>
-          <th> <%= t('activerecord.attributes.medical_center.appointment_phone') %> </th>
-          <td> <%= @medical_center.appointment_phone %> </td>
+          <th> <%= t('activerecord.attributes.medical_center.phone') %> </th>
+          <td> <%= @medical_center.phone %> </td>
+        </tr>
+        <tr>
+          <th> <%= t('activerecord.attributes.medical_center.notes') %> </th>
+          <td> <%= simple_format(@medical_center.notes) %> </td>
         </tr>
       </table>
 

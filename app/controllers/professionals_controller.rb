@@ -35,7 +35,7 @@ class ProfessionalsController < ApplicationController
 
     respond_to do |format|
       if @professional.save
-        format.html { redirect_to @professional, notice: 'Professional was successfully created.' }
+        format.html { redirect_to @professional, notice: 'Registro creado.' }
         format.json { render :show, status: :created, location: @professional }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class ProfessionalsController < ApplicationController
   def update
     respond_to do |format|
       if @professional.update(professional_params)
-        format.html { redirect_to @professional, notice: 'Professional was successfully updated.' }
+        format.html { redirect_to @professional, notice: 'Registro modificado.' }
         format.json { render :show, status: :ok, location: @professional }
       else
         format.html { render :edit }
@@ -76,6 +76,8 @@ class ProfessionalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def professional_params
-      params.require(:professional).permit(:first_name, :last_name, :medical_center_id, :speciality_id, :comments)
+      params.require(:professional).permit(:first_name, :last_name,
+                                           :medical_center_id, :speciality_id,
+                                           :comments)
     end
 end

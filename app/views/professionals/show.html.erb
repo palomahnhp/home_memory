@@ -3,20 +3,19 @@
     <div class="small-6 medium-1 columns" >
     </div>
     <div class="small-6 medium-11 columns" >
-      <h1><%= t('professional.show.title') %> </h1>
+      <h1 class="page-title"><%= t('professional.show.title') %> </h1>
       <table>
          <tr>
           <th> <%= t('activerecord.attributes.user.first_name') %> </th>
           <td> <%= @professional.full_name %> </td>
         </tr>
-
         <tr>
           <th> <%= t('activerecord.attributes.user.speciality') %> </th>
           <td> <%= @professional.speciality.name %> </td>
         </tr>
         <tr>
           <th> <%= t('activerecord.attributes.user.medical_center') %> </th>
-          <td> <%= @professional.medical_center.name %> </td>
+          <td> <%= @professional.medical_center.name if @professional.medical_center.present? %> </td>
         </tr>
         <tr>
           <th> <%= t('activerecord.attributes.user.comments') %> </th>

@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1><%= t('medical_center.index.title')%> Medical Centers</h1>
+<h1 class="page-title"><%= t('medical_center.index.title')%> Medical Centers</h1>
 
 <table>
   <thead>
@@ -20,10 +20,10 @@
       <tr>
         <td> <%= medical_center.name %> </td>
         <td> <%= medical_center.address %> </td>
-        <td> <%= link_to medical_center.name, medical_center.web unless medical_center.web %> </td>
-        <td> <%= medical_center.email %> </td>
+        <td> <%= link_to medical_center.name, "http://#{medical_center.web}", target: "_blank" unless medical_center.web.blank? %> </td>
+        <td> <%= mail_to medical_center.email %> </td>
         <td> <%= medical_center.main_phone %> </td>
-        <td> <%= medical_center.appointment_phone %> </td>
+        <td> <%= medical_center.phone %> </td>
         <td><%= link_to '  ', medical_center, class: "icon-search" %></td>
         <td><%= link_to '  ', edit_medical_center_path(medical_center), class: "icon-pencil" %></td>
         <td><%= link_to '  ', medical_center, method: :delete, data: { confirm: t('actions.destroy.confirmation') },  class: "icon-trash" %></td>

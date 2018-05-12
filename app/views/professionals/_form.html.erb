@@ -1,3 +1,15 @@
+<% if @professional.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@professional.errors.count, "error") %> impiden guardar el resgistro:</h2>
+
+    <ul>
+      <% @professional.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with(model: professional, local: true) do |f| %>
 
   <div class="row">
@@ -17,12 +29,20 @@
         <div class="small-12 medium-6 columns">
           <%= f.label :speciality_id %>
           <%= f.select :speciality_id,
-                       options_from_collection_for_select(Speciality.all, 'id', 'name', @professional.speciality_id) %>
+                       options_from_collection_for_select(Speciality.all,
+                                                          'id',
+                                                          'name',
+                                                          @professional.speciality_id),
+                       {:include_blank => 'Selecciona especialidad'}
+          %>
         </div>
         <div class="small-12 medium-6 columns">
           <%= f.label :medical_center_id %>
           <%= f.select :medical_center_id,
-                       options_from_collection_for_select(MedicalCenter.all, 'id', 'name', @professional.medical_center_id) %>
+                       options_from_collection_for_select(MedicalCenter.all,
+                                                          'id', 'name',
+                                                          @professional.medical_center_id),
+                       {:include_blank => 'Selecciona el centro médico'} %>
         </div>
       </div>
     </fieldset>

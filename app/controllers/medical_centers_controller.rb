@@ -31,7 +31,7 @@ class MedicalCentersController < ApplicationController
 
     respond_to do |format|
       if @medical_center.save
-        format.html { redirect_to @medical_center, notice: 'Medical center was successfully created.' }
+        format.html { redirect_to @medical_center, notice: 'Registro creado.' }
         format.json { render :show, status: :created, location: @medical_center }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class MedicalCentersController < ApplicationController
   def update
     respond_to do |format|
       if @medical_center.update(medical_center_params)
-        format.html { redirect_to @medical_center, notice: 'Medical center was successfully updated.' }
+        format.html { redirect_to @medical_center, notice: 'Registro actualizado.' }
         format.json { render :show, status: :ok, location: @medical_center }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class MedicalCentersController < ApplicationController
   def destroy
     @medical_center.destroy
     respond_to do |format|
-      format.html { redirect_to medical_centers_url, notice: 'Medical center was successfully destroyed.' }
+      format.html { redirect_to medical_centers_url, notice: 'Seha eliminado el registro.' }
       format.json { head :no_content }
     end
   end
@@ -72,6 +72,13 @@ class MedicalCentersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def medical_center_params
-      params.require(:medical_center).permit(:name, :address, :kind, :web, :email, :main_phone, :appointment_phone)
+      params.require(:medical_center).permit(:name,
+                                             :address,
+                                             :kind,
+                                             :web,
+                                             :email,
+                                             :main_phone,
+                                             :phone,
+                                             :notes)
     end
 end

@@ -11,18 +11,39 @@
     </div>
   <% end %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-  <%= f.label :web %>
-  <%= f.text_field :web %>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  <%= f.label :main_phone %>
-  <%= f.text_field :main_phone %>
-  <%= f.label :appointment_phone %>
-  <%= f.text_field :appointment_phone %>
+  <div class="row">
+    <div class="medium-6 small-12 columns">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="medium-6 small-12 columns">
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="medium-4 small-12 columns">
+      <%= f.label :web %>
+      <%= f.text_field :web %>
+    </div>
+    <div class="medium-4 small-12 columns">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div class="medium-2 small-12  columns">
+      <%= f.label :main_phone %>
+      <%= f.text_field :main_phone %>
+    </div>
+    <div class="medium-2 small-12  columns">
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </div>
+  </div>
+  <fieldset>
+    <legend> Notas</legend>
+    <%= f.text_area :notes %>
+  </fieldset>
 
   <div class="actions">
     <%= f.submit t('actions.new') %>

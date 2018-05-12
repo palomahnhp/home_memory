@@ -69,3 +69,7 @@ en:
         init_at: Fecha de inicio
         end_at:  Fecha fin
         posology: Posología
+  errors:
+    messages:
+      required: "debe existir"
+

@@ -1,6 +1,8 @@
 class Professional < ApplicationRecord
   belongs_to :speciality
-  belongs_to :medical_center
+  belongs_to :medical_center, optional: true
+
+  validates_presence_of :first_name, :last_name
 
   def full_name
     first_name + " " + last_name

@@ -8,8 +8,8 @@ en:
     destroy:
       confirmation: "¿Quieres borrarlo?,¿seguro?"
     edit: Editar
-    new: Nueva
-    show: Mostrar
+    new: Crear
+    show: Ver
     save: "Guardar"
     search: "Buscar"
   activerecord:
@@ -25,11 +25,12 @@ en:
         speciality: Especialidad
       medical_center:
         address: Dirección postal
-        appointment_phone: Teléfono de citas
+        phone: Teléfono de citas
         email: e-mail
         main_phone: Teléfono
         name: Nombre
         web: Web
+        notes: Notas
       medication:
         active_ingredient: Principio activo
         name: Nombre
@@ -95,9 +96,9 @@ en:
     edit:
       title: Modificar centro médico
     index:
-      title: Centro médicos
+      title: Centros médicos
     new:
-      title: Centros médico
+      title: Centro médico
     show:
       title: Detalles de centro médico
   medical_centers:
@@ -165,3 +166,5 @@ en:
       no_user: "No hay usuario conectado"
     import:
       button: "Importar"
+  application:
+    close: "Cerrar"

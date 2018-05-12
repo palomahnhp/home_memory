@@ -107,7 +107,7 @@ en:
     sessions:
       already_signed_out: Sesión finalizada.
       new:
-        sign_in: Iniciar sesión
+        sign_in: Conectate
       signed_in: Sesión iniciada.
       signed_out: Sesión finalizada.
     shared:
