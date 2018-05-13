@@ -117,7 +117,7 @@ en:
     new:
       title: Nueva prueba
     show:
-      title: 'Prueba:'
+      title: 'Prueba médica'
   medications:
     edit:
       title: Editar medicamento
