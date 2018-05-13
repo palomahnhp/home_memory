@@ -51,6 +51,9 @@
                   </li>
                 </ul>
                 <ul class="right">
+                  <% if user_signed_in? %>
+                    <li> <%= link_to t('header.help'), helps_path %> </li>
+                  <% end %>
                   <%= render "devise/menu/login_items" %>
                 </ul>
               </section>
