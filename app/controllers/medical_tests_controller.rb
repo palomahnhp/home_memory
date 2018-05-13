@@ -29,7 +29,7 @@ class MedicalTestsController < ApplicationController
     @medical_test = MedicalTest.new(medical_test_params)
     if @medical_test.save
       redirect_to medical_test_path(@medical_test),
-                                  notice: 'MedicalTest was successfully created.'
+                                  notice: 'Prueba creada correctamente.'
     else
         render :new, alert: 'Error creando prueba #{@medical_test.errors.messages}'
     end
@@ -38,7 +38,7 @@ class MedicalTestsController < ApplicationController
   def update
     respond_to do |format|
       if @medical_test.update(medical_test_params)
-        format.html { redirect_to @medical_test, notice: 'Test was successfully updated.' }
+        format.html { redirect_to @medical_test, notice: 'Prueba actualizada acorrectamente.' }
         format.json { render :show, status: :ok, location: @medical_test }
       else
         format.html { render :edit }

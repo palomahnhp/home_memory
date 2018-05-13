@@ -1,0 +1,67 @@
+<h1 class="page-title">Ayuda y temas pendientes</h1>
+
+<h3>Instalación</h3>
+<ol>
+  <li> Clonar el repositorio Git <strong>https://github.com/palomahnhp/home_memory.git </strong></li>
+  <li> Instalar las gemas <strong>bundle install</strong> </li>
+  <li>
+    Configurar la bd
+    <ul>
+      <li>Crear la base de datos  <strong>rails db:create </strong></li>
+      <li>Crear la estructura - migraciones <strong>rails db:migrate </strong></li>
+      <li>Inicializar la bd - seed <strong>rails db:seed </strong></li>
+      <li>Importar grupos y determinaciones analíticas
+        <%= link_to "GruposYDeterminaciones",
+                    "/public/import/GruposYDeterminaciones.xlsx",
+                    target: "_blank"%>
+      </li>
+    </ul>
+  </li>
+
+  <li>Copiar en /home/usuario/lib el script HomeMemory
+    <code> <br> #!/bin/bash
+           <br> # chmod 755 HomeMemory
+           <br> # ./HomeMemory
+
+        <br> # HomeMemory
+        <br> echo "Starting HomeMemory ...."
+        <br> cd ~/workspace/home_memory
+        <br> rails s -d -p 8080 -e production
+    </code>
+  </li>
+  <li>Ejecutar en <string>localhost:8080 </string></li>
+</ol>
+<h3>Correciones pendientes</h3>
+  <ol>
+
+    <li> Controllers: tradurcir ..was successfully created./updated.</li>
+    <li><strong>Medical Test</strong>
+      <ul>
+        <li class="tachado"> Poner en mismo fieldset : Información : nombre prueba dia y lugar </li>
+        <li class="tachado"> Traducir: Test was successfully updated </li>
+        <li> AnalysisResult: Permitir seleccionar unidades con datafield al dar de alta nueva determinación </li>
+      </ul>
+    </li>
+    <li><strong>AnalyticalGroup Determinations</strong>
+      <ul>
+        <li> Index: poner show con acceso a sus subgrupos, edit: con subgrupos,
+          show_determinaciones </li>
+        <li> View edit completarla </li>
+        <li> No hay views de subgrupos, ver si se unen a grupos o se dejan como tabla aparte nested </li>
+        <li> Edit determinaciones: poner bien, no lleva a la determinacion seleccionada </li>
+      </ul>
+    </li>
+
+    <li><strong>Layouts</strong>
+      <ul>
+        <li> Menu desplegable no funciona siempre, a veces hay que dar F5 </li>
+        <li> Traducir en menu desplegable analytical group  </li>
+      </ul>
+    </li>
+    <li><strong>Histories</strong>
+      <ul>
+        <li></li>
+
+      </ul>
+       </li>
+  </ol>
