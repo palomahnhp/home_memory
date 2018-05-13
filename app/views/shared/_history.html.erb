@@ -50,8 +50,8 @@
           <% history.medical_tests.each do |test| %>
             <li>
               <%= link_to test.name, test, target: '_blank', title: test.name %>
-              => <%= l test.performed_at %> en
-              <%= test.medical_center.name %> - <%= test.performed_in %>
+              => <%= l test.performed_at if test.performed_at.present? %> en
+              <%= test.medical_center.name if test.medical_center.present?  %> - <%= test.performed_in %>
             </li>
           <% end %>
         </ul>

@@ -16,6 +16,8 @@ class MedicalTest < ApplicationRecord
                                          "image/jpeg",
                                          'image/png']
 
+  validates_presence_of :name, :performed_at, :medical_center_id
+
   scope :by_user, ->(user) { where(history: History.user(user) ) }
 
   def initialize_analysis_results

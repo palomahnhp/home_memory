@@ -3,7 +3,7 @@
     <div class="row">
       <div class="small-10 columns"></div>
       <div class="small-2 columns">
-        <%= form.submit t('actions.save'), class: "button hollow" %>
+        <%= form.submit t('actions.save'), class: "button hollow float-right" %>
       </div>
     </div>
 
@@ -66,7 +66,7 @@
       <div class="row">
         <fieldset>
           <legend>Determinaciones </legend>
-          <%= link_to_add_association '[+] añadir determinación', form, :medical_test %>
+          <%= link_to_add_association '[+] añadir determinación', form, :analysis_results %>
           <div id='analysis_result'>
             <%= form.fields_for :analysis_results do |result| %>
               <%= render 'medical_tests/analysis_result_fields', :f => result %>

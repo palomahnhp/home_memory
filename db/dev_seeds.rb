@@ -4,14 +4,14 @@ DatabaseCleaner.clean
 
 p 'Creating user ...'
 [
-    ['cherry@gmail.com', 'Sara',   'Beltrán Hernández', '1998/03/26'],
-    ['popi@gmail.com',   'Paloma', 'Hernández Navarro', '1961/08/02'],
-    ['jb@gmail.com',    'Justo',  'Beltrán Vicente', '1964/06/22']
+    ['cherry@gmail.com', 'cherry', 'Sara',   'Beltrán Hernández', '1998/03/26'],
+    ['popi@gmail.com', 'paloma', 'Paloma', 'Hernández Navarro', '1961/08/02'],
+    ['jb@gmail.com', 'paloma',   'Justo',  'Beltrán Vicente', '1964/06/22']
 ].each do |reg|
-  user =  User.create!(email:reg[0], first_name: reg[1], last_name: reg[2],
-                       born_date: reg[3],
-                       password: Rails.application.secrets.user_password,
-                       password_confirmation: Rails.application.secrets.user_password)
+  user =  User.create!(email:reg[0], first_name: reg[2], last_name: reg[3],
+                       born_date: reg[4],
+                       password:  reg[1],
+                       password_confirmation:  reg[1])
 end
 
 p  'Creating Centers ...'
@@ -117,8 +117,7 @@ p 'Creating histories ... '
    history = History.appointments.shuffle.first
 
    test = MedicalTest.create!(name: type.name,
-                             kind: type.code,
-                             user: history.user,
+ #                            kind: type.code,
                              history: history,
                              medical_center: MedicalCenter.all.shuffle.first,
                              performed_at: Date.today - rand(40..233).days,
