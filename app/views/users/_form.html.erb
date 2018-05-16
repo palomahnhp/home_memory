@@ -1,4 +1,4 @@
-<%= form_with(model: user, local: true) do |f| %>
+<%= form_with(model: user, local: true) do |form| %>
   <fieldset>
     <legend>
       <%= t('users.block.personal_data') %>
@@ -6,92 +6,69 @@
     <div class="row">
       <div class="fieldset small-12 columns">
         <div  class="medium-4 small-12 columns">
-          <%= f.label :first_name %>
-          <%= f.text_field :first_name %>
+          <%= form.label :first_name %>
+          <%= form.text_field :first_name %>
         </div>
         <div  class="medium-8 small-12 columns">
-          <%= f.label :last_name %>
-          <%= f.text_field :last_name %>
+          <%= form.label :last_name %>
+          <%= form.text_field :last_name %>
         </div>
       </div>
       <div  class="medium-12 small-12 columns">
         <div  class="medium-3 small-12 columns">
-          <%= f.label :document %>
-          <%= f.text_field :document %>
+          <%= form.label :document %>
+          <%= form.text_field :document %>
         </div>
         <div  class="medium-3 small-12 columns end">
-          <%= f.label :born_date %>
-          <%= f.date_field :born_date %>
+          <%= form.label :born_date %>
+          <%= form.date_field :born_date %>
         </div>
       </div>
     </div>
   </fieldset>
 
-  <fieldset>
-    <legend> <%= t('users.block.public_org') %> </legend>
-
-    <div class="row">
-      <div class="small-12 columns">
-        <div  class="medium-6 small-12 columns">
-          <%= f.label :public_health_org %>
-          <%= f.text_field :public_health_org %>
+  <div class="row">
+    <div class="small-12 columns">
+      <fieldset>
+        <legend><%= t('users.fields') %> </legend>
+        <div class="small-12 columns">
+          <%= link_to_add_association '[+] añadir campo', form, :properties %>
         </div>
-        <div  class="medium-6 small-12 columns">
-          <%= f.label :public_health_org_url %>
-          <%= f.text_field :public_health_org_url %>
+        <div class="small-12 columns">
+          <%= form.fields_for :properties do |f| %>
+            <div class="small-12 medium-3 columns">
+              <%= f.label  :fieldset %>
+              <%= f.text_field :fieldset %>
+            </div>
+            <div class="small-12 medium-4 columns">
+              <%= f.label      :name %>
+              <%= f.text_field :name %>
+            </div>
+            <div class="small-12 medium-4 columns">
+              <%= f.label      :value %>
+              <%= f.text_field :value %>
+            </div>
+            <div class="small-12 medium-1 columns">
+              <%= f.label      :order %>
+              <%= f.text_field :order %>
+            </div>
+          <% end %>
         </div>
-      </div>
-      <div  class="medium-12 small-12 columns">
-        <div  class="medium-4 small-12 columns">
-          <%= f.label :public_health_membership_number %>
-          <%= f.text_field :public_health_membership_number %>
-        </div>
-        <div  class="medium-4 small-12 columns">
-          <%= f.label :public_health_card_number %>
-          <%= f.text_field :public_health_card_number %>
-        </div>
-        <div  class="medium-4 small-12 columns">
-          <%= f.label :public_health_autonomic_code %>
-          <%= f.text_field :public_health_autonomic_code %>
-        </div>
-      </div>
+      </fieldset>
     </div>
-  </fieldset>
-
-  <fieldset>
-    <legend><%= t('users.block.private_company') %> </legend>
-
-    <div class="row">
-      <div class="small-12 columns">
-        <div  class="medium-6 small-12 columns">
-          <%= f.label :private_health_company %>
-          <%= f.text_field :private_health_company %>
-        </div>
-        <div  class="medium-6 small-12 columns">
-          <%= f.label :private_health_company_url %>
-          <%= f.text_field :private_health_company_url %>
-        </div>
-      </div>
-      <div  class="medium-12 small-12 columns">
-        <div  class="medium-4 small-12 columns">
-          <%= f.label :private_health_card_number %>
-          <%= f.text_field :private_health_card_number %>
-        </div>
-      </div>
-   </div>
-  </fieldset>
+  </div>
 
   <div class="row">
     <div class="small-12 columns">
       <div class="row">
         <div class="documents small-12">
-          <%= render 'documents/nested_documents', documentable: @user, f: f %>
+          <%= render 'documents/nested_documents', documentable: @user, f: form %>
         </div>
       </div>
     </div>
   </div>
 
   <div class="actions">
-    <%= f.submit t('actions.save'), class: "button hollow" %>
+    <%= form.submit t('actions.save'), class: "button hollow" %>
   </div>
 <% end %>

@@ -17,6 +17,10 @@ class User < ApplicationRecord
                accepted_content_types: [ "application/pdf",
                                          "image/jpeg",
                                          'image/png']
+
+  has_many :properties, inverse_of: :user, dependent: :destroy
+  accepts_nested_attributes_for :properties, reject_if: :all_blank, allow_destroy: true
+
   def full_name
     first_name + " " + last_name
   end
@@ -29,4 +33,7 @@ class User < ApplicationRecord
     %w(first_name last_name public_health_org private_health_company) + _ransackers.keys
   end
 
+  def data_fieldsets
+    properties.pluck(:fieldset).uniq
+  end
 end

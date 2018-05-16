@@ -46,20 +46,20 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:first_name, :last_name, :born_date,
-                                      :document, :public_health_org,
-                                      :public_health_org_url,
-                                      :public_health_membership_number,
-                                      :public_health_card_number,
-                                      :public_health_autonomic_code,
-                                      :private_health_company,
-                                      :private_health_company_url,
-                                      :private_health_card_number,
+                                      :document,
+                                      properties_attributes: [:id,
+                                                          :fieldset,
+                                                          :name,
+                                                          :value,
+                                                          :order,
+                                                          :user_id,
+                                                          :_destroy],
                                       documents_attributes: [:id,
                                                              :title,
                                                              :attachment,
                                                              :cached_attachment,
                                                              :user_id,
-                                                             :_destroy]
+                                                             :_destroy],
                                       )
     end
 end

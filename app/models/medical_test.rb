@@ -4,8 +4,8 @@ class MedicalTest < ApplicationRecord
   belongs_to :history
   belongs_to :medical_center, optional: true
 
-  has_many   :analysis_results, inverse_of: :medical_test
   has_many   :analytical_items, through: :analysis_results
+  has_many   :analysis_results, inverse_of: :medical_test
 
   accepts_nested_attributes_for :analysis_results, reject_if: :all_blank, allow_destroy: true
 

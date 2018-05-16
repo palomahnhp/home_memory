@@ -16,43 +16,18 @@
         </div>
       </div>
     </fieldset>
+
     <fieldset>
-      <legend><%= @user.public_health_org %></legend>
-      <div class="row" >
-        <div class="small-12 medium-12 columns" >
-          <div class="small-12 medium-3 columns" >
-            <strong><%= t('activerecord.attributes.user.public_health_membership_number') %>: </strong>
-            <%= @user.public_health_membership_number%>
-          </div>
-          <div class="small-12 medium-3 columns" >
-            <strong><%= t('activerecord.attributes.user.public_health_card_number') %>: </strong>
-            <%= @user.public_health_card_number %>
-          </div>
-          <div class="small-12 medium-3 columns" >
-            <strong><%= t('activerecord.attributes.user.public_health_autonomic_code') %>: </strong>
-            <%= @user.public_health_autonomic_code %>
-          </div>
-          <div class="small-12 medium-3 columns" >
-            <strong><%= t('activerecord.attributes.user.public_health_org_url') %>: </strong>
-            <%= link_to @user.public_health_org_url, target: '_blank' %>
-          </div>
+      <% @user.data_fieldsets.each do |fieldset| %>
+        <legend><%= fieldset %></legend>
+        <div class="small-12 columns">
+          <% @user.properties.by_fieldset(fieldset).each do |datum| %>
+            <div class="small-3 columns">
+              <strong><%= datum.name %>:</strong> <%= datum.value %>
+            </div>
+          <% end %>
         </div>
-      </div>
-    </fieldset>
-    <fieldset>
-      <legend><%= @user.private_health_company %></legend>
-      <div class="row" >
-        <div class="small-12 medium-12 columns" >
-          <div class="small-12 medium-6 columns" >
-            <strong><%= t('activerecord.attributes.user.private_health_card_number') %>: </strong>
-            <%= @user.private_health_card_number %>
-          </div>
-          <div class="small-12 medium-4 columns end" >
-            <strong><%= t('activerecord.attributes.user.private_health_company_url') %>: </strong>
-            <%= link_to @user.private_health_company_url, target: '_blank' %>
-          </div>
-        </div>
-      </div>
+      <% end %>
     </fieldset>
 
     <%= render 'shared/show_documents', resource: @user %>

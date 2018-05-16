@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'user_data/index'
+
   devise_for :users
   root to: "users#index"
 

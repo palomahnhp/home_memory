@@ -140,6 +140,7 @@ en:
       personal_data: "Datos personales"
       public_org: "Organismo público de salud"
       private_company: "Compañía de salud"
+    fields: "Otros datos"
   professionals:
     edit:
       title: Editar profesional

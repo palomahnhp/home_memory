@@ -5,6 +5,9 @@ en:
       user :
         one: Usuario
         other: Usuarios
+      user_datum:
+        one: Dato de usuario
+        other: Datos de usuarios
       profesional:
         one: Profesional
         other: Profesionales
@@ -41,6 +44,11 @@ en:
         private_health_company: Compañia seguro de salud
         private_health_company_url: Página web
         private_health_card_number: Número de tarjeta
+      user_datum:
+        fieldset: Grupo
+        name: Nombre
+        value: Valor
+        order: Orden
       speciality:
         name: Denominación
       professional:

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180511182944) do
+ActiveRecord::Schema.define(version: 20180516160531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,16 @@ ActiveRecord::Schema.define(version: 20180511182944) do
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id"
     t.index ["user_id", "documentable_type", "documentable_id"], name: "access_documents"
     t.index ["user_id"], name: "index_documents_on_user_id"
+  end
+
+  create_table "fields", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "fieldset"
+    t.string "name"
+    t.string "value"
+    t.integer "order"
+    t.string "updated_by"
+    t.index ["user_id"], name: "index_fields_on_user_id"
   end
 
   create_table "histories", force: :cascade do |t|
@@ -172,10 +182,30 @@ ActiveRecord::Schema.define(version: 20180511182944) do
     t.index ["speciality_id"], name: "index_professionals_on_speciality_id"
   end
 
+  create_table "properties", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "fieldset"
+    t.string "name"
+    t.string "value"
+    t.integer "order"
+    t.string "updated_by"
+    t.index ["user_id"], name: "index_properties_on_user_id"
+  end
+
   create_table "specialities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_data", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "fieldset"
+    t.string "name"
+    t.string "value"
+    t.integer "order"
+    t.string "updated_by"
+    t.index ["user_id"], name: "index_user_data_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -197,14 +227,6 @@ ActiveRecord::Schema.define(version: 20180511182944) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "public_health_org"
-    t.string "public_health_org_url"
-    t.string "public_health_membership_number"
-    t.string "public_health_autonomic_code"
-    t.string "public_health_card_number"
-    t.string "private_health_company"
-    t.string "private_health_company_url"
-    t.string "private_health_card_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
