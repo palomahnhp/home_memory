@@ -17,12 +17,13 @@
             <%= form.label :kind %>
             <%= form.select :kind,
                             options_for_select(History::KIND, form.object.kind),
+                            @history.kind,
                             {:include_blank => 'Selecciona nota o cita'} %>
         </div>
       <% end %>
 
       <div class="small-12 columns" >
-        <% if form.object.kind == 'appointment' %>
+        <% if form.object.kind == 'Cita' %>
           <%= render 'appointment', form: form %>
         <% else %>
           <%= render 'annotation', form: form %>
@@ -51,8 +52,7 @@
         </div>
       <% end %>
       <br>
-      <%= link_to_add_association 'Añadir receta', form, :prescriptions,
-                                   class: "button hollow small" %>
+      <%= link_to_add_association 'Añadir receta', form, :prescriptions %>
     </fieldset>
 
     <fieldset>
@@ -65,8 +65,7 @@
         </div>
       <% end %>
       <br>
-      <%= link_to_add_association 'Añadir prueba', form, :medical_tests,
-                                  class: "button hollow small" %>
+      <%= link_to_add_association 'Añadir prueba', form, :medical_tests%>
 
     </fieldset>
 

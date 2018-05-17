@@ -7,7 +7,6 @@
 
 <%= link_to t('actions.edit'), edit_history_path(@history) %> |
 <%= link_to t('actions.back'), histories_path(user_id: @history.user) %>
-
 <br>
 
 <%= render "shared/history", history: @history %>

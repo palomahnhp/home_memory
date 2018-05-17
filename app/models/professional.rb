@@ -20,5 +20,4 @@ class Professional < ApplicationRecord
     %w(last_name first_name) + _ransackers.keys
   end
 
-
 end

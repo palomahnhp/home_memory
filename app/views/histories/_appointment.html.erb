@@ -3,7 +3,10 @@
     <div class="small-6 columns">
       <%= form.label :professional_id %>
       <%= form.select :professional_id,
-                      options_from_collection_for_select(Professional.all, 'id', 'full_name_speciality'),
+                      options_from_collection_for_select(Professional.all,
+                                                         'id',
+                                                         'full_name_speciality',
+                                                         @history.professional_id),
                       {:include_blank => 'Selecciona profesional'}
       %>
     </div>
@@ -16,7 +19,10 @@
     <div class="small-4 columns">
       <%= form.label :medical_center_id %>
       <%= form.select :medical_center_id,
-                      options_from_collection_for_select(MedicalCenter.all, 'id', 'name'),
+                      options_from_collection_for_select(MedicalCenter.all,
+                                                         'id',
+                                                         'name',
+                                                         @history.medical_center_id),
                       {:include_blank => 'Selecciona centro médico'}
       %>
     </div>

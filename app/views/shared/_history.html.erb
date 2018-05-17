@@ -57,7 +57,10 @@
         </ul>
       </div>
     <% end %>
-    <%= render 'shared/show_documents', resource: history %>
+    <% if history.documents.present? %>
+      <%= render 'shared/show_documents', resource: history %>
+    <% end %>
+
   </div>
   <div class="small-10 columns" >
   </div>

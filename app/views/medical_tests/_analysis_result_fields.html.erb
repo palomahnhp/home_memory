@@ -15,10 +15,12 @@
                      options_from_collection_for_select(AnalyticalItem.all,'id',
                                                         'name',
                                                         f.object.analytical_item_id),
-                       {:include_blank => 'Selecciona la prueba'}  %></td>
+                       {:include_blank => 'Selecciona la prueba'}  %>
+      </td>
       <td>
         <%= f.label :amount %>
-        <%= f.number_field :amount, min: 0, step: 0.01 %></td>
+        <%= f.number_field :amount, min: 0, step: 0.01 %>
+      </td>
       <td>
         <%= f.label :unit %>
         <%= f.text_field :unit, list: "units" %>

@@ -1,6 +1,6 @@
 class HistoriesController < ApplicationController
   before_action :set_history, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:create, :destroy]
+  before_action :set_user, only: [:create]
 
   def index
     @user = User.find_by(id: params[:user_id])
@@ -43,11 +43,10 @@ class HistoriesController < ApplicationController
   end
 
   def destroy
+    @user = @history.user
     @history.destroy
-    respond_to do |format|
-      format.html { redirect_to histories_url, notice: 'History was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to histories_path(user_id: @user),
+                notice: 'History was successfully destroyed.'
   end
 
   private
