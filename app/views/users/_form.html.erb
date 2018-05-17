@@ -34,26 +34,29 @@
         <div class="small-12 columns">
           <%= link_to_add_association '[+] añadir campo', form, :properties %>
         </div>
-        <div class="small-12 columns">
+        <table>
+          <tr>
+            <th> <%=  t('activerecord.attributes.property.fieldset') %> </th>
+            <th> <%=  t('activerecord.attributes.property.name') %> </th>
+            <th> <%=  t('activerecord.attributes.property.value') %> </th>
+            <th> <%=  t('activerecord.attributes.property.order') %> </th>
+          </tr>
           <%= form.fields_for :properties do |f| %>
-            <div class="small-12 medium-3 columns">
-              <%= f.label  :fieldset %>
-              <%= f.text_field :fieldset %>
-            </div>
-            <div class="small-12 medium-4 columns">
-              <%= f.label      :name %>
-              <%= f.text_field :name %>
-            </div>
-            <div class="small-12 medium-4 columns">
-              <%= f.label      :value %>
-              <%= f.text_field :value %>
-            </div>
-            <div class="small-12 medium-1 columns">
-              <%= f.label      :order %>
-              <%= f.text_field :order %>
-            </div>
+            <tr>
+              <td>
+                <%= f.text_field :fieldset, list: 'fieldset' %>
+                <datalist id="fieldset">
+                  <% Property.all.pluck(:fieldset).uniq.each do |fieldset| %>
+                    <option ><%= fieldset %></option>
+                  <% end %>
+                </datalist>
+              </td>
+              <td><%= f.text_field :name %></td>
+              <td><%= f.text_field :value %></td>
+              <td><%= f.text_field :order %></td>
+            </tr>
           <% end %>
-        </div>
+        </table>
       </fieldset>
     </div>
   </div>

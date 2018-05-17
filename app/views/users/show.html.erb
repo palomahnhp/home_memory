@@ -17,18 +17,18 @@
       </div>
     </fieldset>
 
-    <fieldset>
-      <% @user.data_fieldsets.each do |fieldset| %>
+    <% @user.data_fieldsets.each do |fieldset| %>
+      <fieldset>
         <legend><%= fieldset %></legend>
         <div class="small-12 columns">
           <% @user.properties.by_fieldset(fieldset).each do |datum| %>
-            <div class="small-3 columns">
+            <div class="small-4 columns end">
               <strong><%= datum.name %>:</strong> <%= datum.value %>
             </div>
           <% end %>
         </div>
+      </fieldset>
       <% end %>
-    </fieldset>
 
     <%= render 'shared/show_documents', resource: @user %>
 

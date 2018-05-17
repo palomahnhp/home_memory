@@ -75,16 +75,6 @@ ActiveRecord::Schema.define(version: 20180516160531) do
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
-  create_table "fields", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "fieldset"
-    t.string "name"
-    t.string "value"
-    t.integer "order"
-    t.string "updated_by"
-    t.index ["user_id"], name: "index_fields_on_user_id"
-  end
-
   create_table "histories", force: :cascade do |t|
     t.datetime "event_at"
     t.string "kind"
@@ -196,16 +186,6 @@ ActiveRecord::Schema.define(version: 20180516160531) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "user_data", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "fieldset"
-    t.string "name"
-    t.string "value"
-    t.integer "order"
-    t.string "updated_by"
-    t.index ["user_id"], name: "index_user_data_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

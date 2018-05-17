@@ -44,7 +44,7 @@ en:
         private_health_company: Compañia seguro de salud
         private_health_company_url: Página web
         private_health_card_number: Número de tarjeta
-      user_datum:
+      property:
         fieldset: Grupo
         name: Nombre
         value: Valor
