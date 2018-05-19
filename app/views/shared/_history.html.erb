@@ -3,9 +3,9 @@
     <% if history.professional.present? %>
       <div class="small-12 columns" >
         <strong>Consulta: </strong>  Dr/a. <%= history.professional.full_name %> -
-        <%= history.professional.speciality.name %>, <%= l history.event_at %>
+        <%= history.professional.speciality.name %>,
         <br>
-        <%= history.professional.medical_center.name %>
+        <%= l history.event_at if history.event_at.present? %>,  <%= history.professional.medical_center.name %>
       </div>
     <% else %>
       <div class="small-12 columns" >

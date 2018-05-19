@@ -5,7 +5,8 @@
       <div class="small-3 columns">
         <%= f.label  :name %>
         <%= f.select :name,
-                     options_from_collection_for_select(NameTest.all, 'name', 'name',  f.object.name),
+                     options_from_collection_for_select(NameTest.all, 'name', 'name',
+                                                        f.object.name),
                      {:include_blank => 'Selecciona prueba'} %>
       </div>
 
@@ -17,7 +18,8 @@
       <div class="small-4 columns">
         <%= f.label  :medical_center_id %>
         <%= f.select :medical_center_id,
-                     options_from_collection_for_select(MedicalCenter.all, 'id', 'name', ' '),
+                     options_from_collection_for_select(MedicalCenter.all, 'id', 'name',
+                                                        f.object.medical_center_id),
                      {:include_blank => 'Selecciona lugar de realización'} %>
       </div>
 

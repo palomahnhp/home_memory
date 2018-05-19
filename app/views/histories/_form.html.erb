@@ -1,9 +1,10 @@
 <div class="row">
   <%= form_with(model: @history, local: true) do |form| %>
     <%= form.hidden_field :user_id, value: @history.user.id %>
+    <%= form.hidden_field :kind, value: @history.kind %>
 
     <div class="small-10 columns actions">
-      <%= link_to t('actions.back'), histories_path(user_id: @user) %>
+      <%= link_to t('actions.back'), histories_path(user_id: @history.user) %>
     </div>
     <div class="small-2 columns actions">
       <%= form.submit t('actions.save'), class: "button hollow small" %>
@@ -16,14 +17,13 @@
         <div class="small-6 columns" >
             <%= form.label :kind %>
             <%= form.select :kind,
-                            options_for_select(History::KIND, form.object.kind),
-                            @history.kind,
+                            options_for_select(History.kinds, @history.kind),
                             {:include_blank => 'Selecciona nota o cita'} %>
         </div>
       <% end %>
 
       <div class="small-12 columns" >
-        <% if form.object.kind == 'Cita' %>
+        <% if form.object.kind == 'appointment' %>
           <%= render 'appointment', form: form %>
         <% else %>
           <%= render 'annotation', form: form %>

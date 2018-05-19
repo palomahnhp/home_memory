@@ -8,7 +8,7 @@ class History < ApplicationRecord
   has_many :prescriptions, dependent: :destroy
   accepts_nested_attributes_for :prescriptions, allow_destroy: true
 
-  KIND = %w( Cita Anotación )
+  KIND = %w( appointment annotation )
 
   include Documentable
   documentable max_documents_allowed: 10,
@@ -21,15 +21,20 @@ class History < ApplicationRecord
 
   scope :pending, -> { where( "event_at > ?", Time.now) }
   scope :no_pending, -> { where( "event_at <= ?", Time.now) }
-  scope :appointments, -> { where( kind: 'Cita' ) }
-  scope :annotations,  -> { where( kind: 'Anotación' ) }
+  scope :appointments, -> { where( kind: 'appointment' ) }
+  scope :annotations,  -> { where( kind: 'annotation' ) }
   scope :user, -> (user) { where( user: user ) }
 
+  validates_presence_of :event_at, :professional
   def self.ransackable_attributes(auth_object = nil)
     %w(note reason kind) + _ransackers.keys
   end
 
   def self.select_option(user)
     user(user).appointments.map { |history| [history.id, history.professional.full_name + ' - ' + history.event_at.to_s] }
+  end
+
+  def self.kinds
+    KIND.map { |kind| [I18n.t("activerecord.attributes.history.#{kind}"), kind]}
   end
 end

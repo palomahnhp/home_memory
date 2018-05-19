@@ -6,6 +6,7 @@
 </div>
 
 <%= link_to t('actions.edit'), edit_history_path(@history) %> |
+<%= link_to t('actions.new'), new_history_path(user_id: @history.user) %> |
 <%= link_to t('actions.back'), histories_path(user_id: @history.user) %>
 <br>
 

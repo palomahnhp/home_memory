@@ -13,7 +13,7 @@ class HistoriesController < ApplicationController
   def show;  end
 
   def new
-    @history = History.new(kind:params[:kind], user_id: params[:user_id])
+    @history = History.new(kind: params[:kind], user_id: params[:user_id])
   end
 
   def edit

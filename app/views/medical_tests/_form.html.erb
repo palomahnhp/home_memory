@@ -14,7 +14,7 @@
           <div class="medium-4 small-12 columns">
             <%= form.label :name %>
             <%= form.select :name, options_from_collection_for_select(NameTest.all, 'name', 'name',
-                                                                      form.object.name),
+                                                                      @medical_test.name),
                             {:include_blank => 'Selecciona la prueba'} %>
           </div>
           <div class="medium-4 small-12 columns end">
@@ -29,6 +29,7 @@
             <%= form.select :medical_center_id,
                             options_for_select(MedicalCenter.select_option,
                                                @medical_test.medical_center_id ),
+                            @medical_test.medical_center_id,
                 {:include_blank => 'Selecciona el centro'} %>
           </div>
 
