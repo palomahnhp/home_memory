@@ -29,7 +29,6 @@
             <%= form.select :medical_center_id,
                             options_for_select(MedicalCenter.select_option,
                                                @medical_test.medical_center_id ),
-                            @medical_test.medical_center_id,
                 {:include_blank => 'Selecciona el centro'} %>
           </div>
 
