@@ -21,11 +21,11 @@
             <td> <%= user.email %> </td>
             <td> <%= l user.born_date if user.born_date.present?%> </td>
             <td> <%= user.age %> </td>
-            <td><%= link_to '  ', user, class: "icon-search", title: 'Ver paciente' %></td>
-            <td><%= link_to '  ', edit_user_path(user), class: "icon-pencil", title: 'Editar'  %></td>
-            <td><%= link_to '  ', histories_path(user_id: user), class: "icon-drug-medecine-streamline-syringue", title: "Datos médicos" %></td>
-            <td><%= link_to '  ', issues_path(user_id: user), class: "icon-folder-o", title: "Asuntos" %></td>
-            <td><%= link_to '  ', user, method: :delete, title: 'Borrar', data: { confirm: t('actions.destroy.confirmation') },  class: "icon-trash" %></td>
+            <td> <%= link_to '  ', user, class: "icon-search", title: 'Ver paciente' %></td>
+            <td> <%= link_to '  ', edit_user_path(user), class: "icon-pencil", title: 'Editar'  %></td>
+            <td> <%= link_to '  ', histories_path(user_id: user), class: "icon-drug-medecine-streamline-syringue", title: "Datos médicos" %></td>
+            <td> <%= link_to '  ', issues_path(user_id: user), class: "icon-folder-o", title: "Asuntos" %></td>
+            <td> <%= link_to '  ', user, method: :delete, title: 'Borrar', data: { confirm: t('actions.destroy.confirmation') },  class: "icon-trash" %></td>
           </tr>
         <% end %>
       </tbody>

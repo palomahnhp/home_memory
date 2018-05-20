@@ -94,6 +94,13 @@ a {
 table {
   margin-bottom: 0;
 
+  border-color: $primary-color;
+  background-color:   $secondary-color;
+  color: $oil;
+  a {
+    color: black;
+  }
+
   thead tr{
     border: 0;
   }
@@ -102,7 +109,9 @@ table {
     border: none;
     background-color: white;
   }
-
+  th {
+    background-color: $secondary-color;
+  }
   th, td {
     padding: rem-calc(12) rem-calc(6);
 
