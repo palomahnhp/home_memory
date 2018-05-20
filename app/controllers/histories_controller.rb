@@ -26,7 +26,7 @@ class HistoriesController < ApplicationController
     if @history.save
       redirect_to histories_path(user_id: @user), notice: 'History was successfully created.'
     else
-      render :new
+      render :new, alert: 'Error creando el registro.'
     end
   end
 
@@ -44,7 +44,9 @@ class HistoriesController < ApplicationController
 
   def destroy
     @user = @history.user
-    @history.destroy
+    @history.prescriptions.destroy_all
+    @history.delete
+
     redirect_to histories_path(user_id: @user),
                 notice: 'History was successfully destroyed.'
   end

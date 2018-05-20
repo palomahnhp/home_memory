@@ -1,12 +1,12 @@
 class History < ApplicationRecord
-
-  has_many :medical_tests, dependent: :destroy
-  accepts_nested_attributes_for :medical_tests, allow_destroy: true
-
   belongs_to :medical_center, optional: true
   belongs_to :user
   belongs_to :professional, optional: true
-  has_many :prescriptions, dependent: :destroy
+
+  has_many :medical_tests, inverse_of: :history, dependent: :destroy
+  accepts_nested_attributes_for :medical_tests, allow_destroy: true
+
+  has_many :prescriptions, inverse_of: :history, dependent: :destroy
   accepts_nested_attributes_for :prescriptions, allow_destroy: true
 
   KIND = %w( appointment annotation )
@@ -26,7 +26,8 @@ class History < ApplicationRecord
   scope :annotations,  -> { where( kind: 'annotation' ) }
   scope :user, -> (user) { where( user: user ) }
 
-  validates_presence_of :event_at, :professional
+  validates_presence_of :event_at
+  validates_presence_of :professional, unless: :appointment?
 
   def self.ransackable_attributes(auth_object = nil)
     %w(note reason kind) + _ransackers.keys
@@ -42,5 +43,9 @@ class History < ApplicationRecord
 
   def pending
     "pending" if event_at >  Time.now
+  end
+
+  def appointment?
+    kind == 'appointment'
   end
 end
