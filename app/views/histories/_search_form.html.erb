@@ -1,25 +1,18 @@
-<div class="row">
-  <div class="medium-11 medium-centered short-12 columns">
-    <fieldset class="fieldset">
-      <legend><%= t('histories.index.search.title') %> </legend>
-      <%= search_form_for @search, url: search_histories_path(user_id: @user), method: :post do |f| %>
-        <div class= "row" >
-          <div class="small-12 columns ">
-            <p>
-              <small><%= t('histories.index.search.information') %></small>
-            </p>
-            <%= f.condition_fields do |c| %>
-              <%= render 'histories/condition_fields', f: c %>
-            <% end %>
-          </div>
+<fieldset>
+  <legend><%= t('histories.index.search.title') %> </legend>
+    <%= search_form_for @search, url: search_histories_path(user_id: @user), method: :post do |f| %>
+      <div class= "row">
+        <div class="small-12 columns">
+          <p>
+            <%= t('histories.index.search.information') %>
+          </p>
+          <%= f.condition_fields do |c| %>
+            <%= render 'histories/condition_fields', f: c %>
+          <% end %>
         </div>
-
-        <div class= "row" >
-          <div class="medium-4 small-3 columns">
-            <p><%= f.submit t('actions.search'), class: "hollow button small" %></p>
-          </div>
-        </div>
-      <% end %>
-    </fieldset>
-  </div>
-</div>
+      </div>
+      <div class="medium-4 small-3 columns">
+        <p><%= f.submit t('actions.search'), class: "hollow button small" %></p>
+      </div>
+    <% end %>
+</fieldset>

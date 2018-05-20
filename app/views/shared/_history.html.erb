@@ -1,31 +1,36 @@
 <div class="panel">
   <div class="row" >
-    <% if history.professional.present? %>
-      <div class="small-12 columns" >
-        <strong>Consulta: </strong>  Dr/a. <%= history.professional.full_name %> -
-        <%= history.professional.speciality.name %>,
+    <div class="small-12 columns" >
+      <% if history.professional.present? %>
+        <span class="history-item">Consulta: </span>
+        <span class=" <%= history.pending  %>">
+          <%= l history.event_at if history.event_at.present? %> ,
+          Dr/a. <%= history.professional.full_name %> -
+          <%= history.professional.speciality.name %>
+        </span>,
+        <%= history.professional.medical_center.name %>
+      <% else %>
+        <span class="history-item">Fecha de la anotación: </span>
+        <span class=" <%= history.pending  %>"><%= l history.event_at %></span>
         <br>
-        <%= l history.event_at if history.event_at.present? %>,  <%= history.professional.medical_center.name %>
-      </div>
-    <% else %>
-      <div class="small-12 columns" >
-        <strong>Fecha de la anotación: </strong> <%= l history.event_at %><br>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
     <div class="small-12 columns" >
       <br>
-      <strong>Motivo: </strong><%= history.reason %><br>
+      <span class="history-item"> Motivo: </span>
+      <%= history.reason %>
+      <br>
     </div>
     <div class="small-12 columns" >
       <br>
-      <strong>Notas: </strong>
+      <span class="history-item">Notas: </span>
       <%= simple_format(history.note) %>
     </div>
 
     <% if history.prescriptions.present? %>
       <div class="small-12 columns" >
-        <strong>Recetas: </strong>
+        <span class="history-item">Recetas: </span>
         <ul>
           <% history.prescriptions.each do |prescription| %>
             <li>
@@ -45,7 +50,7 @@
 
     <% if history.medical_tests.present? %>
       <div class="small-12 columns" >
-        <strong>Pruebas: </strong>
+        <span class="history-item">Pruebas: </span>
         <ul>
           <% history.medical_tests.each do |test| %>
             <li>
@@ -57,10 +62,10 @@
         </ul>
       </div>
     <% end %>
+
     <% if history.documents.present? %>
       <%= render 'shared/show_documents', resource: history %>
     <% end %>
-
   </div>
   <div class="small-10 columns" >
   </div>

@@ -1,7 +1,10 @@
 <div class="medium-4 small-6 columns end ">
   <%= f.attribute_fields do |a| %>
       <%= a.attribute_select associations: [:professional,
-                                            :medical_tests]%>
+                                            :medical_test,
+                                            :medical_center,
+                                            :speciality,
+                                           ]%>
   <% end %>
 </div>
 <div class="medium-3 small-6 columns end ">

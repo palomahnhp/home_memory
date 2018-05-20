@@ -18,4 +18,10 @@
 //= require cocoon
 //= require_tree
 
-$(function(){ $(document).foundation(); });
+var initialize_modules = function() {
+    App.Documentable.initialize();
+}
+
+$(function(){
+    $(document).foundation();
+});

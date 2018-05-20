@@ -1,4 +1,5 @@
 class History < ApplicationRecord
+
   has_many :medical_tests, dependent: :destroy
   accepts_nested_attributes_for :medical_tests, allow_destroy: true
 
@@ -26,6 +27,7 @@ class History < ApplicationRecord
   scope :user, -> (user) { where( user: user ) }
 
   validates_presence_of :event_at, :professional
+
   def self.ransackable_attributes(auth_object = nil)
     %w(note reason kind) + _ransackers.keys
   end
@@ -36,5 +38,9 @@ class History < ApplicationRecord
 
   def self.kinds
     KIND.map { |kind| [I18n.t("activerecord.attributes.history.#{kind}"), kind]}
+  end
+
+  def pending
+    "pending" if event_at >  Time.now
   end
 end
