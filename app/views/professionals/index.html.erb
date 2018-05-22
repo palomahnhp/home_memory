@@ -19,8 +19,8 @@
             <tr>
               <td> <%= professional.first_name %> </td>
               <td> <%= professional.last_name %> </td>
-              <td> <%= professional.speciality.name %> </td>
-              <td> <%= professional.medical_center.name %> </td>
+              <td> <%= professional&.speciality&.name %> </td>
+              <td> <%= professional&.medical_center&.name %> </td>
               <td><%= link_to '  ', professional, class: "icon-search" %></td>
               <td><%= link_to '  ', edit_professional_path(professional), class: "icon-pencil" %></td>
               <td><%= link_to '  ', professional, method: :delete, data: { confirm: t('actions.destroy.confirmation') },  class: "icon-trash" %></td>
