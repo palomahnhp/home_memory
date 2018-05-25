@@ -7,7 +7,7 @@
 <%= link_to " " + t('actions.create', resource: 'nota'), new_history_path(user_id: user, kind: 'annotation' ),class: "icon-pencil" %>  |
 <%= link_to " " + 'Todas las pruebas', medical_tests_path(user_id: @user), class: "icon-drug-medecine-streamline-syringue", title: "Pruebas" %>
 
-<% @histories.each do |history| %>
+<% @histories.no_pending.each do |history| %>
   <%= render "shared/history", history: history%>
 <% end %>
 

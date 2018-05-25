@@ -1,5 +1,5 @@
 <div class="row" >
-  <div class="smal-12 columns">
+  <div class="small-12 columns">
     <div class="small-6 columns">
       <%= form.label :professional_id %>
       <%= form.select :professional_id,
@@ -7,10 +7,11 @@
                                                          'id',
                                                          'full_name_speciality',
                                                          @history.professional_id),
-                      {:include_blank => 'Selecciona profesional'}
-      %>
+                      {:include_blank => 'Selecciona profesional'} %>
     </div>
+
   </div>
+
   <div class="smal-12 columns">
     <div class="small-4 columns">
       <%= form.label :event_at, 'Fecha y hora de la cita' %>

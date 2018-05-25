@@ -3,11 +3,13 @@
     <%= form.hidden_field :user_id, value: @history.user.id %>
     <%= form.hidden_field :kind, value: @history.kind %>
 
-    <div class="small-10 columns actions">
-      <%= link_to t('actions.back'), histories_path(user_id: @history.user) %>
-    </div>
-    <div class="small-2 columns actions">
-      <%= form.submit t('actions.save'), class: "button hollow small" %>
+    <div class="small-12 columns actions">
+      <div class="small-10 columns actions">
+        <%= link_to t('actions.back'), histories_path(user_id: @history.user) %>
+      </div>
+      <div class="small-2 columns actions">
+        <%= form.submit t('actions.save'), class: "button hollow small" %>
+      </div>
     </div>
 
     <fieldset>
@@ -23,6 +25,19 @@
       <% end %>
 
       <div class="small-12 columns" >
+        <div class="small-6 columns" >
+          <span> Proceso:
+            <%= form.select :process_id,
+                           options_from_collection_for_select(History.initials, 'id', 'process_name', @history.process_id),
+                           {:include_blank => 'Selecciona proceso'} %>
+          </span>
+        </div>
+        <div class="small-2 columns">
+          <label >
+            Proceso inicial
+            <%= form.check_box :initial_process %>
+          </label>
+        </div>
         <% if form.object.kind == 'appointment' %>
           <%= render 'appointment', form: form %>
         <% else %>

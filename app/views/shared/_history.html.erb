@@ -1,6 +1,18 @@
 <div class="panel">
   <div class="row" >
     <div class="small-12 columns" >
+
+      <div class="small-6 columns" >
+      </div>
+      <div class="small-3 columns" >
+        <%= history.id.to_s + '/' + history.process_id.to_s %> |
+        <%= link_to '', edit_history_path(history), class: 'icon-pencil' %> |
+        <%= link_to '', history_path(history), method: :delete, class: 'icon-trash',
+                    data: { confirm: t('actions.destroy.confirmation') } %>
+
+      </div>
+    </div>
+    <div class="small-12 columns" >
       <% if history.professional.present? %>
         <span class="history-item">Consulta: </span>
         <span class=" <%= history.pending  %>">
@@ -28,7 +40,16 @@
       <%= simple_format(history.note) %>
     </div>
 
-    <% if history.prescriptions.present? %>
+    <% if history.has_process? %>
+      <span class="history-item">Proceso: </span>
+      <%= l history.process.event_at %> <%= history.process.reason %>
+      <%= link_to 'Ver todo el proceso',
+                  histories_path(user_id: history.user, process: history.process),
+                  class: 'icon-folder', target: '_blank',
+                  title: history.process.reason %>
+    <% end %>
+
+      <% if history.prescriptions.present? %>
       <div class="small-12 columns" >
         <span class="history-item">Recetas: </span>
         <ul>
@@ -63,16 +84,9 @@
       </div>
     <% end %>
 
+
     <% if history.documents.present? %>
       <%= render 'shared/show_documents', resource: history %>
     <% end %>
-  </div>
-  <div class="small-10 columns" >
-  </div>
-  <div class="small-2 columns" >
-    <strong>Acciones: </strong><%= link_to '', edit_history_path(history), class: 'icon-pencil' %>
-    <%= link_to '', history_path(history), method: :delete, class: 'icon-trash',
-                data: { confirm: t('actions.destroy.confirmation') } %>
-    <br>
   </div>
 </div>

@@ -19,6 +19,7 @@ class MedicalTest < ApplicationRecord
   validates_presence_of :name, :performed_at, :medical_center_id
 
   scope :by_user, ->(user) { where(history: History.user(user) ) }
+  scope :pending, -> { where( "performed_at > ?", Time.now) }
 
   def initialize_analysis_results
     AnalyticalGroup.all.each do |group|

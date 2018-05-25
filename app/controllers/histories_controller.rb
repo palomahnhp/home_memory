@@ -4,7 +4,11 @@ class HistoriesController < ApplicationController
 
   def index
     @user = User.find_by(id: params[:user_id])
-    @search = @user.histories.search(params[:q])
+    if params[:process].present?
+      @search = @user.histories.by_process(params[:process]).search(params[:q])
+    else
+      @search = @user.histories.search(params[:q])
+    end
     @search.sorts = "even_at desc"  if @search.sorts.empty?
     @histories = @search.result.order(event_at: :desc)
     @search.build_condition
@@ -24,6 +28,7 @@ class HistoriesController < ApplicationController
     @history = History.new(history_params)
 
     if @history.save
+      params[:history][:process_id] = @history.id if params[:history][:initial_process] == 1
       redirect_to histories_path(user_id: @user), notice: 'History was successfully created.'
     else
       render :new, alert: 'Error creando el registro.'
@@ -32,6 +37,7 @@ class HistoriesController < ApplicationController
 
   def update
     respond_to do |format|
+      params[:history][:process_id] = @history.id if params[:history][:initial_process]== 1
       if @history.update(history_params)
         format.html { redirect_to @history, notice: 'History was successfully updated.' }
         format.json { render :show, status: :ok, location: @history }
@@ -66,6 +72,8 @@ class HistoriesController < ApplicationController
                                       :reason,
                                       :location,
                                       :order,
+                                      :process_id,
+                                      :initial_process,
                                        prescriptions_attributes: [
                                           :id,
                                           :medication_id,

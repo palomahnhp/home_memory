@@ -4,11 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :histories
   has_many :professionals,  through: :histories
   has_many :medical_tests,  through: :histories
   has_many :prescriptions,  through: :histories
   has_many :medications,    through: :prescriptions
-  has_many :histories
   has_many :issues
 
   include Documentable
