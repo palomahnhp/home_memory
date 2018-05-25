@@ -1,14 +1,16 @@
 <h4>Proximamente</h4>
-<table>
-  <% medical_comming(user).each do |event| %>
-    <tr>
-      <td> <%= link_to event[3], event[1] %> </td>
-      <td> <%= l event[4].to_date if event[4].present? %> </td>
-      <td> <%= event[5] %></td>
-      <td> <%= event[6] %></td>
-      <td> <%= event[7] %></td>
-
-    </tr>
-  <% end %>
-</table>
-
+<div class="row ">
+  <div class="small-12 columns">
+    <table class="comming expand">
+      <% medical_comming(user).each do |event| %>
+        <tr>
+          <td> <%= link_to (l event[4].to_date), event[1] %> </td>
+          <td> <%= link_to event[3], event[1] %> </td>
+          <td> <%= link_to event[5], event[1] %></td>
+          <td> <%= link_to event[6], event[1] %></td>
+          <td> <%= link_to event[7], event[1] %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
