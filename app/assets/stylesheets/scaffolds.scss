@@ -273,12 +273,15 @@ label {
 
 table.comming{
   tr{
-    border-color: #dfaa2a;
+    border: 0;
+    border-color: $secondary-color;
   }
   td{
-    border: none;
-    background-color: #dfdb3d;;
-
+    border: 0;
+    background-color: $secondary-color;;
+  }
+  a{
+    color: #1847df;
   }
 }
 

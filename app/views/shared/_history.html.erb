@@ -31,9 +31,10 @@
       <% if history.professional.present? %>
         <span class="history-item">Consulta: </span>
         <span class=" <%= history.pending  %>">
-          <%= l history.event_at if history.event_at.present? %> ,
-          Dr/a. <%= history.professional.full_name %> -
-          <%= history.professional.speciality.name %>
+          <strong><%= history.speciality&.name %> </strong>
+          Dr/a. <%= history.professional.full_name %>,
+          <%= l history.event_at if history.event_at.present? %>
+
         </span>,
         <%= history.professional.medical_center.name %>
       <% else %>

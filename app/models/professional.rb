@@ -9,10 +9,6 @@ class Professional < ApplicationRecord
     first_name + " " + last_name
   end
 
-  def full_name_speciality
-     first_name + " " + last_name + " - " + speciality.name
-  end
-
   def self.select_option
     all.order(:first_name, :last_name).map{|p| [ p.full_name, p.id ] }
   end

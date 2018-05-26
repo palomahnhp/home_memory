@@ -67,6 +67,7 @@ class HistoriesController < ApplicationController
                                       :note,
                                       :user_id,
                                       :professional_id,
+                                      :speciality_id,
                                       :appointment_id,
                                       :medical_center_id,
                                       :reason,
