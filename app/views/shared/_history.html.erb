@@ -1,7 +1,6 @@
 <div class="panel">
-  <div class="row" >
+  <fieldset class="row" >
     <div class="small-12 columns" >
-
       <div class="small-6 columns" >
       </div>
       <div class="small-3 columns" >
@@ -10,7 +9,6 @@
         <%= link_to '', edit_history_path(history), class: 'icon-pencil' %> |
         <%= link_to '', history_path(history), method: :delete, class: 'icon-trash',
                     data: { confirm: t('actions.destroy.confirmation') } %>
-
       </div>
     </div>
 
@@ -56,43 +54,43 @@
     </div>
 
       <% if history.prescriptions.present? %>
-      <div class="small-12 columns" >
-        <span class="history-item">Recetas: </span>
-        <ul>
-          <% history.prescriptions.each do |prescription| %>
-            <li>
-              <% if prescription.medication.documents.present? %>
-                <%= link_to '',
-                            prescription.medication.documents.first.attachment.url,
-                            class: 'icon-file-pdf-o', target: '_blank',
-                            title: prescription.medication.documents.first.title%>
-              <% end %>
-              <%= prescription.medication.name %>. Dosis:  => <%= prescription.posology %>, desde <%= l prescription.init_at %>
-              hasta <%= l prescription.end_at %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+        <fieldset class="history-item" >
+          <legend> Recetas: </legend>
+          <ul>
+            <% history.prescriptions.each do |prescription| %>
+              <li>
+                <% if prescription.medication.documents.present? %>
+                  <%= link_to '',
+                              prescription.medication.documents.first.attachment.url,
+                              class: 'icon-file-pdf-o', target: '_blank',
+                              title: prescription.medication.documents.first.title%>
+                <% end %>
+                <%= prescription.medication.name %>. Dosis:  => <%= prescription.posology %>, desde <%= l prescription.init_at %>
+                hasta <%= l prescription.end_at %>
+              </li>
+            <% end %>
+          </ul>
+      </fieldset>
     <% end %>
 
     <% if history.medical_tests.present? %>
-      <div class="small-12 columns" >
-        <span class="history-item">Pruebas: </span>
-        <ul>
-          <% history.medical_tests.each do |test| %>
-            <li>
-              <%= link_to test.name, test, target: '_blank', title: test.name %>
-              => <%= l test.performed_at if test.performed_at.present? %> en
-              <%= test.medical_center.name if test.medical_center.present?  %> - <%= test.performed_in %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+      <fieldset class="history-item" >
+        <legend>Pruebas: </legend>
+          <ul>
+            <% history.medical_tests.each do |test| %>
+              <li>
+                <%= link_to test.name, test, target: '_blank', title: test.name %>
+                => <%= l test.performed_at if test.performed_at.present? %> en
+                <%= test.medical_center.name if test.medical_center.present?  %> - <%= test.performed_in %>
+              </li>
+            <% end %>
+          </ul>
+      </fieldset>
     <% end %>
 
 
     <% if history.documents.present? %>
       <%= render 'shared/show_documents', resource: history %>
     <% end %>
-  </div>
+  </fieldset>
 </div>
