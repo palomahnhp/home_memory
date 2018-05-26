@@ -1,6 +1,6 @@
 class Speciality < ApplicationRecord
-  has_many :professional
-  has_many :histories, through: :professional
+  has_many :professionals
+  has_many :histories
 
   default_scope { order(:name) }
 

@@ -1,7 +1,7 @@
 <h4>Proximamente</h4>
-<div class="row ">
+<div class="row panel">
   <div class="small-12 columns">
-    <table class="comming expand">
+    <table class="comming">
       <% medical_comming(user).each do |event| %>
         <tr>
           <td> <%= link_to (l event[4].to_date), event[1] %> </td>

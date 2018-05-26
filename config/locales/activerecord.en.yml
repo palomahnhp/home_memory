@@ -8,7 +8,7 @@ en:
       user_datum:
         one: Dato de usuario
         other: Datos de usuarios
-      profesional:
+      professional:
         one: Profesional
         other: Profesionales
       speciality:
@@ -72,6 +72,7 @@ en:
         professional_id: Profesional
         medical_center_id: Centro médico
         location: Planta, sala
+        event_at: Fecha
       prescription:
         medication_id: Medicamento
         init_at: Fecha de inicio

@@ -1,11 +1,21 @@
 <div class="row" >
   <div class="small-12 columns">
     <div class="small-6 columns">
+      <%= form.label :speciality_id %>
+      <%= form.select :speciality_id,
+                      options_from_collection_for_select(Speciality.all,
+                                                         'id',
+                                                         'name',
+                                                         @history.speciality_id),
+                      {:include_blank => 'Selecciona especialidad'} %>
+    </div>
+
+<div class="small-6 columns">
       <%= form.label :professional_id %>
       <%= form.select :professional_id,
                       options_from_collection_for_select(Professional.all,
                                                          'id',
-                                                         'full_name_speciality',
+                                                         'full_name',
                                                          @history.professional_id),
                       {:include_blank => 'Selecciona profesional'} %>
     </div>

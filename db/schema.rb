@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180524163004) do
+ActiveRecord::Schema.define(version: 20180526112257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,16 @@ ActiveRecord::Schema.define(version: 20180524163004) do
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
+  create_table "fields", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "fieldset"
+    t.string "name"
+    t.string "value"
+    t.integer "order"
+    t.string "updated_by"
+    t.index ["user_id"], name: "index_fields_on_user_id"
+  end
+
   create_table "histories", force: :cascade do |t|
     t.datetime "event_at"
     t.string "kind"
@@ -89,9 +99,11 @@ ActiveRecord::Schema.define(version: 20180524163004) do
     t.datetime "updated_at", null: false
     t.bigint "process_id"
     t.boolean "initial_process"
+    t.bigint "speciality_id"
     t.index ["medical_center_id"], name: "index_histories_on_medical_center_id"
     t.index ["process_id"], name: "index_histories_on_process_id"
     t.index ["professional_id"], name: "index_histories_on_professional_id"
+    t.index ["speciality_id"], name: "index_histories_on_speciality_id"
     t.index ["user_id"], name: "index_histories_on_user_id"
   end
 
@@ -191,6 +203,16 @@ ActiveRecord::Schema.define(version: 20180524163004) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_data", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "fieldset"
+    t.string "name"
+    t.string "value"
+    t.integer "order"
+    t.string "updated_by"
+    t.index ["user_id"], name: "index_user_data_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -224,6 +246,7 @@ ActiveRecord::Schema.define(version: 20180524163004) do
   add_foreign_key "documents", "users"
   add_foreign_key "histories", "medical_centers"
   add_foreign_key "histories", "professionals"
+  add_foreign_key "histories", "specialities"
   add_foreign_key "histories", "users"
   add_foreign_key "issues", "users"
   add_foreign_key "prescriptions", "histories"

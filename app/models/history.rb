@@ -3,6 +3,7 @@ class History < ApplicationRecord
   belongs_to :user
   belongs_to :professional, optional: true
   belongs_to :process, class_name: "History", optional: true
+  belongs_to :speciality
 
   has_many :medical_tests, inverse_of: :history, dependent: :destroy
   accepts_nested_attributes_for :medical_tests, allow_destroy: true
@@ -33,7 +34,7 @@ class History < ApplicationRecord
   validates_presence_of :professional, unless: :appointment?
 
   def self.ransackable_attributes(auth_object = nil)
-    %w(note reason kind) + _ransackers.keys
+    %w(note reason kind event_at) + _ransackers.keys
   end
 
   def self.select_option(user)
