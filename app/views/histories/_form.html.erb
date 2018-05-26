@@ -1,4 +1,6 @@
-<div class="row">
+<%= render 'shared/errors', resource: @history %>
+
+<div class="history row">
   <%= form_with(model: @history, local: true) do |form| %>
     <%= form.hidden_field :user_id, value: @history.user.id %>
     <%= form.hidden_field :kind, value: @history.kind %>
@@ -52,7 +54,7 @@
         </div>
         <div class="small-12 columns" >
           <%= form.label :note %>
-          <%= form.text_area :note %>
+          <%= form.text_area :note, class: "note" %>
         </div>
       </div>
     </fieldset>

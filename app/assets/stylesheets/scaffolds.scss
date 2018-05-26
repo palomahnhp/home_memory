@@ -184,6 +184,7 @@ div {
   padding: 7px 7px 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
+  color: black;
 
   h2 {
     text-align: left;
@@ -278,5 +279,12 @@ table.comming{
     border: none;
     background-color: #dfdb3d;;
 
+  }
+}
+
+.history{
+  .note {
+    height: 150px !important;
+    overflow: auto;
   }
 }
