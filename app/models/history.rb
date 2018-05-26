@@ -53,7 +53,7 @@ class History < ApplicationRecord
   end
 
   def has_process?
-    process.present? && process_id != id
+    process.present? # && process_id != id
   end
 
   def process_name

@@ -5,13 +5,28 @@
       <div class="small-6 columns" >
       </div>
       <div class="small-3 columns" >
-        <%= history.id.to_s + '/' + history.process_id.to_s %> |
+        <%= history.id.to_s%>
+        <%= '/' + history.process_id.to_s if history.process_id.present? %> |
         <%= link_to '', edit_history_path(history), class: 'icon-pencil' %> |
         <%= link_to '', history_path(history), method: :delete, class: 'icon-trash',
                     data: { confirm: t('actions.destroy.confirmation') } %>
 
       </div>
     </div>
+
+    <% if history.has_process? %>
+      <div class="small-12 columns" >
+        <p>
+          <span class="history-item">Proceso: </span>
+          <%= l history.process.event_at %> <%= history.process.reason %>
+          <%= link_to 'Ver todo el proceso',
+                      histories_path(user_id: history.user, process: history.process),
+                      class: 'icon-folder', target: '_blank',
+                      title: history.process.reason %>
+        </p>
+      </div>
+    <% end %>
+
     <div class="small-12 columns" >
       <% if history.professional.present? %>
         <span class="history-item">Consulta: </span>
@@ -39,15 +54,6 @@
       <span class="history-item">Notas: </span>
       <%= simple_format(history.note) %>
     </div>
-
-    <% if history.has_process? %>
-      <span class="history-item">Proceso: </span>
-      <%= l history.process.event_at %> <%= history.process.reason %>
-      <%= link_to 'Ver todo el proceso',
-                  histories_path(user_id: history.user, process: history.process),
-                  class: 'icon-folder', target: '_blank',
-                  title: history.process.reason %>
-    <% end %>
 
       <% if history.prescriptions.present? %>
       <div class="small-12 columns" >
