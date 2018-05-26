@@ -2,7 +2,7 @@ class MedicalCenter < ApplicationRecord
   has_many :professionals
   has_many :histories
 
-  default_scoped { order( :name ) }
+  default_scope { order(:name ) }
 
   def self.select_option
     all.order(:name).map{|p| [ p.name, p.id ] }

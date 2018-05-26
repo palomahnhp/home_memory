@@ -3,13 +3,14 @@ class Professional < ApplicationRecord
   belongs_to :medical_center, optional: true
 
   validates_presence_of :first_name, :last_name
+  default_scope { order(:first_name, :last_name  ) }
 
   def full_name
     first_name + " " + last_name
   end
 
   def full_name_speciality
-    speciality.name + " - " + first_name + " " + last_name
+     first_name + " " + last_name + " - " + speciality.name
   end
 
   def self.select_option
