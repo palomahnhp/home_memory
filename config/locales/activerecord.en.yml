@@ -73,6 +73,7 @@ en:
         medical_center_id: Centro médico
         location: Planta, sala
         event_at: Fecha
+        speciality_id: Especialidad
       prescription:
         medication_id: Medicamento
         init_at: Fecha de inicio

@@ -34,7 +34,6 @@
           <strong><%= history.speciality&.name %> </strong>
           Dr/a. <%= history.professional.full_name %>,
           <%= l history.event_at if history.event_at.present? %>
-
         </span>,
         <%= history.professional.medical_center.name %>
       <% else %>

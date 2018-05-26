@@ -9,45 +9,47 @@ en:
       confirmation: "¿Quieres borrarlo?,¿seguro?"
     edit: Editar
     new: Crear
+    save: Guardar
+    search: Buscar
     show: Ver
-    save: "Guardar"
-    search: "Buscar"
   activerecord:
     attributes:
       history:
-        appointment: Cita
         annotation: Nota
-        note: Nota
+        appointment: Cita
         even_at: Feha
         location: Lugar
+        note: Nota
         professional: Profesional
         reason: Motivo
         speciality: Especialidad
       medical_center:
         address: Dirección postal
-        phone: Teléfono de citas
         email: e-mail
         main_phone: Teléfono
         name: Nombre
-        web: Web
         notes: Notas
+        phone: Teléfono de citas
+        web: Web
       medication:
         active_ingredient: Principio activo
         name: Nombre
         prospect: Prospecto
       user:
-        speciality: "Especialidad"
-        medical_center: "Centro médico"
-        comments: "Notas"
+        comments: Notas
+        medical_center: Centro médico
+        speciality: Especialidad
     models:
       speciality: Especialidades
   app:
     name: Home Memory
+  application:
+    close: Cerrar
   appointments:
     edit:
       title: Modificar Cita
     new:
-      title: "Crear cita"
+      title: Crear cita
   documents:
     actions:
       destroy:
@@ -77,21 +79,28 @@ en:
     no_documents: No hay documentos subidos
     tab: Documentos
     upload_document: Subir documento
+  header:
+    help: Ayuda
   hello: Hello world
   histories:
     edit:
       title: Modificar historia
     index:
       search:
-        title: "Búsqueda avanzada"
-        information: "Para añadir una condición selecciona el campo de búsqueda, para eliminarla dejalo en blanco."
+        information: Para añadir una condición selecciona el campo de búsqueda, para
+          eliminarla dejalo en blanco.
+        title: Búsqueda avanzada
+  history:
+    kind:
+      annotation: Nota
+      appointment: Cita
   layouts:
     footer:
       copyright: "© Copyright %{year}"
     subnavigation_menu:
       medications: Medicinas
-      users: Usuarios
       professionals: Profesionales
+      users: Usuarios
   medical_center:
     edit:
       title: Modificar centro médico
@@ -117,7 +126,7 @@ en:
     new:
       title: Nueva prueba
     show:
-      title: 'Prueba médica'
+      title: Prueba médica
   medications:
     edit:
       title: Editar medicamento
@@ -127,20 +136,11 @@ en:
       title: Nuevo medicamento
     show:
       title: Detalles de medicamento
-  users:
-    index:
-      title: Usuarios
-    new:
-      title: Nuevo usuario
+  professional:
     show:
-      title: Usuario
-    edit:
-      title: "Modificar usuario"
-    block:
-      personal_data: "Datos personales"
-      public_org: "Organismo público de salud"
-      private_company: "Compañía de salud"
-    fields: "Otros datos"
+      data_comments: Notas
+      data_legend: Datos del profesional
+      title: Datos de profesional
   professionals:
     edit:
       title: Editar profesional
@@ -148,26 +148,27 @@ en:
       title: Profesionales
     new:
       title: Nuevo profesional
+  shared:
+    import:
+      button: Importar
+    top_links:
+      no_user: No hay usuario conectado
   specialities:
     index:
       title: Especialidades médicas
     show:
       title: Especialidad médica
-  professional:
+  users:
+    block:
+      personal_data: Datos personales
+      private_company: Compañía de salud
+      public_org: Organismo público de salud
+    edit:
+      title: Modificar usuario
+    fields: Otros datos
+    index:
+      title: Usuarios
+    new:
+      title: Nuevo usuario
     show:
-      title: "Datos de profesional"
-      data_legend: "Datos del profesional"
-      data_comments: "Notas"
-  history:
-    kind:
-      appointment: Cita
-      annotation:  Nota
-  shared:
-    top_links:
-      no_user: "No hay usuario conectado"
-    import:
-      button: "Importar"
-  application:
-    close: "Cerrar"
-  header:
-    help: "Ayuda"
+      title: Usuario
