@@ -90,4 +90,9 @@ class Document < ActiveRecord::Base
       document.attachment.destroy
     end
 
+
+  def self.export_columns
+    %W(name)
+  end
+
 end

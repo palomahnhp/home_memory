@@ -12,6 +12,10 @@ class HistoriesController < ApplicationController
     @search.sorts = "even_at desc"  if @search.sorts.empty?
     @histories = @search.result.order(event_at: :desc)
     @search.build_condition
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   def show;  end

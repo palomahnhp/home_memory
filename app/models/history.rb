@@ -62,6 +62,29 @@ class History < ApplicationRecord
      event_at.strftime("%m/%d/%Y") + ' ' + reason
   end
 
+  def self.export_columns
+    %W(date speciality_name professional_name reason medical_center_name process_name note )
+  end
+
+  def professional_name
+    professional&.full_name
+  end
+
+  def medical_center_name
+    medical_center&.name
+  end
+
+  def process_namee
+    process&.name
+  end
+
+  def speciality_name
+    speciality&.name
+  end
+
+  def date
+    event_at&.strftime("%m/%d/%Y %H:%M")
+  end
 end
 
 

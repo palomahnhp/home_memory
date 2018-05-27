@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="RPT">
+    <Table>
+      <Row>
+        <% History.export_columns.each do |col| %>
+          <Cell><Data ss:Type="String"><%= col %></Data></Cell>
+        <% end %>
+
+        <Cell><Data ss:Type="String"> 'prescripción' %></Data></Cell>
+
+        <% Document.export_columns.each do |col| %>
+          <Cell><Data ss:Type="String"><%= col %></Data></Cell>
+        <% end %>
+
+      </Row>
+
+      <% @histories.each do |history| %>
+        <Row>
+          <% History.export_columns.each do |col| %>
+            <Cell><Data ss:Type="String"><%= history.send(col) %></Data></Cell>
+          <% end %>
+
+          <% prescriptions = '' %>
+          <% history.prescriptions.each do |prescription| %>
+            <%= prescriptions = prescriptions + ', ' + prescription.medication.name %>
+          <% end %>
+
+          <Cell><Data ss:Type="String"><%= prescriptions %></Data></Cell>
+        </Row>
+      <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

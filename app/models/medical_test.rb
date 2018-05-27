@@ -32,4 +32,16 @@ class MedicalTest < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     %w(name performed_at) + _ransackers.keys
   end
+
+  def self.export_columns
+    %W(date name medical_center_name)
+  end
+
+  def medical_center_name
+    medical_center&.name
+  end
+
+  def professional_name
+    professional&.name
+  end
 end
