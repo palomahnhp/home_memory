@@ -12,26 +12,13 @@
       </div>
     </div>
 
-    <% if history.has_process? %>
-      <div class="small-12 columns" >
-        <p>
-          <span class="history-item">Proceso: </span>
-          <%= l history.process.event_at %> <%= history.process.reason %>
-          <%= link_to 'Ver todo el proceso',
-                      histories_path(user_id: history.user, process: history.process),
-                      class: 'icon-folder', target: '_blank',
-                      title: history.process.reason %>
-        </p>
-      </div>
-    <% end %>
-
     <div class="small-12 columns" >
       <% if history.professional.present? %>
         <span class="history-item">Consulta: </span>
         <span class=" <%= history.pending  %>">
+          <%= l history.event_at if history.event_at.present? %>,
           <strong><%= history.speciality&.name %> </strong>
-          Dr/a. <%= history.professional.full_name %>,
-          <%= l history.event_at if history.event_at.present? %>
+          Dr/a. <%= history.professional.full_name %>
         </span>,
         <%= history.professional.medical_center.name %>
       <% else %>
@@ -41,8 +28,19 @@
       <% end %>
     </div>
 
+    <% if history.has_process? %>
+      <div class="small-12 columns" >
+        <p><br>
+          <span class="history-item">Proceso: </span>
+          <%= history.process.reason %> <%= l history.process.event_at, format: :date %>
+          <%= link_to '',
+                      histories_path(user_id: history.user, process: history.process),
+                      class: 'icon-search', target: '_blank',
+                      title: 'Ver todo el proceso' %>
+        </p>
+      </div>
+    <% end %>
     <div class="small-12 columns" >
-      <br>
       <span class="history-item"> Motivo: </span>
       <%= history.reason %>
       <br>

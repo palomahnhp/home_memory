@@ -30,7 +30,7 @@
         <div class="small-6 columns" >
           <span> Proceso:
             <%= form.select :process_id,
-                           options_from_collection_for_select(History.initials, 'id', 'process_name', @history.process_id),
+                           options_from_collection_for_select(History.initials.user(@history.user), 'id', 'process_name', @history.process_id),
                            {:include_blank => 'Selecciona proceso'} %>
           </span>
         </div>

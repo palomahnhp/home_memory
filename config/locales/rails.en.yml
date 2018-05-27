@@ -198,6 +198,7 @@ en:
       default: "%A, %d/%m/%Y %H:%M"
       long: "%d de %B de %Y %H:%M"
       short: "%d de %b %H:%M"
+      date:  "%d/%m/%Y"
     pm: pm
   boolean:
     "false": "No"
