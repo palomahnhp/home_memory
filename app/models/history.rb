@@ -1,9 +1,10 @@
 class History < ApplicationRecord
+
   belongs_to :medical_center, optional: true
   belongs_to :user
   belongs_to :professional, optional: true
   belongs_to :process, class_name: "History", optional: true
-  belongs_to :speciality
+  belongs_to :speciality, optional: true
 
   has_many :medical_tests, inverse_of: :history, dependent: :destroy
   accepts_nested_attributes_for :medical_tests, allow_destroy: true
@@ -22,16 +23,16 @@ class History < ApplicationRecord
 
   default_scope -> { order(event_at: :desc) }
 
-  scope :initials, -> { where( initial_process: 1 ) }
-  scope :pending, -> { where( "event_at > ?", Time.now) }
-  scope :no_pending, -> { where( "event_at <= ?", Time.now) }
-  scope :appointments, -> { where( kind: 'appointment' ) }
-  scope :annotations,  -> { where( kind: 'annotation' ) }
-  scope :user, -> (user) { where( user: user ) }
-  scope :by_process, -> (process) { where( process: process ) }
+  scope :initials,      -> { where( initial_process: 1 ) }
+  scope :pending,       -> { where( "event_at > ?", Time.now) }
+  scope :no_pending,    -> { where( "event_at <= ?", Time.now) }
+  scope :appointments,  -> { where( kind: 'appointment' ) }
+  scope :annotations,   -> { where( kind: 'annotation' ) }
+  scope :user,          -> (user) { where( user: user ) }
+  scope :by_process,    -> (process) { where( process: process ) }
 
   validates_presence_of :event_at
-  validates_presence_of :professional, unless: :appointment?
+  validates_presence_of :reason
 
   def self.ransackable_attributes(auth_object = nil)
     %w(note reason kind event_at) + _ransackers.keys
@@ -60,4 +61,7 @@ class History < ApplicationRecord
   def process_name
      event_at.strftime("%m/%d/%Y") + ' ' + reason
   end
+
 end
+
+
