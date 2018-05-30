@@ -18,7 +18,7 @@ class User < ApplicationRecord
                                          "image/jpeg",
                                          'image/png']
 
-  has_many :properties, inverse_of: :user, dependent: :destroy
+  has_many :properties, as: :propertible, dependent: :destroy
   accepts_nested_attributes_for :properties, reject_if: :all_blank, allow_destroy: true
 
   def full_name
