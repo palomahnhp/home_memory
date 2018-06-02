@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180529174220) do
+ActiveRecord::Schema.define(version: 20180531170805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,16 +73,6 @@ ActiveRecord::Schema.define(version: 20180529174220) do
     t.index ["documentable_type", "documentable_id"], name: "index_documents_on_documentable_type_and_documentable_id"
     t.index ["user_id", "documentable_type", "documentable_id"], name: "access_documents"
     t.index ["user_id"], name: "index_documents_on_user_id"
-  end
-
-  create_table "fields", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "fieldset"
-    t.string "name"
-    t.string "value"
-    t.integer "order"
-    t.string "updated_by"
-    t.index ["user_id"], name: "index_fields_on_user_id"
   end
 
   create_table "histories", force: :cascade do |t|
@@ -149,12 +139,11 @@ ActiveRecord::Schema.define(version: 20180529174220) do
     t.string "active_ingredient"
     t.string "presentation"
     t.string "laboratory"
-    t.string "prospect_file_name"
-    t.string "prospect_content_type"
-    t.integer "prospect_file_size"
-    t.datetime "prospect_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "observations"
+    t.string "indications"
+    t.string "groups"
   end
 
   create_table "name_tests", force: :cascade do |t|
@@ -204,6 +193,8 @@ ActiveRecord::Schema.define(version: 20180529174220) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "group"
+    t.text "information"
   end
 
   create_table "user_data", force: :cascade do |t|

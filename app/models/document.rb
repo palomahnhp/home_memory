@@ -7,7 +7,7 @@ class Document < ActiveRecord::Base
                                  hash_secret: Rails.application.secrets.secret_key_base
   attr_accessor :cached_attachment
 
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :documentable, polymorphic: true
 
   # Disable paperclip security validation due to polymorphic configuration
@@ -17,7 +17,6 @@ class Document < ActiveRecord::Base
   validate :validate_attachment_content_type,         if: -> { attachment.present? }
   validate :validate_attachment_size,                 if: -> { attachment.present? }
   validates :title, presence: true
-  validates :user_id, presence: true
   validates :documentable_id, presence: true,         if: -> { persisted? }
   validates :documentable_type, presence: true,       if: -> { persisted? }
 

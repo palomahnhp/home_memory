@@ -1,0 +1,2 @@
+class SpecialityImporter < BaseImporter
+end

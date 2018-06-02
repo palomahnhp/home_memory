@@ -1,4 +1,3 @@
-
   class BaseImporter
     attr_reader :filepath
 
@@ -15,6 +14,21 @@
     end
 
     private
+
+    def parse
+      Rails.logger.info (self.class.to_s + ' - '  + Time.zone.now.to_s + " - comienza lectura fichero: #{@filepath}")
+      spreadsheet = open_spreadsheet
+      Rails.logger.info (self.class.to_s + ' - '  + Time.zone.now.to_s + " - fichero leido: #{@filepath} " + spreadsheet.last_row.to_s + ' filas' )
+      header = spreadsheet.row(1)
+
+      (2..spreadsheet.last_row).each do |i|
+        row = Hash[[header, spreadsheet.row(i)].transpose]
+        model = self.class.to_s
+        model.slice! "Importer"
+        reg = eval(model).find_or_create_by(row)
+        reg.add_prospect(row['name']) if reg.respond_to? :add_prospect
+      end
+    end
 
     def notify_admin
       if @start.blank?

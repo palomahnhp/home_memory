@@ -1,0 +1,3 @@
+class MedicalCenterImporter < BaseImporter
+
+end

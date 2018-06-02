@@ -1,7 +1,4 @@
 class Medication < ApplicationRecord
-  has_attached_file :prospect, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/prospect/:style/missing.png"
-  validates_attachment_content_type :prospect, content_type: "application/pdf"
-
   include Documentable
   documentable max_documents_allowed: 3,
                max_file_size: 3.megabytes,
@@ -12,5 +9,13 @@ class Medication < ApplicationRecord
 
   def self.ransackable_attributes(auth_object = nil)
     %w(name) + _ransackers.keys
+  end
+
+  def add_prospect(name)
+    return unless name.present?
+    file = File.open('public/import/prospectos/' + name.downcase.gsub(/\s+/, '') + '.pdf')
+    document = Document.create(title: 'Prospecto de ' + name.upcase,
+                            attachment: file,
+                            documentable: self)
   end
 end

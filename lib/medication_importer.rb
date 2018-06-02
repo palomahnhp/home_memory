@@ -1,0 +1,3 @@
+class MedicationImporter < BaseImporter
+
+end
