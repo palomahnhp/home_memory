@@ -74,7 +74,9 @@ class MedicationsController < ApplicationController
     def medication_params
       params.require(:medication).permit(:name,
                                          :active_ingredient,
-                                         :prospect,
+                                         :groups,
+                                         :indications,
+                                         :observations,
                                          documents_attributes: [:id,
                                                                 :title,
                                                                 :attachment,
