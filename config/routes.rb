@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :prescriptions
+
   resources :medications
   resources :histories do
     collection {
@@ -26,7 +27,9 @@ Rails.application.routes.draw do
       get  :search, to:'histories#index'
     }
   end
+
   resources :professionals
+
   resources :users
   resources :specialities   do
     collection { post :import }

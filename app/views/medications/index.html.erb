@@ -25,10 +25,11 @@
               <td> <%= medication.groups %> </td>
               <td> <%= medication.indications %> </td>
               <td> <%= medication.observations %> </td>
-              <td><%= link_to '',
+              <td><%= link_to('',
                           medication.documents.first.attachment.url,
                           class: 'icon-file-pdf-o', target: '_blank',
-                          title: medication.documents.first.title %>
+                          title: medication.documents.first.title) if  medication.documents.present?
+              %>
               </td>
               <td> <%= link_to ' ', medication, class: "icon-search" %></td>
               <td> <%= link_to ' ', edit_medication_path(medication), class: "icon-pencil" %></td>
