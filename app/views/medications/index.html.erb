@@ -10,7 +10,9 @@
           <tr>
             <th> <%= sort_link @search, :name %></th>
             <th> <%= sort_link @search, :active_ingredient %></th>
-            <th> </th>
+            <th> <%= sort_link @search, :groups %></th>
+            <th> <%= sort_link @search, :indications %></th>
+            <th> <%= sort_link @search, :observations %></th>
             <th colspan="3"><%= t('actions.column') %></th>
           </tr>
         </thead>
@@ -20,8 +22,14 @@
             <tr>
               <td> <%= medication.name %> </td>
               <td> <%= medication.active_ingredient %> </td>
-              <td> </td>
-              <td> <%= link_to ' ', medication.prospect.url(:original, false), class: "icon-file-pdf-o", target: "_blank" %> </td>
+              <td> <%= medication.groups %> </td>
+              <td> <%= medication.indications %> </td>
+              <td> <%= medication.observations %> </td>
+              <td><%= link_to '',
+                          medication.documents.first.attachment.url,
+                          class: 'icon-file-pdf-o', target: '_blank',
+                          title: medication.documents.first.title %>
+              </td>
               <td> <%= link_to ' ', medication, class: "icon-search" %></td>
               <td> <%= link_to ' ', edit_medication_path(medication), class: "icon-pencil" %></td>
               <td class="icon text-center"> <%= link_to ' ', medication, method: :delete, data: { confirm: t('actions.destroy.confirmation') },  class: "icon-trash" %></td>

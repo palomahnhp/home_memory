@@ -11,11 +11,29 @@
   <% end %>
 
   <div class="row">
-    <div class="small-12 columns">
+    <div class="small-6 columns">
       <%= f.label :name %>
       <%= f.text_field :name %>
+    </div>
+    <div class="small-6 columns">
+      <%= f.label :presentation %>
+      <%= f.text_field :presentation %>
+    </div>
+    <div class="small-6 columns">
       <%= f.label :active_ingredient %>
       <%= f.text_field :active_ingredient %>
+    </div>
+    <div class="small-6 columns">
+      <%= f.label :groups %>
+      <%= f.text_field :groups %>
+    </div>
+    <div class="small-6 columns">
+      <%= f.label :indications %>
+      <%= f.text_field :indications %>
+    </div>
+    <div class="small-6 columns">
+      <%= f.label :observations %>
+      <%= f.text_field :observations %>
     </div>
   </div>
 

@@ -17,5 +17,7 @@ class Medication < ApplicationRecord
     document = Document.create(title: 'Prospecto de ' + name.upcase,
                             attachment: file,
                             documentable: self)
+    self.name = self.name.upcase
+    save
   end
 end

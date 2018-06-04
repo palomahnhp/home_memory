@@ -38,6 +38,17 @@ tests.each do |test|
   NameTest.create(code: test.keys.first, name: test.values.first)
 end
 
+p  'Creating Specialities ...'
+SpecialityImporter.new('.xlsx',
+                       'public/import/Especialidades.xlsx').run
+
+p 'Creating medicaments ... '
+MedicationImporter.new('.xlsx',
+                       'public/import/Medicamentos.xlsx').run
+
+p 'Creating medical center ... '
+
+MedicalCenterImporter.new('.xlsx', 'public/import/CentrosMedicos.xlsx').run
 
 p 'Creating histories ... '
 

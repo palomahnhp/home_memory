@@ -34,7 +34,11 @@ en:
       medication:
         active_ingredient: Principio activo
         name: Nombre
-        prospect: Prospecto
+        laboratory: Laboratorio
+        presentation: Presentación
+        groups: Grupo
+        indications: Indicaciones
+        observations: Observaciones
       user:
         comments: Notas
         medical_center: Centro médico

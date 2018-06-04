@@ -11,20 +11,34 @@
         </tr>
         <tr>
           <th> <%= t('activerecord.attributes.medication.active_ingredient') %> </th>
-          <td class="text-center"> <%= @medication.active_ingredient %> </td>
+          <td > <%= @medication.active_ingredient %> </td>
         </tr>
         <tr>
-          <th> <%= t('activerecord.attributes.medication.prospect') %> </th>
-          <td> <%= link_to ' ', @medication.prospect.url(:original, false), class: "icon-file-pdf-o", target: "_blank" %> </td>
+          <th> <%= t('activerecord.attributes.medication.presentation') %> </th>
+          <td > <%= @medication.presentation %> </td>
+        </tr>
+        <tr>
+          <th> <%= t('activerecord.attributes.medication.laboratory') %> </th>
+          <td > <%= @medication.laboratory %> </td>
+        </tr>
+        <tr>
+          <th> <%= t('activerecord.attributes.medication.groups') %> </th>
+          <td > <%= @medication.groups %> </td>
+        </tr>
+        <tr>
+          <th> <%= t('activerecord.attributes.medication.indications') %> </th>
+          <td > <%= @medication.indications %> </td>
+        </tr>
+        <tr>
+          <th> <%= t('activerecord.attributes.medication.observations') %> </th>
+          <td > <%= @medication.observations %> </td>
         </tr>
         <tr>
           <th>Documentación</th>
           <td>
-            <div class="tabs-panel" id="tab-documents">
-              <%= render 'documents/documents',
-                         documents: @medication.documents,
-                         max_documents_allowed: Medication.max_documents_allowed %>
-            </div>
+            <%= render 'documents/documents',
+                       documents: @medication.documents,
+                       max_documents_allowed: Medication.max_documents_allowed %>
           </td>
         </tr>
       </table>
