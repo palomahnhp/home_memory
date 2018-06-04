@@ -77,6 +77,7 @@ class MedicationsController < ApplicationController
                                          :groups,
                                          :indications,
                                          :observations,
+                                         :presentation,
                                          documents_attributes: [:id,
                                                                 :title,
                                                                 :attachment,
