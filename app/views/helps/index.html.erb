@@ -11,9 +11,13 @@
       <li>Crear la estructura - migraciones <strong>rails db:migrate </strong></li>
       <li>Inicializar la bd - seed <strong>rails db:seed </strong></li>
       <li>Importar grupos y determinaciones analíticas
-        <%= link_to "GruposYDeterminaciones",
-                    "/public/import/GruposYDeterminaciones.xlsx",
-                    target: "_blank"%>
+        <p>Ejecutar en consola rails:<p>
+        <ul>
+          <li><code> RAILS_ENV=production rails c </code></li>
+          <li><code>AnalyticalGroupsImporter.new('.xlsx', '/import/GruposDeterminaciones.xlsx').run</code></li>
+        </ul>
+        </p>
+        <%= link_to "GruposYDeterminaciones", "/import/GruposDeterminaciones.xlsx", target: "_blank"%>
       </li>
     </ul>
   </li>
