@@ -61,19 +61,25 @@
         <%= render 'documents/nested_documents', documentable: @medical_test, f: form %>
       </div>
     </div>
+
     <% if @medical_test.name == 'Análisis' %>
-      <div class="row">
-        <fieldset>
-          <legend>Determinaciones </legend>
-          <%= link_to_add_association '[+] añadir determinación', form, :analysis_results %>
+         <% if @medical_test.analysis_results.blank? %>
+          <% @medical_test.initialize_analysis_results %>
+        <% end %>
+        <div class="row">
           <div id='analysis_result'>
-            <%= form.fields_for :analysis_results do |result| %>
-              <%= render 'medical_tests/analysis_result_fields', :f => result %>
-            <% end %>
-          </div>
-        </fieldset>
-      </div>
-      <div class="small-10 columns"></div>
+            <fieldset>
+              <legend>Determinaciones</legend>
+              <%= link_to_add_association '[+] añadir determinación', form, :analysis_results %>
+              <div id='analysis_result'>
+                <%= form.fields_for :analysis_results do |result| %>
+                  <%= render 'medical_tests/analysis_result_fields', :f => result %>
+                <% end %>
+              </div>
+            </fieldset>
+           </div>
+        </div>
+        <div class="small-10 columns"></div>
     <% end %>
   <% end %>
 </div>

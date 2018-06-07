@@ -85,6 +85,7 @@ class History < ApplicationRecord
   def date
     event_at&.strftime("%m/%d/%Y %H:%M")
   end
+
 end
 
 
