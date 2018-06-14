@@ -1,4 +1,5 @@
 class AnalysisResultsController < ApplicationController
+  before_action :set_result, only: [:show, :edit, :update, :destroy]
 
   def index
     @medical_test = MedicalTest.find_by(id: params[:medical_test])
@@ -11,7 +12,7 @@ class AnalysisResultsController < ApplicationController
 
   def update
     if @result.update(analysis_result_params)
-      redirect_to medical_tests_path(@result), notice: 'Actualizado resultado'
+      redirect_to analysis_result_path(@result), notisce: 'Actualizado resultado'
     else
       render :edit
     end
@@ -46,6 +47,10 @@ class AnalysisResultsController < ApplicationController
   end
 
   private
+
+  def set_result
+    @result = AnalysisResult.find(params[:id])
+  end
 
   def analysis_result_params
     params.require(:analysis_result).permit(:medical_test_id,

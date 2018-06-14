@@ -120,6 +120,11 @@ table {
       text-align: left;
     }
 
+    &.full-col {
+      text-align: left;
+      width: 100%;
+    }
+
     &.long-col {
       padding-left: rem-calc(50);
       text-align: left;

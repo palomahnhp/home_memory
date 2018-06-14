@@ -1,2 +1,54 @@
-<h1>AnalysisResults#edit</h1>
-<p>Find me in app/views/analysis_results/edit.html.erb</p>
+<div class="row">
+  <div class="small-12 columns" >
+    <h2> Resultado del análisis de <%= @result.medical_test.history.user.full_name %></h2>
+
+    <%= link_to t('actions.edit'), edit_analysis_result_path(@result) %> |
+    <%= link_to t('actions.back'), edit_medical_test_path(@result.medical_test) %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-12 columns" >
+  <%= form_with(model: @result, local: true) do |form| %>
+      <table>
+        <tr>
+          <th> Análisis:  </th>
+          <td> <%= l @result.medical_test.performed_at  %> </td>
+        </tr>
+        <tr>
+          <th> Determinación </th>
+          <td class="full-col"> <%= form.select :analytical_item_id,
+                   options_from_collection_for_select(AnalyticalItem.all , 'id',
+                                                      'name', form.object.analytical_item_id) %> </td>
+        </tr>
+        <tr>
+          <th> Cantidad </th>
+          <td class="medium-col"> <%= form.number_field :amount %> </td>
+        </tr>
+        <tr>
+          <th> Resultado </th>
+          <td class="medium-col"> <%= form.text_field :result %> </td>
+        </tr>
+        <tr>
+          <th> Unidad </th>
+          <td> <%= form.text_field :unit, list: "units" %> </td>
+           <datalist id="units">
+            <% AnalyticalItem.all.pluck(:unit).uniq.each do |unit| %>
+              <option value="<%= unit %>">
+            <% end %>
+          </datalist>
+        </tr>
+        <tr>
+          <th> Interpretacion </th>
+          <td> <%= form.text_area :interpretation %> </td>
+        </tr>
+        <tr>
+          <th> Comentario </th>
+          <td> <%= form.text_area :comments %> </td>
+        </tr>
+      </table>
+        <%= form.submit t('actions.save'), class: "button hollow float-right" %>
+    </div>
+  <% end %>
+  </div>
+</div>

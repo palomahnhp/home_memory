@@ -14,9 +14,9 @@
       <strong><%= @result.analytical_item.name %>
        <%=  amount_result(@result) %> </strong>
       <%= 'Nivel: ' + @result.level if @result.level.present? %>
-      <%= '( ' + @result.analytical_item.min_range +
-              ' - ' + @result.analytical_item.min_range + ' ' +
-              @result.analytical_item.unit + ' )'%>
+      <%= '( ' + @result.analytical_item.min_range.to_s +
+              ' - ' + @result.analytical_item.min_range.to_s + ' ' +
+              @result.analytical_item.unit.to_s + ' )'%>
     </div>
     <div class="small-12 columns" >
       <%= simple_format(@result.comments) if @result.comments.present? %>
