@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :medical_centers
   resources :medical_tests do
     collection { post :import }
+    collection { post :import_results }
   end
 
   resources :prescriptions

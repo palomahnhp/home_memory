@@ -119,10 +119,13 @@ en:
       title: Editar centro médico
   medical_test:
     new: Nueva prueba
+    import_result: "Importar resultados"
   medical_tests:
     edit:
       title: 'Prueba diagnóstica:'
     index:
+      import_result:
+        button: Importar resultados
       import:
         button: Importar
         title: Importar

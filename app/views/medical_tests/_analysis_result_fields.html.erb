@@ -1,15 +1,15 @@
 <div class="row nested-fields">
   <table>
-    <tr>
-      <td class="short-col">
+    <tr class="analysis-result">
+      <td class="short-col analysis-result">
         <%= f.label :level %>
         <%= f.select :level, options_for_select([ "B", "A" ], f.object.level),
                      {:include_blank => 'Nivel'} %></td>
-      <td class="short-col">
+      <td class="short-col analysis-result">
         <%= f.label :grade %>
         <%= f.select :grade, options_for_select(['+', '-'], f.object.grade),
                                          {:include_blank => 'Grado'} %></td>
-      <td>
+      <td class="medium-col analysis-result">
         <%= f.label :analytical_item_id %>
         <%= f.select :analytical_item_id,
                      options_from_collection_for_select(AnalyticalItem.all,'id',
@@ -17,11 +17,16 @@
                                                         f.object.analytical_item_id),
                        {:include_blank => 'Selecciona la prueba'}  %>
       </td>
-      <td>
-        <%= f.label :amount %>
-        <%= f.number_field :amount, min: 0, step: 0.01 %>
+      <td class="medium-col analysis-result">
+        <% if f.object.analytical_item.present? && f.object.analytical_item.result_type == 'text'  %>
+          <%= f.label :result %>
+          <%= f.text_field :result %>
+        <% else %>
+          <%= f.label :amount %>
+          <%= f.number_field :amount, min: 0, step: 0.01 %>
+        <% end %>
       </td>
-      <td>
+      <td class="medium-col analysis-result">
         <%= f.label :unit %>
         <%= f.text_field :unit, list: "units" %>
         <datalist id="units">
@@ -30,7 +35,17 @@
           <% end %>
         </datalist>
       </td>
-      <td><%= link_to_remove_association "[-]", f %></td>
+      <td class="analysis-result">
+        <%= f.label :comments %>
+        <%= f.text_field :comments %>
+      </td>
+      <td class="analysis-result">
+        <%= link_to_remove_association "[-]", f %>
+        <% if f.object.id.present? %>
+          <%= link_to '', f.object, class: "icon-search" %>
+          <%= link_to '', edit_analysis_result_path(f.object), class: "icon-pencil" %></td>
+        <% end %>
+      </td>
     </tr>
   </table>
 

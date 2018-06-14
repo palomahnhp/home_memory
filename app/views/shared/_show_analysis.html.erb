@@ -7,6 +7,7 @@
         <th class="long-col">   Determinación</th>
         <th class="medium-col"> Cantidad</th>
         <th class="medium-col"> Rango </th>
+        <th class="medium-col"> Comentario </th>
         <th colspan="3" class="short-col">  Acciones</th>
       </tr>
       </thead>
@@ -15,17 +16,16 @@
       <% AnalyticalGroup.all.each do |group| %>
         <% next if items_by_group(medical_test, group).empty? %>
         <tr>
-          <td colspan="7"> <h3> <%= group.name %> </h3></td>
+          <td colspan="7"> <h6> <%= group.name %> </h6></td>
         </tr>
         <% @items_by_group.each do |item| %>
           <tr>
             <td> <%= result(medical_test, item).level %> <%= @result.grade %></td>
             <td><%= item.name %></td>
-            <td><%= @result.amount.to_s + @result.unit  if @result.amount.present? %> </td>
+            <td>
+              <%= amount_result(@result) %> </td>
             <td><%= item.min_range %>-<%= item.max_range %> </td>
-
-            <td><%= link_to '', @result, class: "icon-search" %></td>
-            <td><%= link_to '', edit_analysis_result_path(@result), class: "icon-pencil" %></td>
+            <td><%= item.comments %> </td>
             <td><%= link_to '', @result, method: :delete,
                             data: { confirm: 'Are you sure?' },
                             class: "icon-trash" %></td>

@@ -1,7 +1,6 @@
   class BaseImporter
-    attr_reader :filepath
 
-    def initialize(extname, filepath)
+    def initialize(extname, filepath, history=nill)
       @filepath = filepath
       @extname  = extname
     end

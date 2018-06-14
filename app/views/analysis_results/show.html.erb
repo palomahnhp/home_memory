@@ -1,2 +1,28 @@
+<div class="row">
+  <div class="small-12 columns" >
+    <h2>Resultado analítico </h2>
+  </div>
+</div>
 
-<p>Find me in app/views/analysis_results/show.html.erb</p>
+<%= link_to t('actions.edit'), edit_analysis_result_path(@result) %> |
+<%= link_to t('actions.back'), edit_medical_test_path(@result.medical_test) %>
+<br>
+
+<div class="panel">
+  <fieldset class="row" >
+    <div class="small-6 columns" >
+      <strong><%= @result.analytical_item.name %>
+       <%=  amount_result(@result) %> </strong>
+      <%= 'Nivel: ' + @result.level if @result.level.present? %>
+      <%= '( ' + @result.analytical_item.min_range +
+              ' - ' + @result.analytical_item.min_range + ' ' +
+              @result.analytical_item.unit + ' )'%>
+    </div>
+    <div class="small-12 columns" >
+      <%= simple_format(@result.comments) if @result.comments.present? %>
+    </div>
+    <div class="small-12 columns" >
+      <%= 'Interpretación: ' + @result.interpretation if @result.interpretation.present? %>
+    </div>
+  </fieldset>
+</div>

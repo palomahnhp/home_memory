@@ -208,6 +208,8 @@ div {
 
 label {
   display: block;
+  font-size: 0.875rem;
+  color: darken($secondary-color, 15%);
 }
 
 .top_bar {
@@ -265,11 +267,6 @@ fieldset{
   color: $primary-color;
   font-weight: bold;
 }
-
-label {
-    font-size: 0.875rem;
-    color: $secondary-color;
- }
 
 table.comming{
   tr{

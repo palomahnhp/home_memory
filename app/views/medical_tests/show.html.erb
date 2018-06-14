@@ -24,8 +24,28 @@
         <%= render 'shared/show_analysis', medical_test: @medical_test %>
       </fieldset>
     <% end %>
-
   </div>
 </div>
 
-<%= render 'show_links' %>
+<div class="row">
+  <div class="small-4 columns">
+    <%= render 'show_links' %>
+  </div>
+  <div class="small-8 columns">
+    <% unless @medical_test.analysis_results.present? %>
+      <div class="small-12 columns">
+        <strong> <%= t('medical_tests.index.import_result.button') %> </strong>
+        <%= form_tag import_results_medical_tests_path, multipart: true do %>
+          <%= hidden_field_tag :id,  @medical_test.id %>
+          <div class="medium-8 columns">
+            <%= file_field_tag :file %>
+          </div>
+          <div class="medium-4 columns end">
+            <%= submit_tag t('medical_tests.index.import.button'), class: "hollow button" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

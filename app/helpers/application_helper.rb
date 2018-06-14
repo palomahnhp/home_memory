@@ -40,4 +40,8 @@ module ApplicationHelper
     comming.sort_by{ |item| item[4] }
   end
 
+  def amount_result(result)
+    amount_result = result.result.present? ? result.result : result.amount.to_s
+    amount_result + ' ' + @result.unit.to_s
+  end
 end

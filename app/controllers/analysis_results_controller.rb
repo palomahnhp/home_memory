@@ -39,7 +39,7 @@ class AnalysisResultsController < ApplicationController
     medical_test_id = @result.medical_test
 
     if @result.destroy
-      redirect_to medical_tests_path(medical_test_id), notice: 'Eliminado resultado'
+      redirect_to medical_test_path(medical_test_id), notice: 'Eliminado resultado'
     else
       render :index, notice: 'Error eliminando resultado'
     end

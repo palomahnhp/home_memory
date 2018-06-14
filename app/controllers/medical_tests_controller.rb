@@ -56,6 +56,20 @@ class MedicalTestsController < ApplicationController
     end
   end
 
+  def import_results
+    @medical_test = MedicalTest.find(params[:id])
+    filepath = params[:file].tempfile.path
+    if File.exist?(filepath)
+      message = 'Lanzada tarea de importación. Carga disponible en unos minutos'
+      AnalyticalResultImporter.new(filepath, @medical_test).run
+    else
+      message =  'Error al obtener el fichero de importación.' +
+          ' No se ha iniciado el proceso: ' + filepath
+    end
+    redirect_to medical_test_path(@medical_test),
+                notice: message
+  end
+
   def import
     filepath = params[:file].tempfile.path
     if File.exist?(filepath)
